@@ -35083,6 +35083,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  screenTopBuffer: 5.25
+  screenBottomBuffer: 1.25
   playerRB: {fileID: 1791057926}
   cam: {fileID: 261111453}
 --- !u!1 &1897200154

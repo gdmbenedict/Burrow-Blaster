@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Movement Variables")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float screenTopBuffer = 1f;
+    [SerializeField] private float screenBottomBuffer = 1f;
 
     [Header("Object references")]
     [SerializeField] private Rigidbody playerRB;
@@ -26,9 +28,27 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //getting screen boundaries
+        GetBoudaries();
+
+        Debug.Log("Top boundary = " + (maxZ - screenTopBuffer));
+        Debug.Log("Bottom boundary = " + (minZ + screenBottomBuffer));
+        Debug.Log("Player Pos Z = " + (gameObject.transform.position.z + (movementDir.z * moveSpeed * Time.deltaTime)));
+
+        //checking top boundary
+        if ((gameObject.transform.position.z + movementDir.z * moveSpeed * Time.deltaTime) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
+        {
+            movementDir.z = 0;
+        }
+        //checking bottom boundary
+        else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * Time.deltaTime) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
+        {
+            movementDir.z = 0;
+        }
+
+
         //moving player
         playerRB.MovePosition(playerRB.position + movementDir * moveSpeed * Time.deltaTime);
-        GetBoudaries();
     }
 
     //Method that updates the movement direction of the player
@@ -48,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHitmax))
         {
             maxZ = raycastHitmax.point.z;
-            Debug.Log(maxZ);
+            //Debug.Log(maxZ);
         }
 
         //Getting minZ
@@ -56,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHitmin))
         {
             minZ = raycastHitmin.point.z;
-            Debug.Log(minZ);
+            //Debug.Log(minZ);
         }
     }
 }
