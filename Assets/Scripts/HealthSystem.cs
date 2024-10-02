@@ -19,7 +19,17 @@ public class HealthSystem : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            //die
+            Enemy enemy = GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                Debug.Log("Calling Die Function");
+                enemy.Die();
+            }
+            else
+            {
+                //handle player death
+            }
         }
         //implement something to show taking damage
     }

@@ -39,13 +39,13 @@ public class PlayerMovement : MonoBehaviour
         //checking top boundary
         if ((gameObject.transform.position.z + movementDir.z * moveSpeed * Time.deltaTime) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
         {
-            Debug.Log("Boundry Being Called");
+            //Debug.Log("Boundry Being Called");
             movementDir.z = 0;
         }
         //checking bottom boundary
         else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * Time.deltaTime) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
         {
-            Debug.Log("Boundry Being Called");
+            //Debug.Log("Boundry Being Called");
             movementDir.z = 0;
         }
 
@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Getting input from controls and translating to a 3D vector
         Vector2 inputDir = input.ReadValue<Vector2>();
-        Debug.Log(inputDir);
+        //Debug.Log(inputDir);
         movementDir = new Vector3(inputDir.x, 0f, inputDir.y);
     }
 
