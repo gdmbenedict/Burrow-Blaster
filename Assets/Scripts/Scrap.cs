@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Scrap : MonoBehaviour
 {
+    [SerializeField] private int value;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,12 @@ public class Scrap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        ScrapManager scrapManager = other.GetComponent<ScrapManager>();
+
+        if (scrapManager != null)
+        {
+            scrapManager.AddScrap(value);
+            Destroy(gameObject);
+        }   
     }
 }
