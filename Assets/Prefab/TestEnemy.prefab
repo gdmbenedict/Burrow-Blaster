@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7768239191999225505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7619971051294465002}
+  m_Layer: 7
+  m_Name: MuzzlePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7619971051294465002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7768239191999225505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8294997133757494487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8976310428112141259
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,7 +47,7 @@ GameObject:
   - component: {fileID: 7705981167903737185}
   - component: {fileID: 1092619585464597524}
   - component: {fileID: 812627264707572117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +66,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7619971051294465002}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3212573054769410070
@@ -157,6 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83b69bad99cfa34b8a0570f53a82b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrap: {fileID: 1188973507034171806, guid: 064418f1b9cc14a4b91b96f928117ea9, type: 3}
+  weapon: {fileID: 812627264707572117}
 --- !u!114 &812627264707572117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e63450f13af2d54da3da6fd408dec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  firerate: 0
-  muzzlePosition: {fileID: 0}
+  projectile: {fileID: 3615971726096595373, guid: 6484b725392b95a44b4e514455575009,
+    type: 3}
+  firerate: 0.5
+  muzzlePosition: {fileID: 7619971051294465002}
   projectileDir: {x: 0, y: 0, z: 0}

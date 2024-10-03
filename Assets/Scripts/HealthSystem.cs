@@ -28,7 +28,7 @@ public class HealthSystem : MonoBehaviour
             }
             else
             {
-                //handle player death
+                Player player = GetComponent<Player>();
             }
         }
         //implement something to show taking damage

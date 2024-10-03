@@ -30,6 +30,22 @@ public class Weapon : MonoBehaviour
         projectileDir = direction;
     }
 
+    public Transform GetMuzzlePos()
+    {
+        return muzzlePosition;
+    }
+
+    public bool GetCanFire()
+    {
+        return canFire;
+    }
+
+    public void ActivateCooldown()
+    {
+        canFire = false;
+        StartCoroutine(Cooldown());
+    }
+
     //Function that puts weapon operation on a timer
     private IEnumerator Cooldown()
     {
