@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject model;
+    [SerializeField] private Weapon weapon;
     [SerializeField] private List<Collider> colliders;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
         {
             colliders[i].enabled = true;
         }
+        weapon.enabled = true;
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
         {
             colliders[i].enabled = false;
         }
+        weapon.enabled = false;
         //Destroy(gameObject);
     } 
 }

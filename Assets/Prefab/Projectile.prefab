@@ -585,7 +585,7 @@ MonoBehaviour:
   damage: 1
   speed: 40
   direction: {x: 0, y: 0, z: 1}
-  bulletLifeTime: 2
+  bulletLifeTime: 1
 --- !u!54 &3719004958495577928
 Rigidbody:
   m_ObjectHideFlags: 0
