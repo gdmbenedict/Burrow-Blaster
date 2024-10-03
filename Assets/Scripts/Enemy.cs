@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
 
     public void ToggleOnScreen()
     {
-        Debug.Log("ToggleScreenCalled");
+        //Debug.Log("ToggleScreenCalled");
 
         onScreen = !onScreen;
         if (onScreen)
@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
     {
         if (weapon.GetCanFire())
         {
-            Debug.Log("WeaponFired");
+            //Debug.Log("WeaponFired");
             weapon.ChangeProjectileDirection(target.position - weapon.GetMuzzlePos().position);
             weapon.Fire();
         }
