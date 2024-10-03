@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
 
     private bool canFire = true;
 
+    //Function that fires a projectile
     public void Fire()
     {
         if (canFire)
@@ -21,6 +22,12 @@ public class Weapon : MonoBehaviour
             canFire = false;
             StartCoroutine(Cooldown());
         }
+    }
+
+    //Function that allows for changing of direction in which a projectile is fired
+    public void ChangeProjectileDirection(Vector3 direction)
+    {
+        projectileDir = direction;
     }
 
     //Function that puts weapon operation on a timer

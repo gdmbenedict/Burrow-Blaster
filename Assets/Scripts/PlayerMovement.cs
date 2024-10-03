@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float screenBottomBuffer = 1f;
 
     [Header("Object references")]
-    [SerializeField] private CharacterController playerCharacter;
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private Camera cam;
     private float cameraSpeed;
 
@@ -51,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         //moving player
-        playerCharacter.Move(movementDir * moveSpeed * Time.deltaTime);
-        playerCharacter.Move(Vector3.forward * cameraSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + movementDir * moveSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
     }
 
     //Method that updates the movement direction of the player

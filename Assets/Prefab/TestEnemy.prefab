@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9176048949082641098}
   - component: {fileID: 7705981167903737185}
   - component: {fileID: 1092619585464597524}
+  - component: {fileID: 812627264707572117}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -156,3 +157,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83b69bad99cfa34b8a0570f53a82b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &812627264707572117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976310428112141259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e63450f13af2d54da3da6fd408dec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  firerate: 0
+  muzzlePosition: {fileID: 0}
+  projectileDir: {x: 0, y: 0, z: 0}

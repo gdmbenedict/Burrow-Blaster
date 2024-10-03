@@ -14,10 +14,10 @@ public class CameraController : MonoBehaviour
         
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //moves camera up along the level
-        transform.position += Vector3.forward * scrollSpeed * Time.deltaTime;
+        transform.position += Vector3.forward * scrollSpeed * Time.fixedDeltaTime;
     }
 
     public float GetSpeed()
