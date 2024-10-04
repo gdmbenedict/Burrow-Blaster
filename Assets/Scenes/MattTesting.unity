@@ -1781,7 +1781,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &374679463
 BoxCollider:
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 358638877}
-  weapon: {fileID: 0}
+  weapon: {fileID: 374679459}
   colliders:
   - {fileID: 374679463}
   - {fileID: 358638879}

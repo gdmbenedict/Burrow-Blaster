@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         {
             colliders[i].enabled = false;
         }
-        weapon.enabled = false;
+        weapon.Disable();
         //Destroy(gameObject);
     } 
 }
