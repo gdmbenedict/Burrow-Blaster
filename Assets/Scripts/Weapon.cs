@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
 
     public void Disable()
     {
-        StopCoroutine(Cooldown());
+        StopAllCoroutines();
         canFire = false;
     }
 
