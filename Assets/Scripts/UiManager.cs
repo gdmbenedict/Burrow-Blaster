@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour
@@ -14,6 +15,10 @@ public class UiManager : MonoBehaviour
         LoseScreen,
     }
 
+    [SerializeField] private UIState uiState;
+
+    [SerializeField] private TextMeshProUGUI scrapText;
+
     [SerializeField] private GameObject TitleScreen;
     [SerializeField] private GameObject UpgradeScreen;
     [SerializeField] private GameObject GameplayUI;
@@ -24,7 +29,7 @@ public class UiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ChangeUIScreen(UIState.TitleScreen);
     }
 
     // Update is called once per frame
@@ -40,26 +45,32 @@ public class UiManager : MonoBehaviour
         switch (targetScreen)
         {
             case UIState.TitleScreen:
+                uiState = UIState.TitleScreen;
                 TitleScreen.SetActive(true);
                 break;
 
             case UIState.UpgradeScreen:
+                uiState = UIState.UpgradeScreen;
                 UpgradeScreen.SetActive(true);
                 break;
 
             case UIState.GameplayScreen:
+                uiState = UIState.GameplayScreen;
                 GameplayUI.SetActive(true);
                 break;
 
             case UIState.PauseScreen:
+                uiState = UIState.PauseScreen;
                 PauseScreen.SetActive(true);
                 break;
 
             case UIState.WinScreen:
+                uiState = UIState.WinScreen;
                 WinScreen.SetActive(true);
                 break;
 
             case UIState.LoseScreen:
+                uiState = UIState.LoseScreen;
                 LoseScreen.SetActive(true);
                 break;
         }
@@ -73,5 +84,10 @@ public class UiManager : MonoBehaviour
         GameplayUI.SetActive(false);
         WinScreen.SetActive(false);
         LoseScreen.SetActive(false);
+    }
+
+    public void UpdateScrapUI(int scrap)
+    {
+        scrapText.text = "Scrap Collected:\n" + scrap;
     }
 }
