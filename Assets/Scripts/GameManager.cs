@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameState = GameState.TitleMenu;
     }
 
     // Update is called once per frame
@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         score = 0;
+        gameState = GameState.Gameplay;
     }
 
     public void WinGame()
@@ -68,6 +69,11 @@ public class GameManager : MonoBehaviour
     public void ReturnToUpgrade()
     {
 
+    }
+
+    public void Quit()
+    {
+        
     }
 
     public void AddScore(int scoreToAdd)

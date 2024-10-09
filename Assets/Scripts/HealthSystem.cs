@@ -44,6 +44,11 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    public void SetHealth(int health)
+    {
+        this.health = health;
+    }
+
     public int GetHealth()
     {
         return health;
