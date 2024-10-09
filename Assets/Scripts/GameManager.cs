@@ -98,12 +98,13 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         Time.timeScale = 0;
-
+        uiManager.ChangeUIScreen(UIManager.UIState.WinScreen);
     }
 
     public void LoseGame()
     {
         Time.timeScale = 0;
+        uiManager.ChangeUIScreen(UIManager.UIState.LoseScreen);
     }
 
     public void GoToUpgrade()

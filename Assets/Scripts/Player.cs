@@ -9,9 +9,13 @@ public class Player : MonoBehaviour
     [SerializeField] private List<Collider> colliders;
     [SerializeField] private HealthSystem playerHealth;
 
+    [SerializeField] private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         model.SetActive(true);
         for (int i = 0; i < colliders.Count; i++)
         {
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour
             colliders[i].enabled = false;
         }
         weapon.Disable();
+        gameManager.LoseGame();
     }
     
     public void DisablePlayerVisual()
