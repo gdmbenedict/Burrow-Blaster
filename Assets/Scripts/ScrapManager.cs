@@ -5,12 +5,12 @@ using UnityEngine;
 public class ScrapManager : MonoBehaviour
 {
     [SerializeField] private int totalScrap;
-    [SerializeField] private UiManager uiManager;
+    [SerializeField] private UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        uiManager = FindObjectOfType<UiManager>();
+        uiManager = FindObjectOfType<UIManager>();
         totalScrap = 0;
     }
 

@@ -25,14 +25,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void GetFiring(InputAction.CallbackContext input)
     {
-        if (input.performed)
-        {
-            isFiring = true;
-        }
-        else if (input.canceled)
-        {
-            isFiring = false;
-        }
+        isFiring = input.action.IsPressed();
     }
 
 
