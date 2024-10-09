@@ -7,13 +7,22 @@ public class GameManager : MonoBehaviour
 {
     public enum GameState
     {
-        Menu,
-        Gameplay
+        TitleMenu,
+        Gameplay,
+        UpgradeMenu
     }
 
     [Header("Player References")]
     [SerializeField] private Player player;
     [SerializeField] private HealthSystem playerHealth;
+
+    [Header("Manager References")]
+    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private UiManager uiManager;
+
+    [Header("Scenes")]
+    [SerializeField] private string GameSceneName;
+    [SerializeField] private string UpgradeSceneName;
 
     private int score;
 
@@ -52,6 +61,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartGame()
+    {
+        
+    }
+
+    public void ReturnToUpgrade()
     {
 
     }

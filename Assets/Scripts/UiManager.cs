@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
+    [SerializeField] private GameObject TitleScreen;
+
     // Start is called before the first frame update
     void Start()
     {
