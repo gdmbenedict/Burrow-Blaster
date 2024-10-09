@@ -1533,7 +1533,6 @@ MonoBehaviour:
   weapon: {fileID: 374679459}
   colliders:
   - {fileID: 374679463}
-  - {fileID: 0}
 --- !u!114 &374679465
 MonoBehaviour:
   m_ObjectHideFlags: 0
