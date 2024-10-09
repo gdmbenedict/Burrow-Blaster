@@ -46,6 +46,17 @@ public class Weapon : MonoBehaviour
         StartCoroutine(Cooldown());
     }
 
+    public void Disable()
+    {
+        StopAllCoroutines();
+        canFire = false;
+    }
+
+    public void Enable()
+    {
+        canFire = true;
+    }
+
     //Function that puts weapon operation on a timer
     private IEnumerator Cooldown()
     {

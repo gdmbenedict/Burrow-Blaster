@@ -27,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void 
+        FixedUpdate()
     {
         //getting screen boundaries
         GetBoudaries();
@@ -53,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
         //moving player
         rb.MovePosition(rb.position + movementDir * moveSpeed * Time.deltaTime);
         rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
+
+        if (rb.velocity.magnitude != 0)
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
     //Method that updates the movement direction of the player

@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83b69bad99cfa34b8a0570f53a82b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 0}
   scrap: {fileID: 1188973507034171806, guid: 064418f1b9cc14a4b91b96f928117ea9, type: 3}
   weapon: {fileID: 812627264707572117}
 --- !u!114 &812627264707572117
@@ -205,6 +206,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 3615971726096595373, guid: 6484b725392b95a44b4e514455575009,
     type: 3}
-  firerate: 0.5
+  firerate: 1
   muzzlePosition: {fileID: 7619971051294465002}
   projectileDir: {x: 0, y: 0, z: 0}

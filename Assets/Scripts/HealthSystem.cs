@@ -29,6 +29,7 @@ public class HealthSystem : MonoBehaviour
             else
             {
                 Player player = GetComponent<Player>();
+                player.Die();
             }
         }
         //implement something to show taking damage

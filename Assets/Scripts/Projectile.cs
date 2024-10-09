@@ -40,6 +40,7 @@ public class Projectile : MonoBehaviour
             target.TakeDamage(damage);
         }
 
+        Debug.Log("Collision Destroy: id - " + other.gameObject.name);
         Destroy(gameObject);
     }
 
@@ -62,6 +63,7 @@ public class Projectile : MonoBehaviour
             timer += Time.deltaTime;
         }
 
+        Debug.Log("Bullet Lifetime Destroy");
         Destroy(gameObject);
     }
 

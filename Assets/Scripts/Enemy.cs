@@ -1,33 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private GameObject scrap;
     [SerializeField] private Weapon weapon;
+    
+    //Checking if enemy is on screen
+    private Camera cam;
+    private Plane[] cameraFrustem;
     private bool onScreen;
+    private Collider collider;
+
+    //Player Info
+    private Player player;
 
     // Start is called before the first frame update
     void Awake()
     {
-        enemyManager = FindObjectOfType<EnemyManager>();
-        enemyManager.AddToEnemies(this);
+        onScreen = false;
+        cam = Camera.main;
+        player = FindAnyObjectByType<Player>();
+        collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //getting camera field of vision
+        cameraFrustem = GeometryUtility.CalculateFrustumPlanes(cam);
+        bool detectedOnScreen = GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds);
+        if (detectedOnScreen && !onScreen || !detectedOnScreen && onScreen)
+        {
+            ToggleOnScreen();
+        }
+
         if (onScreen)
         {
-            Attack(enemyManager.GetPlayerLocation());
+            Attack(player.transform);
         }
     }
 
     public void ToggleOnScreen()
     {
+        //Debug.Log("ToggleScreenCalled");
+
         onScreen = !onScreen;
         if (onScreen)
         {
@@ -45,7 +65,6 @@ public class Enemy : MonoBehaviour
     {
         //instantiate scrap object
         Instantiate(scrap, transform.position, Quaternion.identity);
-        enemyManager.RemoveFromEnemies(this);
         Destroy(gameObject);
     }
 
@@ -54,6 +73,7 @@ public class Enemy : MonoBehaviour
     {
         if (weapon.GetCanFire())
         {
+            //Debug.Log("WeaponFired");
             weapon.ChangeProjectileDirection(target.position - weapon.GetMuzzlePos().position);
             weapon.Fire();
         }
