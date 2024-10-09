@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
             colliders[i].enabled = false;
         }
         weapon.Disable();
-        //Destroy(gameObject);
-    } 
+    }
+    
+    public void DisablePlayerVisual()
+    {
+        model.SetActive(false);
+    }
 }
