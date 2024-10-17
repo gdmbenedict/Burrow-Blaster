@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8473606519549398385}
   - component: {fileID: 8879282499683176147}
   - component: {fileID: 2466576206604131918}
-  - component: {fileID: 8789910997784613697}
+  - component: {fileID: 258972044987899277}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -171,6 +171,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d6121c8f-d1db-4842-a4cb-528db7bdde64
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f259d047-7579-4a7b-8f61-0cb6ab0013ed
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -300,8 +304,9 @@ MonoBehaviour:
   weapon: {fileID: 8473606519549398385}
   colliders:
   - {fileID: 1724905610801203515}
-  playerHealth: {fileID: 0}
---- !u!114 &8789910997784613697
+  playerHealth: {fileID: 8879282499683176147}
+  gameManager: {fileID: 0}
+--- !u!114 &258972044987899277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,10 +315,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6062204871964251105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c06e51afc4479b149812d31912309c85, type: 3}
+  m_Script: {fileID: 11500000, guid: 2016ed39b2ee98747b0dbc8ccff7772e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalScrap: 0
+  pickUpLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &8678088331011708859
 PrefabInstance:
   m_ObjectHideFlags: 0
