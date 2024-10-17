@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MaxSpeed: 10
   m_EasingMode: 0
   m_AlignmentMode: 1
-  m_ObjectForwardAxis: 2
+  m_ObjectForwardAxis: 5
   m_ObjectUpAxis: 1
   m_StartOffset: 0
 --- !u!114 &7705981167903737185
