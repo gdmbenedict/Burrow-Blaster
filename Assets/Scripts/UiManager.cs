@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Text Fields")]
     [SerializeField] private TextMeshProUGUI scrapTextGameplay;
-    //[SerializeField] private TextMeshProUGUI scrapTextUpgrade;
+    [SerializeField] private TextMeshProUGUI scrapTextUpgrade;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private TextMeshProUGUI scrapResult;
@@ -132,6 +132,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUpgradeUI()
     {
-
+        scrapTextUpgrade.text = "Scrap: " + scrapManager.GetScrap();
     }
 }
