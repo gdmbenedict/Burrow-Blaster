@@ -23,7 +23,7 @@ public class HealthSystem : MonoBehaviour
 
             if (enemy != null)
             {
-                Debug.Log("Calling Die Function");
+                //Debug.Log("Calling Die Function");
                 enemy.Die();
             }
             else

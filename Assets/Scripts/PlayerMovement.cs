@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private LayerMask obstacleLayer;
+
     [Header("Player Movement Variables")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float screenTopBuffer = 1f;
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementDir;
     private float maxZ;
     private float minZ;
-    private float moveSpeedMult;
+    [SerializeField] private float moveSpeedMult;
     private bool canDodge;
     private bool isDodging;
 
@@ -32,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         canDodge = false;
-        moveSpeedMult = 1;
+        if (moveSpeedMult <= 0)
+        {
+            moveSpeedMult = 1;
+        }
         cameraSpeed = cam.GetComponent<CameraController>().GetSpeed();
     }
 
@@ -47,22 +52,41 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Player Pos Z = " + (gameObject.transform.position.z + (movementDir.z * moveSpeed * Time.deltaTime)));
 
         //checking top boundary
-        if ((gameObject.transform.position.z + movementDir.z * moveSpeed * Time.deltaTime) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
+        if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult * Time.deltaTime) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
         {
             //Debug.Log("Boundry Being Called");
             movementDir.z = 0;
         }
         //checking bottom boundary
-        else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * Time.deltaTime) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
+        else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult  * Time.deltaTime) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
         {
             //Debug.Log("Boundry Being Called");
             movementDir.z = 0;
         }
 
+        //checking for collisions
+        if (Physics.Raycast(rb.position, movementDir, out RaycastHit hit, moveSpeed * moveSpeedMult * Time.deltaTime, obstacleLayer))
+        {
+            Debug.Log("Collision Detected");
+
+            Vector3 pos = hit.collider.transform.position;
+            float differenceX = Mathf.Abs(pos.x - transform.position.x);
+            float differenceZ = Mathf.Abs(pos.z - transform.position.z);
+            if (differenceX <= differenceZ)
+            {
+                Debug.Log("Freezing X movement");
+                movementDir.x = 0;
+            }
+            else
+            {
+                Debug.Log("Freezing Z movement");
+                movementDir.z = 0;
+            }
+        }
 
         //moving player
         rb.MovePosition(rb.position + movementDir * moveSpeed * moveSpeedMult * Time.deltaTime);
-        rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * moveSpeedMult * Time.deltaTime);
+        rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
 
         if (rb.velocity.magnitude != 0 && !isDodging)
         {

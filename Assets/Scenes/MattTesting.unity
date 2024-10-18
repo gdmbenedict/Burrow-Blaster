@@ -1974,7 +1974,7 @@ GameObject:
   - component: {fileID: 745526576}
   - component: {fileID: 745526575}
   - component: {fileID: 745526574}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2000,7 +2000,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 934199303}
 --- !u!33 &745526575
@@ -2279,8 +2279,8 @@ Transform:
   m_GameObject: {fileID: 745526573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 0, z: -500}
-  m_LocalScale: {x: 1, y: 1, z: 1000}
+  m_LocalPosition: {x: 13, y: 0, z: -500}
+  m_LocalScale: {x: 2, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -40072,7 +40072,7 @@ GameObject:
   - component: {fileID: 1682679171}
   - component: {fileID: 1682679170}
   - component: {fileID: 1682679169}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40098,7 +40098,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 533432281}
 --- !u!33 &1682679170
@@ -40377,8 +40377,8 @@ Transform:
   m_GameObject: {fileID: 1682679168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 0, z: -500}
-  m_LocalScale: {x: 1, y: 1, z: 1000}
+  m_LocalPosition: {x: -13, y: 0, z: -500}
+  m_LocalScale: {x: 2, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

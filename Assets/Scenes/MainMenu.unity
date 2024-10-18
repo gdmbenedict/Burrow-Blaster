@@ -4187,11 +4187,11 @@ MonoBehaviour:
   shield: 0
   sideShots: 0
   superLaser: 0
-  baseSpreadShot: 1
-  baseFireRate: 1
-  basePiercing: 1
+  baseSpreadShot: 2
+  baseFireRate: 2
+  basePiercing: 2
   baseDamage: 1
-  baseMovementSpeed: 1
+  baseMovementSpeed: 2
   baseFuel: 1
   baseCollectionRange: 1
   baseCollectionMult: 1
