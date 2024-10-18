@@ -109,9 +109,9 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        win = true;
         Time.timeScale = 0;
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
-        win = true;
     }
 
     public void LoseGame()
