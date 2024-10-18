@@ -10,6 +10,7 @@ public class TriggerGameWin : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        FindObjectOfType<UIManager>().goal = transform;
     }
 
     // Update is called once per frame

@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Text Fields")]
     [SerializeField] private TextMeshProUGUI scrapTextGameplay;
-    [SerializeField] private TextMeshProUGUI scrapTextUpgrade;
+    //[SerializeField] private TextMeshProUGUI scrapTextUpgrade;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private TextMeshProUGUI scrapResult;
@@ -54,8 +54,10 @@ public class UIManager : MonoBehaviour
         switch (uiState)
         {
             case UIState.GameplayScreen:
+                UpdateGameplayUI();
                 break;
             case UIState.UpgradeScreen:
+                UpdateUpgradeUI();
                 break;
         }
     }
@@ -103,7 +105,7 @@ public class UIManager : MonoBehaviour
                 }
 
                 scrapResult.text = "Scrap Collected: " + player.collector.GetScrapCollected();
-                distanceResult.text = "Distance Travelled: " + player.transform.position.z;
+                distanceResult.text = "Distance Travelled: " + (int)player.transform.position.z;
                 break;
         }
     }
@@ -119,6 +121,17 @@ public class UIManager : MonoBehaviour
 
     public void UpdateGameplayUI()
     {
-        scrapTextGameplay.text = "Scrap ";
+        if (player != null)
+        {
+            scrapTextGameplay.text = "Scrap Collected: " + player.collector.GetScrapCollected();
+            distanceText.text = "Travelled " + (int)player.transform.position.z + "m / " + (int)goal.position.z + "m";
+            healthText.text = "Health: " + player.playerHealth.GetHealth() + " / " + player.playerHealth.GetMaxHealth();
+        }
+        
+    }
+
+    public void UpdateUpgradeUI()
+    {
+
     }
 }

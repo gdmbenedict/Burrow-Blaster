@@ -3029,7 +3029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1115104049
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3042,12 +3042,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1723223555}
   - {fileID: 189664595}
   - {fileID: 339397392}
-  - {fileID: 1450696621}
   - {fileID: 221626363}
   - {fileID: 391227022}
-  - {fileID: 1723223555}
+  - {fileID: 1450696621}
   m_Father: {fileID: 1505145044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4502,19 +4502,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiState: 0
-  scrapTextGameplay: {fileID: 0}
-  scrapTextUpgrade: {fileID: 0}
-  healthText: {fileID: 0}
-  distanceText: {fileID: 0}
+  gameManager: {fileID: 473034076}
+  scrapTextGameplay: {fileID: 587260093}
+  healthText: {fileID: 2100372718}
+  distanceText: {fileID: 1884761482}
+  scrapResult: {fileID: 221626364}
+  distanceResult: {fileID: 391227023}
+  gameWinText: {fileID: 339397391}
+  gameLostText: {fileID: 189664594}
   TitleScreen: {fileID: 1267998901}
   UpgradeScreen: {fileID: 999631187}
   GameplayUI: {fileID: 512425812}
   PauseScreen: {fileID: 372713721}
-  WinScreen: {fileID: 0}
-  LoseScreen: {fileID: 1115104048}
-  collecter: {fileID: 0}
-  scrapManager: {fileID: 0}
+  ResultScreen: {fileID: 1115104048}
+  scrapManager: {fileID: 240980723}
   player: {fileID: 0}
+  goal: {fileID: 0}
 --- !u!4 &1675274540
 Transform:
   m_ObjectHideFlags: 0
