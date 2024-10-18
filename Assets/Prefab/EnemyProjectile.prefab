@@ -57,7 +57,7 @@ SphereCollider:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 896
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  piercing: 0
   speed: 10
   direction: {x: 0, y: 0, z: 0}
-  bulletLifeTime: 10
 --- !u!1001 &7279013240041038830
 PrefabInstance:
   m_ObjectHideFlags: 0

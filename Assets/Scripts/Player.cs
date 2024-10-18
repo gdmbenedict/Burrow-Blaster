@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-        else
+        else if (sideShot != null)
         {
             sideShot.Disable();
         }
@@ -180,6 +180,10 @@ public class Player : MonoBehaviour
         if (superLaser != null && upgradeManager.GetSuperLaser())
         {
             //TODO: implement super laser
+        }
+        else if (sideShot != null)
+        {
+            superLaser.Disable();
         }
 
         //Dodge
@@ -213,8 +217,16 @@ public class Player : MonoBehaviour
 
         //disabling weapons
         blaster.Disable();
-        sideShot.Disable();
-        superLaser.Disable();
+
+        if (sideShot != null)
+        {
+            sideShot.Disable();
+        }
+
+        if (superLaser != null)
+        {
+            superLaser.Disable();
+        }  
 
         gameManager.LoseGame();
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private GameObject projectile;
-    [SerializeField] private float deviation;
     [SerializeField] private float firerate;
     [SerializeField] private float damage;
     [SerializeField] private int piercing;

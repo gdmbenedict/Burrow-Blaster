@@ -1953,6 +1953,7 @@ Transform:
   - {fileID: 1142177794}
   - {fileID: 706259956}
   - {fileID: 240980722}
+  - {fileID: 1592896011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &473034076
@@ -4129,6 +4130,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517526049}
   m_CullTransparentMesh: 1
+--- !u!1 &1592896010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592896011}
+  - component: {fileID: 1592896012}
+  m_Layer: 0
+  m_Name: UpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1592896011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592896010}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 473034075}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1592896012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592896010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde2a4586fa6e8f49bc174ee86231d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spreadShotIncrement: 1
+  fireRateIncrement: 0.25
+  piercingIncrement: 1
+  damageIncrement: 0.5
+  movementSpeedIncrement: 0.25
+  fuelIncrement: 1
+  collectionRangeIncrement: 1
+  collectionMultIncrement: 0.25
+  maxHealthIncrement: 2
+  dodge: 0
+  shield: 0
+  sideShots: 0
+  superLaser: 0
+  baseSpreadShot: 1
+  baseFireRate: 1
+  basePiercing: 1
+  baseDamage: 1
+  baseMovementSpeed: 1
+  baseFuel: 1
+  baseCollectionRange: 1
+  baseCollectionMult: 1
+  baseMaxHealth: 3
 --- !u!1 &1657398520
 GameObject:
   m_ObjectHideFlags: 0
@@ -4292,13 +4359,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiState: 0
-  scrapText: {fileID: 587260093}
+  scrapTextGameplay: {fileID: 0}
+  scrapTextUpgrade: {fileID: 0}
+  healthText: {fileID: 0}
+  distanceText: {fileID: 0}
   TitleScreen: {fileID: 1267998901}
   UpgradeScreen: {fileID: 999631187}
   GameplayUI: {fileID: 512425812}
   PauseScreen: {fileID: 372713721}
   WinScreen: {fileID: 1873740827}
   LoseScreen: {fileID: 1115104048}
+  collecter: {fileID: 0}
+  scrapManager: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1675274540
 Transform:
   m_ObjectHideFlags: 0

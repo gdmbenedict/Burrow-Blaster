@@ -88,7 +88,7 @@ public class Projectile : MonoBehaviour
 
             if (!detectedOnScreen)
             {
-                Debug.Log("Destroyed projectile cause off screen");
+                //Debug.Log("Destroyed projectile cause off screen");
                 Destroy(gameObject);
             }
 
