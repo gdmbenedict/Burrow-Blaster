@@ -59,6 +59,11 @@ public class HealthSystem : MonoBehaviour
         maxHealth += maxHealthChange;
     }
 
+    public void SetMaxHealth(int maxHealth)
+    {
+        this.maxHealth = maxHealth;
+    }
+
     public int GetMaxHealth()
     {
         return maxHealth;

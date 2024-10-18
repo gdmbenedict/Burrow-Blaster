@@ -509,7 +509,7 @@ public class UpgradeManager : MonoBehaviour
     }
 
     //Accessor method that returns the attribute value
-    public float GetMaxHealth()
+    public int GetMaxHealth()
     {
         return maxHealth;
     }

@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     {
         GrabReferences();
         SetReferences();
+        SetupPlayer();
     }
 
     // Update is called once per frame
@@ -192,7 +193,11 @@ public class Player : MonoBehaviour
         playerMovement.SetMoveSpeedMult(upgradeManager.GetMovementSpeed());
 
         //setting up collection
-        
+        collector.SetCollectionRangeMult(upgradeManager.GetCollectionRange());
+        collector.SetCollectionMult(upgradeManager.GetCollectionMult());
+
+        //setting up player health
+        playerHealth.SetMaxHealth(upgradeManager.GetMaxHealth());
 
     }
 
