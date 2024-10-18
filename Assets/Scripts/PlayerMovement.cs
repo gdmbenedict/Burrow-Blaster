@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
@@ -11,6 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float screenTopBuffer = 1f;
     [SerializeField] private float screenBottomBuffer = 1f;
 
+    [Header("Player Dodge Movement Variables")]
+    [SerializeField] private float dodgeSpeed = 10f;
+    [SerializeField] private float dodgeTime = 0.5f;
+
     [Header("Object references")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Camera cam;
@@ -19,16 +24,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementDir;
     private float maxZ;
     private float minZ;
+    private float moveSpeedMult;
+    private bool canDodge;
+    private bool isDodging;
 
     // Start is called before the first frame update
     void Start()
     {
+        canDodge = false;
+        moveSpeedMult = 1;
         cameraSpeed = cam.GetComponent<CameraController>().GetSpeed();
     }
 
     // Update is called once per frame
-    void 
-        FixedUpdate()
+    void FixedUpdate()
     {
         //getting screen boundaries
         GetBoudaries();
@@ -52,13 +61,23 @@ public class PlayerMovement : MonoBehaviour
 
 
         //moving player
-        rb.MovePosition(rb.position + movementDir * moveSpeed * Time.deltaTime);
-        rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + movementDir * moveSpeed * moveSpeedMult * Time.deltaTime);
+        rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * moveSpeedMult * Time.deltaTime);
 
-        if (rb.velocity.magnitude != 0)
+        if (rb.velocity.magnitude != 0 && !isDodging)
         {
             rb.velocity = Vector3.zero;
         }
+    }
+
+    public void SetMoveSpeedMult(float moveSpeedMult)
+    {
+        this.moveSpeedMult = moveSpeedMult;
+    }
+
+    public void SetDodge(bool dodge)
+    {
+        canDodge = dodge;
     }
 
     //Method that updates the movement direction of the player
@@ -89,5 +108,28 @@ public class PlayerMovement : MonoBehaviour
             minZ = raycastHitmin.point.z;
             //Debug.Log(minZ);
         }
+    }
+
+    public void Dodge()
+    {
+        rb.velocity = movementDir * dodgeSpeed;
+        isDodging = true;
+        StartCoroutine(dodgeCooldown());
+    }
+
+    private IEnumerator dodgeCooldown()
+    {
+        float timer = 0f;
+        Vector3 originalVelocity = rb.velocity;
+
+        while (timer < dodgeTime)
+        {
+            rb.velocity = Vector3.Lerp(originalVelocity, Vector3.zero, timer/dodgeTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        isDodging = false;
+        rb.velocity = Vector3.zero;
     }
 }

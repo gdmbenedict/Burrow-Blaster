@@ -179,6 +179,9 @@ public class Player : MonoBehaviour
         {
             //TODO: implement super laser
         }
+
+        playerMovement.SetMoveSpeedMult(upgradeManager.GetMovementSpeed());
+        playerMovement.SetDodge(upgradeManager.GetDodge());
     }
 
     public void Die()
