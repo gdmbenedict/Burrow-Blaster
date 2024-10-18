@@ -11,10 +11,12 @@ public class Collector : MonoBehaviour
 
     private float collectionRangeMult;
     private float collectionMult;
+    private int scrapCollected;
 
     // Start is called before the first frame update
     void Awake()
     {
+        scrapCollected = 0;
         collectionRangeMult = 1;
         collectionMult = 1;
         scrapManager = FindObjectOfType<ScrapManager>();
@@ -28,7 +30,14 @@ public class Collector : MonoBehaviour
 
     public void CollectScrap(int scrapAmount)
     {
-        scrapManager.AddScrap((int)(scrapAmount * collectionMult));
+        int scrapAdd = (int)(scrapAmount * collectionMult);
+        scrapManager.AddScrap(scrapAdd);
+        scrapCollected += scrapAdd;
+    }
+
+    public int GetScrapCollected()
+    {
+        return scrapCollected;
     }
 
     public void SetCollectionRangeMult(float collectionRangeMult)

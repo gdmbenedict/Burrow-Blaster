@@ -58,7 +58,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Debug.Log("Collision Destroy: id - " + other.gameObject.name);
+            //Debug.Log("Collision Destroy: id - " + other.gameObject.name);
             Destroy(gameObject);
         }
 

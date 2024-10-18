@@ -11,30 +11,36 @@ public class UIManager : MonoBehaviour
         UpgradeScreen,
         GameplayScreen,
         PauseScreen,
-        WinScreen,
-        LoseScreen,
+        ResultScreen
     }
 
     [SerializeField] private UIState uiState;
+
+    [Header("ObjectReferences")]
+    [SerializeField] private GameManager gameManager;
 
     [Header("Text Fields")]
     [SerializeField] private TextMeshProUGUI scrapTextGameplay;
     [SerializeField] private TextMeshProUGUI scrapTextUpgrade;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI distanceText;
+    [SerializeField] private TextMeshProUGUI scrapResult;
+    [SerializeField] private TextMeshProUGUI distanceResult;
+    [SerializeField] private GameObject gameWinText;
+    [SerializeField] private GameObject gameLostText;
 
     [Header("UI Screens")]
     [SerializeField] private GameObject TitleScreen;
     [SerializeField] private GameObject UpgradeScreen;
     [SerializeField] private GameObject GameplayUI;
     [SerializeField] private GameObject PauseScreen;
-    [SerializeField] private GameObject WinScreen;
-    [SerializeField] private GameObject LoseScreen;
+    [SerializeField] private GameObject ResultScreen;
 
     //Outside connections
-    public Collector collecter;
     public ScrapManager scrapManager;
     public Player player;
+    public Transform goal;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +51,13 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (uiState)
+        {
+            case UIState.GameplayScreen:
+                break;
+            case UIState.UpgradeScreen:
+                break;
+        }
     }
 
     public void ChangeUIScreen(UIState targetScreen)
@@ -74,14 +86,24 @@ public class UIManager : MonoBehaviour
                 PauseScreen.SetActive(true);
                 break;
 
-            case UIState.WinScreen:
-                uiState = UIState.WinScreen;
-                WinScreen.SetActive(true);
-                break;
+            case UIState.ResultScreen:
+                uiState = UIState.ResultScreen;
+                ResultScreen.SetActive(true);
 
-            case UIState.LoseScreen:
-                uiState = UIState.LoseScreen;
-                LoseScreen.SetActive(true);
+                //Get result text
+                if (gameManager.GetWin())
+                {
+                    gameWinText.SetActive(true);
+                    gameLostText.SetActive(false);
+                }
+                else
+                {
+                    gameWinText.SetActive(false);
+                    gameLostText.SetActive(true);
+                }
+
+                scrapResult.text = "Scrap Collected: " + player.collector.GetScrapCollected();
+                distanceResult.text = "Distance Travelled: " + player.transform.position.z;
                 break;
         }
     }
@@ -92,27 +114,11 @@ public class UIManager : MonoBehaviour
         UpgradeScreen.SetActive(false);
         PauseScreen.SetActive(false);
         GameplayUI.SetActive(false);
-        WinScreen.SetActive(false);
-        LoseScreen.SetActive(false);
+        ResultScreen.SetActive(false);
     }
 
-    public void UpdateScrapGameplayUI()
+    public void UpdateGameplayUI()
     {
-        
-    }
-
-    public void UpdateScrapUpgradeUI()
-    {
-
-    }
-
-    public void UpdateHealthUI()
-    {
-
-    }
-
-    public void UpdateDistanceTravelledUI()
-    {
-
+        scrapTextGameplay.text = "Scrap ";
     }
 }

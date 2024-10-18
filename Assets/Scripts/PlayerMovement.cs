@@ -67,19 +67,19 @@ public class PlayerMovement : MonoBehaviour
         //checking for collisions
         if (Physics.Raycast(rb.position, movementDir, out RaycastHit hit, moveSpeed * moveSpeedMult * Time.deltaTime, obstacleLayer))
         {
-            Debug.Log("Collision Detected");
+            //Debug.Log("Collision Detected");
 
             Vector3 pos = hit.collider.transform.position;
             float differenceX = Mathf.Abs(pos.x - transform.position.x);
             float differenceZ = Mathf.Abs(pos.z - transform.position.z);
             if (differenceX <= differenceZ)
             {
-                Debug.Log("Freezing X movement");
+                //Debug.Log("Freezing X movement");
                 movementDir.x = 0;
             }
             else
             {
-                Debug.Log("Freezing Z movement");
+                //Debug.Log("Freezing Z movement");
                 movementDir.z = 0;
             }
         }

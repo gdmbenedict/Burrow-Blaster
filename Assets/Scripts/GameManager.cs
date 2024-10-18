@@ -29,10 +29,12 @@ public class GameManager : MonoBehaviour
     private int score;
     private bool paused;
     private GameState gameState;
+    private bool win;
 
     // Start is called before the first frame update
     void Start()
     {
+        win = false;
         paused = false;
         gameState = GameState.TitleMenu;
     }
@@ -46,6 +48,11 @@ public class GameManager : MonoBehaviour
     public void ChangeState(GameState newState)
     {
 
+    }
+
+    public bool GetWin()
+    {
+        return win;
     }
 
     public void PauseInput(InputAction.CallbackContext context)
@@ -93,18 +100,24 @@ public class GameManager : MonoBehaviour
         levelManager.LoadScene(GameSceneName);
         gameState = GameState.Gameplay;
         uiManager.ChangeUIScreen(UIManager.UIState.GameplayScreen);
+
+        if (win)
+        {
+            win = false;
+        }
     }
 
     public void WinGame()
     {
         Time.timeScale = 0;
-        uiManager.ChangeUIScreen(UIManager.UIState.WinScreen);
+        uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
+        win = true;
     }
 
     public void LoseGame()
     {
         Time.timeScale = 0;
-        uiManager.ChangeUIScreen(UIManager.UIState.LoseScreen);
+        uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
     }
 
     public void GoToUpgrade()
@@ -118,6 +131,11 @@ public class GameManager : MonoBehaviour
         levelManager.LoadScene(UpgradeSceneName);
         gameState = GameState.UpgradeMenu;
         uiManager.ChangeUIScreen(UIManager.UIState.UpgradeScreen);
+
+        if (win)
+        {
+            win = false;
+        }
     }
 
     public void GoToTitle()
@@ -131,6 +149,11 @@ public class GameManager : MonoBehaviour
         levelManager.LoadScene(TitleSceneName);
         gameState = GameState.TitleMenu;
         uiManager.ChangeUIScreen(UIManager.UIState.TitleScreen);
+
+        if (win)
+        {
+            win = false;
+        }
     }
 
     public void Quit()
