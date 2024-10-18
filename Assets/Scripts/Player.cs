@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public List<Collider> colliders;
     public HealthSystem playerHealth;
     public PlayerMovement playerMovement;
+    public Collector collector;
 
     [Header("Blaster Muzzles")]
     public List<Transform> blasterMuzzles;
@@ -180,8 +181,19 @@ public class Player : MonoBehaviour
             //TODO: implement super laser
         }
 
+        //Dodge
+        //TODO: implement dodge
+        //playerMovement.SetDodge(upgradeManager.GetDodge());
+
+        //Shield
+        //TODO: implement shield
+
+        //setting up player movement
         playerMovement.SetMoveSpeedMult(upgradeManager.GetMovementSpeed());
-        playerMovement.SetDodge(upgradeManager.GetDodge());
+
+        //setting up collection
+        
+
     }
 
     public void Die()
