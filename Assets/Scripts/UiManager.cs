@@ -17,14 +17,24 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private UIState uiState;
 
-    [SerializeField] private TextMeshProUGUI scrapText;
+    [Header("Text Fields")]
+    [SerializeField] private TextMeshProUGUI scrapTextGameplay;
+    [SerializeField] private TextMeshProUGUI scrapTextUpgrade;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI distanceText;
 
+    [Header("UI Screens")]
     [SerializeField] private GameObject TitleScreen;
     [SerializeField] private GameObject UpgradeScreen;
     [SerializeField] private GameObject GameplayUI;
     [SerializeField] private GameObject PauseScreen;
     [SerializeField] private GameObject WinScreen;
     [SerializeField] private GameObject LoseScreen;
+
+    //Outside connections
+    public Collector collecter;
+    public ScrapManager scrapManager;
+    public Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -86,8 +96,23 @@ public class UIManager : MonoBehaviour
         LoseScreen.SetActive(false);
     }
 
-    public void UpdateScrapUI(int scrap)
+    public void UpdateScrapGameplayUI()
     {
-        scrapText.text = "Scrap Collected:\n" + scrap;
+        
+    }
+
+    public void UpdateScrapUpgradeUI()
+    {
+
+    }
+
+    public void UpdateHealthUI()
+    {
+
+    }
+
+    public void UpdateDistanceTravelledUI()
+    {
+
     }
 }

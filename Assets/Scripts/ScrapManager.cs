@@ -17,7 +17,6 @@ public class ScrapManager : MonoBehaviour
     public void AddScrap(int scrap)
     {
         totalScrap += scrap;
-        uiManager.UpdateScrapUI(totalScrap);
     }
 
     public void RemoveScrap(int scrap)

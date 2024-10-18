@@ -164,8 +164,12 @@ MonoBehaviour:
   projectile: {fileID: 3615971726096595373, guid: 6484b725392b95a44b4e514455575009,
     type: 3}
   firerate: 1
-  muzzlePosition: {fileID: 7619971051294465002}
-  projectileDir: {x: 0, y: 0, z: 0}
+  damage: 1
+  piercing: 1
+  muzzlePositions:
+  - {fileID: 7619971051294465002}
+  projectileDirections:
+  - {x: 0, y: 0, z: 0}
 --- !u!1001 &5801048504606497612
 PrefabInstance:
   m_ObjectHideFlags: 0

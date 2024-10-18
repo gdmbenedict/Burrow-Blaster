@@ -9,7 +9,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private int spreadShotIncrement = 1;
     [SerializeField] private float fireRateIncrement = 0.25f;
     [SerializeField] private int piercingIncrement = 1;
-    [SerializeField] private int damageIncrement = 5;
+    [SerializeField] private float damageIncrement = 0.5f;
     [SerializeField] private float movementSpeedIncrement = 0.25f;
     [SerializeField] private float fuelIncrement = 1;
     [SerializeField] private float collectionRangeIncrement = 1;
@@ -29,8 +29,8 @@ public class UpgradeManager : MonoBehaviour
     private float fireRate; //speed at which projectiles are fired multiplier
     [SerializeField] private int basePiercing = 1;
     private int piercing; //how many enemies projectiles pierce through
-    [SerializeField] private int baseDamage = 10; 
-    private int damage; //damage done by projectiles
+    [SerializeField] private float baseDamage = 1; 
+    private float damageMult; //damage done by projectiles
 
     [Header("Movement Upgrades")]
     [SerializeField] private float baseMovementSpeed = 1;
@@ -58,7 +58,7 @@ public class UpgradeManager : MonoBehaviour
         spreadShot = baseSpreadShot;
         fireRate = baseFireRate;
         piercing = basePiercing;
-        damage = baseDamage;
+        damageMult = baseDamage;
         movementSpeed = baseMovementSpeed;
         fuel = baseFuel;
         collectionRange = baseCollectionRange;
@@ -150,11 +150,11 @@ public class UpgradeManager : MonoBehaviour
         //damage
         if (upgradeLevels[7] >= 0 || upgradeLevels[7] <= 4)
         {
-            damage = baseDamage + upgradeLevels[7] * damageIncrement;
+            damageMult = baseDamage + upgradeLevels[7] * damageIncrement;
         }
         else
         {
-            damage= baseDamage;
+            damageMult= baseDamage;
         }
 
         //movement speed
@@ -394,14 +394,14 @@ public class UpgradeManager : MonoBehaviour
         if (upgradeLevels[7] <= 3)
         {
             upgradeLevels[7]++;
-            damage += damageIncrement;
+            damageMult += damageIncrement;
         }
     }
 
     //Accessor method that returns the attribute value
-    public int GetDamage()
+    public float GetDamage()
     {
-        return damage;
+        return damageMult;
     }
 
     //Accessor method that returns the attribute upgrade level
