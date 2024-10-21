@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3393459233880336969}
   - component: {fileID: 6022244418333190809}
   - component: {fileID: 4123789792751679291}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,6 +116,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 313867131139240566}
     m_Modifications:
+    - target: {fileID: 1803510290974645659, guid: 0d1253366ac5cb6469e356c5f908ec3a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571155282069942651, guid: 0d1253366ac5cb6469e356c5f908ec3a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6004114683769555015, guid: 0d1253366ac5cb6469e356c5f908ec3a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -185,6 +195,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BulletEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348165429595919101, guid: 0d1253366ac5cb6469e356c5f908ec3a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922461132752599630, guid: 0d1253366ac5cb6469e356c5f908ec3a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023258530484170759, guid: 0d1253366ac5cb6469e356c5f908ec3a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
