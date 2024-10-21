@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [Header("Manager References")]
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private ShopManager shopManager;
 
     [Header("Scenes")]
     [SerializeField] private string GameSceneName;
@@ -130,6 +131,10 @@ public class GameManager : MonoBehaviour
 
         levelManager.LoadScene(UpgradeSceneName);
         gameState = GameState.UpgradeMenu;
+
+        //Update UI
+        shopManager.UpdatePrices();
+        shopManager.UpdateButtons();
         uiManager.ChangeUIScreen(UIManager.UIState.UpgradeScreen);
 
         if (win)

@@ -2367,6 +2367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 706259957}
   uiManager: {fileID: 1675274539}
+  shopManager: {fileID: 0}
   GameSceneName: MattTesting
   UpgradeSceneName: Upgrades
   TitleSceneName: MainMenu
@@ -2986,7 +2987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &999631188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5323,12 +5324,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde2a4586fa6e8f49bc174ee86231d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numSpecialUpgrades: 4
+  SpecialUpgradeMax: 1
+  upgradeMax: 4
   spreadShotIncrement: 1
   fireRateIncrement: 0.25
   piercingIncrement: 1
   damageIncrement: 0.5
   movementSpeedIncrement: 0.25
-  fuelIncrement: 1
   collectionRangeIncrement: 1
   collectionMultIncrement: 0.25
   maxHealthIncrement: 2
@@ -5340,10 +5343,9 @@ MonoBehaviour:
   baseFireRate: 1
   basePiercing: 2
   baseDamage: 1
-  baseMovementSpeed: 1
-  baseFuel: 1
   baseCollectionRange: 1
   baseCollectionMult: 1
+  baseMovementSpeed: 1
   baseMaxHealth: 3
 --- !u!1 &1657398520
 GameObject:

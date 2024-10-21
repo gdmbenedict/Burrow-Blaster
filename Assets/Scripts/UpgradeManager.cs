@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
+    public enum Upgrades
+    {
+        speed,
+        damage,
+        fireRate,
+        health,
+        spreadShot,
+        piercing,
+        collection,
+        magnet,
+        dodge,
+        shield,
+        sideShots,
+        superLaser
+    }
+
+    [Header("Upgrade Info")]
+    [SerializeField] private int numSpecialUpgrades = 4;
+    [SerializeField] private int SpecialUpgradeMax = 1;
+    [SerializeField] private int upgradeMax = 4;
+
     [Header("Upgrade Increments")]
     [SerializeField] private int spreadShotIncrement = 1;
     [SerializeField] private float fireRateIncrement = 0.25f;
     [SerializeField] private int piercingIncrement = 1;
     [SerializeField] private float damageIncrement = 0.5f;
     [SerializeField] private float movementSpeedIncrement = 0.25f;
-    [SerializeField] private float fuelIncrement = 1;
     [SerializeField] private float collectionRangeIncrement = 1;
     [SerializeField] private float collectionMultIncrement = 0.25f;
     [SerializeField] private int maxHealthIncrement = 2;
@@ -31,12 +51,6 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private float baseDamage = 1; 
     private float damageMult; //damage done by projectiles
 
-    [Header("Movement Upgrades")]
-    [SerializeField] private float baseMovementSpeed = 1;
-    private float movementSpeed; //movement speed multiplier
-    [SerializeField] private float baseFuel = 1;
-    private float fuel; //fuel duration multiplier
-
     [Header("Collection Upgrades")]
     [SerializeField] private float baseCollectionRange = 1;
     private float collectionRange; //collection range multiplier
@@ -44,6 +58,9 @@ public class UpgradeManager : MonoBehaviour
     private float collectionMult; //collection amount multiplier
 
     [Header("Other Upgrades")]
+    [Header("Movement Upgrades")]
+    [SerializeField] private float baseMovementSpeed = 1;
+    private float movementSpeed; //movement speed multiplier
     [SerializeField] private int baseMaxHealth = 3;
     private int maxHealth; //max amounts of hits that can be taken
 
@@ -59,7 +76,6 @@ public class UpgradeManager : MonoBehaviour
         piercing = basePiercing;
         damageMult = baseDamage;
         movementSpeed = baseMovementSpeed;
-        fuel = baseFuel;
         collectionRange = baseCollectionRange;
         collectionMult = baseCollectionMult;
         maxHealth = baseMaxHealth;
@@ -71,8 +87,23 @@ public class UpgradeManager : MonoBehaviour
         
     }
 
+    public int GetNumSpecialUpgrade()
+    {
+        return numSpecialUpgrades;
+    }
+
+    public int GetUpgradeMax()
+    {
+        return upgradeMax;
+    }
+
+    public int GetSpecialUpgradeMax()
+    {
+        return SpecialUpgradeMax;
+    }
+
     //Method that sets all attributes according to a passed in upgrade levels array
-    public void SetUpgradeLevels(int[] upgradeLevels)
+    public void SetAllUpgradeLevels(int[] upgradeLevels)
     {
         this.upgradeLevels = upgradeLevels;
 
@@ -166,20 +197,10 @@ public class UpgradeManager : MonoBehaviour
             movementSpeed= baseMovementSpeed;
         }
 
-        //fuel
+        //collection range
         if (upgradeLevels[9] >= 0 || upgradeLevels[9] <= 4)
         {
-            fuel = baseFuel + upgradeLevels[9] * fuelIncrement;
-        }
-        else
-        {
-            fuel= baseFuel;
-        }
-
-        //collection range
-        if (upgradeLevels[10] >= 0 || upgradeLevels[10] <= 4)
-        {
-            collectionRange = baseCollectionRange + upgradeLevels[10] * collectionRangeIncrement;
+            collectionRange = baseCollectionRange + upgradeLevels[9] * collectionRangeIncrement;
         }
         else
         {
@@ -187,9 +208,9 @@ public class UpgradeManager : MonoBehaviour
         }
 
         //collection multiplier
-        if (upgradeLevels[11] >= 0 || upgradeLevels[11] <= 4)
+        if (upgradeLevels[10] >= 0 || upgradeLevels[10] <= 4)
         {
-            collectionMult = baseCollectionMult + upgradeLevels[11] * collectionMultIncrement;
+            collectionMult = baseCollectionMult + upgradeLevels[10] * collectionMultIncrement;
         }
         else
         {
@@ -197,9 +218,9 @@ public class UpgradeManager : MonoBehaviour
         }
 
         //max health
-        if (upgradeLevels[12] >= 0 || upgradeLevels[12] <= 4)
+        if (upgradeLevels[11] >= 0 || upgradeLevels[11] <= 4)
         {
-            maxHealth = baseMaxHealth + upgradeLevels[12] * maxHealthIncrement;
+            maxHealth = baseMaxHealth + upgradeLevels[11] * maxHealthIncrement;
         }
         else
         {
@@ -208,9 +229,19 @@ public class UpgradeManager : MonoBehaviour
     }
 
     //Accessor method used to get the full array of upgrade levels
-    public int[] GetUpgradeLevels()
+    public int[] GetAllUpgradeLevels()
     {
         return upgradeLevels;
+    }
+
+    public int GetUpgradeLevel(int index)
+    {
+        return upgradeLevels[index];
+    }
+
+    public int GetSpecialUppgradeLevel()
+    {
+        return GetDodgeUpgradeLevel() + GetShieldUpgradeLevel() + GetSideShotsUpgradeLevel() + GetSuperLaserUpgradeLevel();
     }
 
     //Mutator method that sets if this ability is accessible 
@@ -324,7 +355,7 @@ public class UpgradeManager : MonoBehaviour
     //Mutator method that increments the attribute by one increment
     public void UpgradeSpreadShot()
     {
-        if (upgradeLevels[4] <= 3)
+        if (upgradeLevels[4] <= upgradeMax)
         {
             upgradeLevels[4]++;
             spreadShot += spreadShotIncrement;
@@ -346,7 +377,7 @@ public class UpgradeManager : MonoBehaviour
     //Mutator method that increments the attribute by one increment
     public void UpgradeFireRate()
     {
-        if (upgradeLevels[5] <= 3)
+        if (upgradeLevels[5] <= upgradeMax)
         {
             upgradeLevels[5]++;
             fireRate += fireRateIncrement;
@@ -368,7 +399,7 @@ public class UpgradeManager : MonoBehaviour
     //Mutator method that increments the attribute by one increment
     public void UpgradePiercing()
     {
-        if (upgradeLevels[6] <= 3)
+        if (upgradeLevels[6] <= upgradeMax)
         {
             upgradeLevels[6]++;
             piercing += piercingIncrement;
@@ -390,7 +421,7 @@ public class UpgradeManager : MonoBehaviour
     //Mutator method that increments the attribute by one increment
     public void UpgradeDamage()
     {
-        if (upgradeLevels[7] <= 3)
+        if (upgradeLevels[7] <= upgradeMax)
         {
             upgradeLevels[7]++;
             damageMult += damageIncrement;
@@ -412,7 +443,7 @@ public class UpgradeManager : MonoBehaviour
     //Mutator method that increments the attribute by one increment
     public void UpgradeMovementSpeed()
     {
-        if (upgradeLevels[8] <= 3)
+        if (upgradeLevels[8] <= upgradeMax)
         {
             upgradeLevels[8]++;
             movementSpeed += movementSpeedIncrement;
@@ -432,33 +463,11 @@ public class UpgradeManager : MonoBehaviour
     }
 
     //Mutator method that increments the attribute by one increment
-    public void UpgradeFuel()
-    {
-        if (upgradeLevels[9] <= 3)
-        {
-            upgradeLevels[9]++;
-            fuel += fuelIncrement;
-        }
-    }
-
-    //Accessor method that returns the attribute value
-    public float GetFuel()
-    {
-        return fuel;
-    }
-
-    //Accessor method that returns the attribute upgrade level
-    public int GetFuelUpgradeLevel()
-    {
-        return upgradeLevels[9];
-    }
-
-    //Mutator method that increments the attribute by one increment
     public void UpgradeCollectionRange()
     {
-        if (upgradeLevels[10] <= 3)
+        if (upgradeLevels[9] <= upgradeMax)
         {
-            upgradeLevels[10]++;
+            upgradeLevels[9]++;
             collectionRange += collectionRangeIncrement;
         }
     }
@@ -472,15 +481,15 @@ public class UpgradeManager : MonoBehaviour
     //Accessor method that returns the attribute upgrade level
     public int GetCollectionRangeUpgradeLevel()
     {
-        return upgradeLevels[10];
+        return upgradeLevels[9];
     }
 
     //Mutator method that increments the attribute by one increment
     public void UpgradeCollectionMult()
     {
-        if (upgradeLevels[11] <= 3)
+        if (upgradeLevels[10] <= upgradeMax)
         {
-            upgradeLevels[11]++;
+            upgradeLevels[10]++;
             collectionMult += collectionMultIncrement;
         }
     }
@@ -494,15 +503,15 @@ public class UpgradeManager : MonoBehaviour
     //Accessor method that returns the attribute upgrade level
     public int GetCollectionMultUpgradeLevel()
     {
-        return upgradeLevels[11];
+        return upgradeLevels[10];
     }
 
     //Mutator method that increments the attribute by one increment
     public void UpgradeMaxHealth()
     {
-        if (upgradeLevels[12] <= 3)
+        if (upgradeLevels[11] <= upgradeMax)
         {
-            upgradeLevels[12]++;
+            upgradeLevels[11]++;
             maxHealth += maxHealthIncrement;
         }
     }
@@ -516,6 +525,6 @@ public class UpgradeManager : MonoBehaviour
     //Accessor method that returns the attribute upgrade level
     public int GetMaxHealthUpgradeLevel()
     {
-        return upgradeLevels[12];
+        return upgradeLevels[11];
     }
 }
