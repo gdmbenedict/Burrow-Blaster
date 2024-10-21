@@ -58,14 +58,13 @@ public class UpgradeManager : MonoBehaviour
     private float collectionMult; //collection amount multiplier
 
     [Header("Other Upgrades")]
-    [Header("Movement Upgrades")]
     [SerializeField] private float baseMovementSpeed = 1;
     private float movementSpeed; //movement speed multiplier
     [SerializeField] private int baseMaxHealth = 3;
     private int maxHealth; //max amounts of hits that can be taken
 
     //Upgrade levels array
-    private int[] upgradeLevels = new int[13];
+    private int[] upgradeLevels = new int[12];
 
     // Start is called before the first frame update
     void Start()

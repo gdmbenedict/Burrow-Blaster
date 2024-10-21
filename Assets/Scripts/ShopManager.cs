@@ -4,15 +4,25 @@ using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class ShopManager : MonoBehaviour
 {
+
     [Header("Object References")]
     [SerializeField] private UpgradeManager upgradeManager;
     [SerializeField] private ScrapManager scrapManager;
 
     [Header("Variables")]
-    [SerializeField] private int[,] upgradePrices; //must align with upgrade manager order
+    [SerializeField] private int numOfCategories = 9;
+    [SerializeField] private int[] specialPrices;
+    [SerializeField] private int[] spreadShotPrices;
+    [SerializeField] private int[] fireRatePrices;
+    [SerializeField] private int[] piercingPrices;
+    [SerializeField] private int[] damagePrices;
+    [SerializeField] private int[] movementPrices;
+    [SerializeField] private int[] collectionRangePrices;
+    [SerializeField] private int[] collectionMultPrices;
+    [SerializeField] private int[] healthPrices;
+    private int[,] upgradePrices; //must align with upgrade manager order
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI[] priceLabels; //must align with upgrade manager order
@@ -22,7 +32,62 @@ public class ShopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //upgradePrices Declaration and Instantiation
+        upgradePrices = new int[numOfCategories, upgradeManager.GetUpgradeMax()];
+
+        //special
+        for (int i=0; i<upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[0, i] = specialPrices[i];
+        }
+
+        //spread shot
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[1, i] = spreadShotPrices[i];
+        }
+
+        //fire rate
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[2, i] = fireRatePrices[i];
+        }
+
+        //piercing
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[3, i] = piercingPrices[i];
+        }
+
+        //damage
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[4, i] = damagePrices[i];
+        }
+
+        //movement speed
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[5, i] = movementPrices[i];
+        }
+
+        //collection range
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[6, i] = collectionRangePrices[i];
+        }
+
+        //collection mult
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[7, i] = collectionMultPrices[i];
+        }
+
+        //health
+        for (int i = 0; i < upgradeManager.GetUpgradeMax(); i++)
+        {
+            upgradePrices[8, i] = healthPrices[i];
+        }
     }
 
     // Update is called once per frame
@@ -36,15 +101,29 @@ public class ShopManager : MonoBehaviour
         //looping through updating costs
         for (int i =0; i < upgradeManager.GetAllUpgradeLevels().Length; i++)
         {
-            string cost;
+            string cost = "Cost: ";
 
             if (i<upgradeManager.GetNumSpecialUpgrade())
             {
-                cost = "Cost: " + upgradePrices[0, upgradeManager.GetSpecialUppgradeLevel()];
+                if (upgradeManager.GetUpgradeLevel(i) < upgradeManager.GetSpecialUpgradeMax())
+                {
+                    cost += upgradePrices[0, upgradeManager.GetSpecialUppgradeLevel()];
+                }
+                else
+                {
+                    cost += "NA";
+                }
             }
             else
             {
-                cost = "Cost: " + upgradePrices[i-upgradeManager.GetNumSpecialUpgrade()-1, upgradeManager.GetUpgradeLevel(i)];
+                if (upgradeManager.GetUpgradeLevel(i) < upgradeManager.GetUpgradeMax())
+                {
+                    cost += upgradePrices[i - (upgradeManager.GetNumSpecialUpgrade() - 1), upgradeManager.GetUpgradeLevel(i)];
+                }
+                else
+                {
+                    cost += "NA";
+                }
                 
             }
             priceLabels[i].text = cost;
@@ -70,7 +149,7 @@ public class ShopManager : MonoBehaviour
             }
             else
             {
-                if (upgradeLevels[i] < upgradeManager.GetUpgradeMax() && scrapManager.GetScrap() >= upgradePrices[i - upgradeManager.GetNumSpecialUpgrade() - 1, upgradeLevels[i]])
+                if (upgradeLevels[i] < upgradeManager.GetUpgradeMax() && scrapManager.GetScrap() >= upgradePrices[i - (upgradeManager.GetNumSpecialUpgrade() - 1), upgradeLevels[i]])
                 {
                     upgradeButtons[i].interactable = true;
                 }
