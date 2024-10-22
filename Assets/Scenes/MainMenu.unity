@@ -3483,7 +3483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Version 0.2.0
+  m_text: Version 0.2.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3988ebb98b4c524ea1cd25ec8816c4a, type: 2}
   m_sharedMaterial: {fileID: 8590268463776620760, guid: c3988ebb98b4c524ea1cd25ec8816c4a,
@@ -4577,6 +4577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dodge Upgrade Button
       objectReference: {fileID: 0}
+    - target: {fileID: 2786288607127672794, guid: 7bc0ab320fb10d14999e58d96a77acc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4126954555146176291, guid: 7bc0ab320fb10d14999e58d96a77acc9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4769,6 +4774,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SuperLaser Upgrade Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 2786288607127672794, guid: 7bc0ab320fb10d14999e58d96a77acc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4126954555146176291, guid: 7bc0ab320fb10d14999e58d96a77acc9,
         type: 3}
@@ -6962,6 +6972,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideShots Upgrade Button
       objectReference: {fileID: 0}
+    - target: {fileID: 2786288607127672794, guid: 7bc0ab320fb10d14999e58d96a77acc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4126954555146176291, guid: 7bc0ab320fb10d14999e58d96a77acc9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -7626,6 +7641,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shield Upgrade Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 2786288607127672794, guid: 7bc0ab320fb10d14999e58d96a77acc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4126954555146176291, guid: 7bc0ab320fb10d14999e58d96a77acc9,
         type: 3}
