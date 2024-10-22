@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
         if (weapon.GetCanFire())
         {
             //Debug.Log("WeaponFired");
-            weapon.ChangeProjectileDirection(target.position - weapon.GetMuzzlePos().position);
+            weapon.ChangeProjectileDirection(0, target.position - weapon.GetMuzzlePos(0).position);
             weapon.Fire();
         }
     }

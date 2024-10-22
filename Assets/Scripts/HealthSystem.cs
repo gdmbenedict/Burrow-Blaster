@@ -23,7 +23,7 @@ public class HealthSystem : MonoBehaviour
 
             if (enemy != null)
             {
-                Debug.Log("Calling Die Function");
+                //Debug.Log("Calling Die Function");
                 enemy.Die();
             }
             else
@@ -44,6 +44,11 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    public void SetHealth(int health)
+    {
+        this.health = health;
+    }
+
     public int GetHealth()
     {
         return health;
@@ -52,6 +57,11 @@ public class HealthSystem : MonoBehaviour
     public void ModifyMaxHealth(int maxHealthChange)
     {
         maxHealth += maxHealthChange;
+    }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        this.maxHealth = maxHealth;
     }
 
     public int GetMaxHealth()

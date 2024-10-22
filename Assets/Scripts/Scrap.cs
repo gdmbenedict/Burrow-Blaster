@@ -20,11 +20,11 @@ public class Scrap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ScrapManager scrapManager = other.GetComponent<ScrapManager>();
+        Collector collector = other.GetComponent<Collector>();
 
-        if (scrapManager != null)
+        if (collector != null)
         {
-            scrapManager.AddScrap(value);
+            collector.CollectScrap(value);
             Destroy(gameObject);
         }   
     }
