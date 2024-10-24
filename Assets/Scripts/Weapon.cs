@@ -15,14 +15,18 @@ public class Weapon : MonoBehaviour
     [SerializeField] private List<Vector3> projectileDirections;
 
     [Header("Laser")]
-    [SerializeField] private bool isLaser;
+    [SerializeField] private bool isLaser = false;
     [SerializeField] private GameObject laser;
-    [SerializeField] private float weaponCharge;
+    [SerializeField] private Transform laserMuzzle;
+    [SerializeField] private Vector3 laserDirection;
+    [SerializeField] private float weaponCharge =0;
     [SerializeField] private float laserScaleFactor = 0.25f;
+    [SerializeField] private float laserLifetime;
 
     private bool canFire = true;
     private float fireRateMult;
     private float damageMult;
+    private int laserScaleIncrement;
 
     private void Start()
     {
@@ -35,10 +39,11 @@ public class Weapon : MonoBehaviour
         {
             projectileDirections = new List<Vector3>();
         }
-
+        
         fireRateMult = 1;
         damageMult = 1;
         piercing = 1;
+        laserScaleIncrement = 1;
     }
 
     public void SetWeaponStats(float fireRateMult, float damageMult, int piercing)
@@ -46,6 +51,12 @@ public class Weapon : MonoBehaviour
         this.fireRateMult = fireRateMult;
         this.damageMult = damageMult;
         this.piercing = piercing;
+    }
+
+    public void SetLaserStats(int laserScaleIncrement, float laserLifetime)
+    {
+        this.laserScaleIncrement = laserScaleIncrement;
+        this.laserLifetime = laserLifetime;
     }
 
     //Function that fires a projectile
@@ -65,7 +76,33 @@ public class Weapon : MonoBehaviour
             }
             else
             {
+                if (weaponCharge >= 0.5f)
+                {
+                    //determine laser scale
+                    float laserScale = laserScaleIncrement * laserScaleFactor;
+                    int laserDamage = (int)(damage * damageMult * weaponCharge);
 
+                    //Creating laser
+                    GameObject laserInstance = Instantiate(laser, laserMuzzle.position, Quaternion.identity);
+                    laserInstance.transform.parent = transform;
+
+                    //setting laser properties
+                    Laser laserScript = laserInstance.GetComponent<Laser>();
+                    laserScript.SetDirection(laserDirection);
+                    laserScript.SetStats(laserDamage, laserScale);
+
+                    //play laser SFX
+                    
+                    weaponCharge = 0;
+                }
+                else
+                {
+                    //play laser misfire effect
+
+                    weaponCharge = 0;
+                    return;
+                }
+                
             }            
 
             canFire = false;
@@ -77,7 +114,16 @@ public class Weapon : MonoBehaviour
     {
         if (canFire)
         {
-            
+            if (weaponCharge < 1f)
+            {
+                weaponCharge += firerate * fireRateMult * Time.deltaTime;
+
+                //play charging SFX
+            }
+            else
+            {
+                //play maxxed SFX
+            }
         }
     }
 

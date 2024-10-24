@@ -24,20 +24,14 @@ public class Laser : MonoBehaviour
         StartCoroutine(Removal());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetStats(int damage, int scale)
+    public void SetStats(int damage, float scale)
     {
         this.damage = damage;
         this.scale = scale;
-        transform.localScale *= scale;
+        transform.localScale *= (1+scale);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         HealthSystem target = other.GetComponent<HealthSystem>();
 

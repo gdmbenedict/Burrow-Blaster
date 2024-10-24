@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
 
     private void SetupPlayer()
     {
+        Debug.Log("Setting player values");
+
         //make player active
         model.SetActive(true);
 
