@@ -8,6 +8,14 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private int maxHealth;
     private int health;
 
+    [Header("Shield Variables")]
+    [SerializeField] private GameObject shieldModel;
+    [SerializeField] private float shieldCooldown;
+    [SerializeField] private float shieldTransition;
+    [SerializeField] private bool hasShield;
+    private bool shieldUnlocked;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,23 +24,40 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        if(!hasShield)
         {
-            Enemy enemy = GetComponent<Enemy>();
+            health -= damage;
+            if (health <= 0)
+            {
+                Enemy enemy = GetComponent<Enemy>();
 
-            if (enemy != null)
-            {
-                //Debug.Log("Calling Die Function");
-                enemy.Die();
+                if (enemy != null)
+                {
+                    //Debug.Log("Calling Die Function");
+                    enemy.Die();
+                }
+                else
+                {
+                    Player player = GetComponent<Player>();
+                    player.Die();
+                }
             }
-            else
-            {
-                Player player = GetComponent<Player>();
-                player.Die();
-            }
+            //implement something to show taking damage
         }
-        //implement something to show taking damage
+
+        StopAllCoroutines(); //disable active shield cooldown co-routine
+        StartCoroutine(BreakShield());
+    }
+
+    public void SetShield(bool shieldUnlocked)
+    {
+        this.shieldUnlocked = shieldUnlocked;
+
+        if (shieldUnlocked)
+        {
+            hasShield = true;
+            shieldModel.SetActive(true);
+        }
     }
 
     public void HealDamage(int healing)
@@ -67,5 +92,47 @@ public class HealthSystem : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    private IEnumerator BreakShield()
+    {
+        if (hasShield)
+        {
+            hasShield = false;
+            shieldModel.SetActive(false);
+
+            //shield break SFX
+        }
+
+        //reset shield cooldown timer
+        float timer = 0f;
+
+        while (timer < shieldCooldown)
+        {
+            yield return null;
+            timer += Time.deltaTime;
+        }
+
+        StartCoroutine(ActivateShield());
+    }
+
+    private IEnumerator ActivateShield()
+    {
+        hasShield = true;
+        Vector3 originScale = shieldModel.transform.localScale;
+        shieldModel.transform.localScale = Vector3.zero;
+        shieldModel.SetActive(true);
+        //shiled activation SFX
+
+        float growtimer = 0f;
+        while (growtimer < shieldTransition)
+        {
+            shieldModel.transform.localScale = Vector3.Lerp(Vector3.zero, originScale, growtimer/shieldTransition);
+            growtimer += Time.deltaTime;
+
+            yield return null;
+        }
+
+        shieldModel.transform.localScale = originScale;      
     }
 }
