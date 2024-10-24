@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private GameObject projectile;
+    [Header("Weapon Characteristics")] 
     [SerializeField] private float firerate;
     [SerializeField] private float damage;
     [SerializeField] private int piercing;
+
+    [Header("Projectiles")]
+    [SerializeField] private GameObject projectile;
     [SerializeField] private List<Transform> muzzlePositions;
     [SerializeField] private List<Vector3> projectileDirections;
+
+    [Header("Laser")]
+    [SerializeField] private bool isLaser;
+    [SerializeField] private GameObject laser;
+    [SerializeField] private float weaponCharge;
+    [SerializeField] private float laserScaleFactor = 0.25f;
 
     private bool canFire = true;
     private float fireRateMult;
@@ -44,17 +53,31 @@ public class Weapon : MonoBehaviour
     {
         if (canFire)
         {
-            for (int i=0; i<muzzlePositions.Count; i++)
+            if (!isLaser)
             {
-                GameObject projectileInstance = Instantiate(projectile, muzzlePositions[i].position, Quaternion.identity);
-                Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
-                projectileScript.SetDirection(projectileDirections[i]);
-                projectileScript.SetStats((int)(damage*damageMult),piercing);
+                for (int i = 0; i < muzzlePositions.Count; i++)
+                {
+                    GameObject projectileInstance = Instantiate(projectile, muzzlePositions[i].position, Quaternion.identity);
+                    Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
+                    projectileScript.SetDirection(projectileDirections[i]);
+                    projectileScript.SetStats((int)(damage * damageMult), piercing);
+                }
             }
-            
+            else
+            {
+
+            }            
 
             canFire = false;
             StartCoroutine(Cooldown());
+        }
+    }
+
+    public void Charge()
+    {
+        if (canFire)
+        {
+            
         }
     }
 
