@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -36,6 +37,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PauseScreen;
     [SerializeField] private GameObject ResultScreen;
 
+    [Header("First Selected Objects")]
+    [SerializeField] private GameObject mainMenuFirst;
+    [SerializeField] private GameObject upgradeMenuFirst;
+    [SerializeField] private GameObject pauseScreenFirst;
+    [SerializeField] private GameObject resultScreenFirst;
+
+    [Header("Outisde Connections")]
     //Outside connections
     public ScrapManager scrapManager;
     public Player player;
@@ -71,11 +79,13 @@ public class UIManager : MonoBehaviour
             case UIState.TitleScreen:
                 uiState = UIState.TitleScreen;
                 TitleScreen.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(mainMenuFirst);
                 break;
 
             case UIState.UpgradeScreen:
                 uiState = UIState.UpgradeScreen;
                 UpgradeScreen.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(upgradeMenuFirst);
                 break;
 
             case UIState.GameplayScreen:
@@ -86,6 +96,7 @@ public class UIManager : MonoBehaviour
             case UIState.PauseScreen:
                 uiState = UIState.PauseScreen;
                 PauseScreen.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(pauseScreenFirst);
                 break;
 
             case UIState.ResultScreen:
@@ -106,6 +117,7 @@ public class UIManager : MonoBehaviour
 
                 scrapResult.text = "Scrap Collected: " + player.collector.GetScrapCollected();
                 distanceResult.text = "Distance Travelled: " + (int)player.transform.position.z;
+                EventSystem.current.SetSelectedGameObject(resultScreenFirst);
                 break;
         }
     }
@@ -117,6 +129,7 @@ public class UIManager : MonoBehaviour
         PauseScreen.SetActive(false);
         GameplayUI.SetActive(false);
         ResultScreen.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void UpdateGameplayUI()

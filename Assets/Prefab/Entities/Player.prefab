@@ -390,7 +390,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4573408158417628984}
         m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
-        m_MethodName: GetFiring
+        m_MethodName: GetBlaster
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -450,6 +450,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a1ab472a-15b0-4784-b194-637499f34243
     m_ActionName: Player/Dodge[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8301ac6f-3288-4fd6-934a-a7388598548d
+    m_ActionName: Player/Fire2[/Mouse/middleButton,/Keyboard/x,/Keyboard/k,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 77eac255-c41e-4481-b144-79ceebab8ee5
+    m_ActionName: Player/Fire3[/Mouse/rightButton,/Keyboard/c,/Keyboard/l,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -593,13 +601,13 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
-  blasterProjectileOffsets: {x: 0, y: 0, z: 0}
+  blasterProjectileOffset: {x: 0, y: 0, z: 0}
   sideShotMuzzles: []
   sideShotDirections: []
-  sideShotOffsets: {x: -0.25, y: 0, z: 0}
+  sideShotOffset: {x: 0, y: 0, z: 0}
   superLaserMuzzle: {fileID: 0}
   suplerLasterDirection: {x: 0, y: 0, z: 0}
-  lasereOffsets: {x: 0, y: 0, z: 0}
+  lasereOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &258972044987899277
 MonoBehaviour:
   m_ObjectHideFlags: 0
