@@ -11,7 +11,6 @@ public class ScrapManager : MonoBehaviour
     void Start()
     {
         uiManager = FindObjectOfType<UIManager>();
-        uiManager.scrapManager = this;
         totalScrap = 0;
     }
 

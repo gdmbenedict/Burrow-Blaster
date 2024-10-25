@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause Input Called");
+        //Debug.Log("Pause Input Called");
         if (context.started)
         {
             TogglePause();
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     //Function that toggles if the game is paused
     public void TogglePause()
     {
-        Debug.Log("Toggle Pause Called");
+        //Debug.Log("Toggle Pause Called");
 
         //check if in the gameplay state so can't pause in menus
         if (gameState == GameState.Gameplay)
