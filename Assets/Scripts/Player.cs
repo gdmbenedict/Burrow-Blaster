@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
 
         //Dodge
         //TODO: implement dodge
-        //playerMovement.SetDodge(upgradeManager.GetDodge());
+        playerMovement.SetDodge(upgradeManager.GetDodge());
 
         //Shield
         playerHealth.SetShield(upgradeManager.GetShield());

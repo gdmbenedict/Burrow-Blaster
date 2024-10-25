@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float screenBottomBuffer = 1f;
 
     [Header("Player Dodge Movement Variables")]
+    [SerializeField] private bool dodgeUnlocked = false;
     [SerializeField] private float dodgeSpeed = 10f;
     [SerializeField] private float dodgeTime = 0.5f;
 
@@ -27,13 +28,11 @@ public class PlayerMovement : MonoBehaviour
     private float maxZ;
     private float minZ;
     [SerializeField] private float moveSpeedMult;
-    private bool canDodge;
     private bool isDodging;
 
     // Start is called before the first frame update
     void Start()
     {
-        canDodge = false;
         if (moveSpeedMult <= 0)
         {
             moveSpeedMult = 1;
@@ -101,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetDodge(bool dodge)
     {
-        canDodge = dodge;
+        dodgeUnlocked = dodge;
     }
 
     //Method that updates the movement direction of the player
@@ -131,6 +130,14 @@ public class PlayerMovement : MonoBehaviour
         {
             minZ = raycastHitmin.point.z;
             //Debug.Log(minZ);
+        }
+    }
+
+    public void DodgeButton(InputAction.CallbackContext input)
+    {
+        if (input.action.WasPressedThisFrame() && dodgeUnlocked)
+        {
+            Dodge();
         }
     }
 

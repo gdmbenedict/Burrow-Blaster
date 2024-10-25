@@ -447,15 +447,51 @@ MonoBehaviour:
     m_ActionId: f259d047-7579-4a7b-8f61-0cb6ab0013ed
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7774686900108604389}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: DodgeButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a1ab472a-15b0-4784-b194-637499f34243
     m_ActionName: Player/Dodge[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4573408158417628984}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: GetSideShot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8301ac6f-3288-4fd6-934a-a7388598548d
     m_ActionName: Player/Fire2[/Mouse/middleButton,/Keyboard/x,/Keyboard/k,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4573408158417628984}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: GetLaser
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 77eac255-c41e-4481-b144-79ceebab8ee5
     m_ActionName: Player/Fire3[/Mouse/rightButton,/Keyboard/c,/Keyboard/l,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
@@ -529,8 +565,8 @@ MonoBehaviour:
   moveSpeed: 10
   screenTopBuffer: 2.5
   screenBottomBuffer: 0.5
-  dodgeSpeed: 10
-  dodgeTime: 0.5
+  dodgeSpeed: 25
+  dodgeTime: 0.3
   rb: {fileID: 9147357286841321469}
   cam: {fileID: 0}
   moveSpeedMult: 0
@@ -548,7 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sideShotUnlocked: 0
   laserUnlocked: 0
-  blaster: {fileID: 0}
+  blaster: {fileID: 5230115248971302998}
   sideShot: {fileID: 0}
   laser: {fileID: 0}
 --- !u!114 &8879282499683176147

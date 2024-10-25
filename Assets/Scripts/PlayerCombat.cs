@@ -25,11 +25,11 @@ public class PlayerCombat : MonoBehaviour
         {
             blaster.Fire();
         }
-        else if (firingSideShots)
+        else if (firingSideShots && sideShot != null)
         {
             sideShot.Fire();
         }
-        else if (chargingLaser)
+        else if (chargingLaser && laser != null)
         {
             laser.Charge();
         }
