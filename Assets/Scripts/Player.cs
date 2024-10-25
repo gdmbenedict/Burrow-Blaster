@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
         //playerMovement.SetDodge(upgradeManager.GetDodge());
 
         //Shield
-        //TODO: implement shield
+        playerHealth.SetShield(upgradeManager.GetShield());
 
         //setting up player movement
         playerMovement.SetMoveSpeedMult(upgradeManager.GetMovementSpeed());

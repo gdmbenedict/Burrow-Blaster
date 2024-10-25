@@ -15,13 +15,38 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Weapon sideShot;
     [SerializeField] private Weapon laser;
 
+    private bool firingBlaster;
+    private bool firingSideShots;
+    private bool chargingLaser;
+
+    void Update()
+    {
+        if (firingBlaster)
+        {
+            blaster.Fire();
+        }
+        else if (firingSideShots)
+        {
+            sideShot.Fire();
+        }
+        else if (chargingLaser)
+        {
+            laser.Charge();
+        }
+    }
+
     //method that gets input for the blaster
     public void GetBlaster(InputAction.CallbackContext input)
     {
         if (input.action.IsPressed())
         {
-            blaster.Fire();
+            firingBlaster = true;
         }
+        else if (input.canceled)
+        {
+            firingBlaster = false;
+        }
+
     }
 
     //method that gets input for the blaster
@@ -29,7 +54,11 @@ public class PlayerCombat : MonoBehaviour
     {
         if (input.action.IsPressed())
         {
-            sideShot.Fire();
+            firingSideShots = true;
+        }
+        else if (input.canceled)
+        {
+            firingSideShots = false;
         }
     }
 
@@ -38,13 +67,16 @@ public class PlayerCombat : MonoBehaviour
     {
         if (input.action.IsPressed())
         {
-            laser.Charge();
+            chargingLaser = true;
         }
         else if (input.canceled)
         {
+            chargingLaser = false;
             laser.Fire();
         }
     }
+
+
 
 
 }

@@ -20,12 +20,22 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+
+        /*
+        if (shieldModel != null)
+        {
+            shieldModel.GetComponent<MeshRenderer>().enabled = false;
+        }
+        */
+        
     }
 
     public void TakeDamage(int damage)
     {
         if(!hasShield)
         {
+            //taking damage
+
             health -= damage;
             if (health <= 0)
             {
@@ -45,8 +55,11 @@ public class HealthSystem : MonoBehaviour
             //implement something to show taking damage
         }
 
-        StopAllCoroutines(); //disable active shield cooldown co-routine
-        StartCoroutine(BreakShield());
+        if (shieldUnlocked)
+        {
+            StopAllCoroutines(); //disable active shield cooldown co-routine
+            StartCoroutine(BreakShield());
+        } 
     }
 
     public void SetShield(bool shieldUnlocked)
@@ -55,8 +68,15 @@ public class HealthSystem : MonoBehaviour
 
         if (shieldUnlocked)
         {
+            Debug.Log("Setting Shield On");
             hasShield = true;
-            shieldModel.SetActive(true);
+            shieldModel.GetComponent<MeshRenderer>().enabled = true;
+        }
+        else
+        {
+            Debug.Log("Setting Shield off");
+            hasShield = false;
+            shieldModel.GetComponent<MeshRenderer>().enabled = false;
         }
     }
 
@@ -99,7 +119,7 @@ public class HealthSystem : MonoBehaviour
         if (hasShield)
         {
             hasShield = false;
-            shieldModel.SetActive(false);
+            shieldModel.GetComponent<MeshRenderer>().enabled = false;
 
             //shield break SFX
         }
@@ -121,7 +141,7 @@ public class HealthSystem : MonoBehaviour
         hasShield = true;
         Vector3 originScale = shieldModel.transform.localScale;
         shieldModel.transform.localScale = Vector3.zero;
-        shieldModel.SetActive(true);
+        shieldModel.GetComponent<MeshRenderer>().enabled = true;
         //shiled activation SFX
 
         float growtimer = 0f;
