@@ -13,12 +13,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject projectile;
     [SerializeField] private List<Transform> muzzlePositions;
     [SerializeField] private List<Vector3> projectileDirections;
+    [SerializeField] private Vector3 projectileOffset;
 
     [Header("Laser")]
     [SerializeField] private bool isLaser = false;
     [SerializeField] private GameObject laser;
     [SerializeField] private Transform laserMuzzle;
     [SerializeField] private Vector3 laserDirection;
+    [SerializeField] private Vector3 laserOffset;
     [SerializeField] private float weaponCharge =0;
     [SerializeField] private float laserScaleFactor = 0.25f;
     [SerializeField] private float laserLifetime;
@@ -27,6 +29,7 @@ public class Weapon : MonoBehaviour
     private float fireRateMult;
     private float damageMult;
     private int laserScaleIncrement;
+
 
     private void Start()
     {
@@ -68,7 +71,8 @@ public class Weapon : MonoBehaviour
             {
                 for (int i = 0; i < muzzlePositions.Count; i++)
                 {
-                    GameObject projectileInstance = Instantiate(projectile, muzzlePositions[i].position, Quaternion.identity);
+                    Debug.Log(projectileOffset);
+                    GameObject projectileInstance = Instantiate(projectile, muzzlePositions[i].position + projectileOffset, Quaternion.identity);
                     Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
                     projectileScript.SetDirection(projectileDirections[i]);
                     projectileScript.SetStats((int)(damage * damageMult), piercing);
@@ -83,7 +87,7 @@ public class Weapon : MonoBehaviour
                     int laserDamage = (int)(damage * damageMult * weaponCharge);
 
                     //Creating laser
-                    GameObject laserInstance = Instantiate(laser, laserMuzzle.position, Quaternion.identity);
+                    GameObject laserInstance = Instantiate(laser, laserMuzzle.position + laserOffset, Quaternion.identity);
                     laserInstance.transform.parent = transform;
 
                     //setting laser properties
@@ -131,6 +135,16 @@ public class Weapon : MonoBehaviour
     public void ChangeProjectileDirection(int index, Vector3 direction)
     {
         projectileDirections[index] = direction;
+    }
+
+    public void SetProjectileOffset(Vector3 projectileOffset)
+    {
+        this.projectileOffset = projectileOffset;
+    }
+
+    public void SetLaserOffset(Vector3 laserOffset)
+    {
+        this.laserOffset = laserOffset;
     }
 
     public void SetMuzzles(Transform[] muzzlePositions, Vector3[] projectileDirections)

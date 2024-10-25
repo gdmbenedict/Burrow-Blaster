@@ -17,14 +17,17 @@ public class Player : MonoBehaviour
     [Header("Blaster Muzzles")]
     public List<Transform> blasterMuzzles;
     public List<Vector3> blasterDirections;
+    public Vector3 blasterProjectileOffset;
 
     [Header("Sideshot Muzzles")]
     public List<Transform> sideShotMuzzles;
     public List<Vector3> sideShotDirections;
+    public Vector3 sideShotOffset;
 
     [Header("Super Laser Muzzle")]
     public Transform superLaserMuzzle;
     public Vector3 suplerLasterDirection;
+    public Vector3 lasereOffset;
 
     //external connections
     private GameManager gameManager;
@@ -75,6 +78,7 @@ public class Player : MonoBehaviour
         {
             blaster.enabled = true;
             blaster.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
+            blaster.SetProjectileOffset(blasterProjectileOffset);
 
             //setting blaster muzzle positions
             switch (upgradeManager.GetSpreadShot())
@@ -127,6 +131,7 @@ public class Player : MonoBehaviour
         {
             sideShot.enabled = true;
             sideShot.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
+            sideShot.SetProjectileOffset(sideShotOffset);
 
             //setting blaster muzzle positions
             switch (upgradeManager.GetSpreadShot())

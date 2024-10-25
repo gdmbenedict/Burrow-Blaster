@@ -41689,6 +41689,21 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GetBlaster
       objectReference: {fileID: 0}
+    - target: {fileID: 2466576206604131918, guid: e1ceaed264a146f4eb66e4de61c1f76a,
+        type: 3}
+      propertyPath: sideShotOffsets.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2466576206604131918, guid: e1ceaed264a146f4eb66e4de61c1f76a,
+        type: 3}
+      propertyPath: blasterProjectileOffset.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2466576206604131918, guid: e1ceaed264a146f4eb66e4de61c1f76a,
+        type: 3}
+      propertyPath: blasterProjectileOffsets.x
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4573408158417628984, guid: e1ceaed264a146f4eb66e4de61c1f76a,
         type: 3}
       propertyPath: blaster

@@ -446,6 +446,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f259d047-7579-4a7b-8f61-0cb6ab0013ed
     m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1ab472a-15b0-4784-b194-637499f34243
+    m_ActionName: Player/Dodge[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -589,10 +593,13 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
+  blasterProjectileOffsets: {x: 0, y: 0, z: 0}
   sideShotMuzzles: []
   sideShotDirections: []
+  sideShotOffsets: {x: -0.25, y: 0, z: 0}
   superLaserMuzzle: {fileID: 0}
   suplerLasterDirection: {x: 0, y: 0, z: 0}
+  lasereOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &258972044987899277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,10 +673,12 @@ MonoBehaviour:
     type: 3}
   muzzlePositions: []
   projectileDirections: []
+  projectileOffset: {x: 0, y: 0, z: 0}
   isLaser: 0
   laser: {fileID: 0}
   laserMuzzle: {fileID: 0}
   laserDirection: {x: 0, y: 0, z: 0}
+  laserOffset: {x: 0, y: 0, z: 0}
   weaponCharge: 0
   laserScaleFactor: 0.25
   laserLifetime: 0
