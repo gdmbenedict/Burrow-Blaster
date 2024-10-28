@@ -54,7 +54,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (input.action.IsPressed())
         {
-            Debug.Log("GotSideshot Input");
+            //Debug.Log("GotSideshot Input");
             firingSideShots = true;
         }
         else if (input.canceled)

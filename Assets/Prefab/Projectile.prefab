@@ -584,8 +584,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   piercing: 0
-  speed: 40
-  direction: {x: 0, y: 0, z: 1}
+  speed: 10
+  direction: {x: 0, y: 0, z: 0}
 --- !u!54 &3719004958495577928
 Rigidbody:
   m_ObjectHideFlags: 0

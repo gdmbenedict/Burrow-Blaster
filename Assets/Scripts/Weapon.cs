@@ -18,6 +18,7 @@ public class Weapon : MonoBehaviour
     [Header("Laser")]
     [SerializeField] private bool isLaser = false;
     [SerializeField] private GameObject laser;
+    [SerializeField] private GameObject chargeVisual;
     [SerializeField] private Transform laserMuzzle;
     [SerializeField] private Vector3 laserDirection;
     [SerializeField] private Vector3 laserOffset;
@@ -69,7 +70,7 @@ public class Weapon : MonoBehaviour
         {
             if (!isLaser)
             {
-                Debug.Log(gameObject.name + " firing");
+                //Debug.Log(gameObject.name + " firing");
                 for (int i = 0; i < muzzlePositions.Count; i++)
                 {
                     //Debug.Log(projectileOffset);
