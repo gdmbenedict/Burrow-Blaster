@@ -27,7 +27,7 @@ public class Laser : MonoBehaviour
 
         if (target != null)
         {
-            target.TakeDamage(damage);
+            target.TakeChipDamage((float)(damage*Time.deltaTime));
         }
     }
 

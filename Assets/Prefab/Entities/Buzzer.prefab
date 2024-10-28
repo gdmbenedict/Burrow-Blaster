@@ -135,6 +135,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  shieldModel: {fileID: 0}
+  shieldCooldown: 0
+  shieldTransition: 0
+  hasShield: 0
 --- !u!114 &1092619585464597524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,15 +165,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e63450f13af2d54da3da6fd408dec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 3615971726096595373, guid: 6484b725392b95a44b4e514455575009,
-    type: 3}
   firerate: 1
   damage: 1
   piercing: 1
+  projectile: {fileID: 3615971726096595373, guid: 126c25fe8dc18b241bc5d48316634170,
+    type: 3}
   muzzlePositions:
   - {fileID: 7619971051294465002}
   projectileDirections:
   - {x: 0, y: 0, z: 0}
+  projectileOffset: {x: 0, y: 0, z: 0}
+  isLaser: 0
+  laser: {fileID: 0}
+  chargeVisual: {fileID: 0}
+  laserMuzzle: {fileID: 0}
+  laserDirection: {x: 0, y: 0, z: 0}
+  laserOffset: {x: 0, y: 0, z: 0}
+  weaponCharge: 0
+  laserScaleFactor: 0.25
+  laserLifetime: 0
 --- !u!1001 &5801048504606497612
 PrefabInstance:
   m_ObjectHideFlags: 0
