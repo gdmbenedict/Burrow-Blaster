@@ -82,11 +82,14 @@ public class Weapon : MonoBehaviour
             }
             else
             {
+                chargeVisual.SetActive(false);
+
                 if (weaponCharge >= 0.5f)
                 {
                     //determine laser scale
                     float laserScale = laserScaleIncrement * laserScaleFactor;
                     int laserDamage = (int)(damage * damageMult * weaponCharge);
+                    float laserLifetime = (piercing * weaponCharge);
 
                     //Creating laser
                     GameObject laserInstance = Instantiate(laser, laserMuzzle.position + laserOffset, Quaternion.identity);
@@ -94,7 +97,7 @@ public class Weapon : MonoBehaviour
 
                     //setting laser properties
                     Laser laserScript = laserInstance.GetComponent<Laser>();
-                    laserScript.SetStats(laserDamage, laserScale);
+                    laserScript.SetStats(laserDamage, laserScale, laserLifetime);
 
                     //play laser SFX
                     
@@ -119,6 +122,11 @@ public class Weapon : MonoBehaviour
     {
         if (canFire)
         {
+            if (!chargeVisual.activeSelf)
+            {
+                chargeVisual.SetActive(true);
+            }
+
             if (weaponCharge < 1f)
             {
                 weaponCharge += firerate * fireRateMult * Time.deltaTime;
