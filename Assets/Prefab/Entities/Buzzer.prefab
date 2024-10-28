@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 7705981167903737185}
   - component: {fileID: 1092619585464597524}
   - component: {fileID: 812627264707572117}
+  - component: {fileID: 344717249110671905}
   m_Layer: 7
   m_Name: Buzzer
   m_TagString: Untagged
@@ -134,7 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Model: {fileID: 0}
   maxHealth: 1
+  invulnerabilityTime: 0
+  flashingIntervals: 0
   shieldModel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
@@ -184,6 +188,20 @@ MonoBehaviour:
   weaponCharge: 0
   laserScaleFactor: 0.25
   laserLifetime: 0
+--- !u!114 &344717249110671905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976310428112141259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9553195cc1c0f84e89ea42bb36e12ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactDamage: 1
+  repulsionForce: 20
 --- !u!1001 &5801048504606497612
 PrefabInstance:
   m_ObjectHideFlags: 0

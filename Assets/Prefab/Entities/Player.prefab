@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 258972044987899277}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -859,7 +859,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -916,7 +916,7 @@ MonoBehaviour:
   screenTopBuffer: 2.5
   screenBottomBuffer: 0.5
   dodgeUnlocked: 0
-  dodgeSpeed: 25
+  dodgeSpeed: 50
   dodgeTime: 0.3
   rb: {fileID: 9147357286841321469}
   cam: {fileID: 0}

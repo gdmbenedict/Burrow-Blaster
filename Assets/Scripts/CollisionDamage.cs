@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollisionDamage : MonoBehaviour
 {
-    [SerializeField] private LayerMask playerLayer;
     [SerializeField] private int contactDamage;
     [SerializeField] private float repulsionForce;
 
@@ -22,20 +21,27 @@ public class CollisionDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision Detected: " + collision.gameObject.name);
+
         Collider other = collision.collider;
 
-        if (other.gameObject.layer == playerLayer)
+        if (other.gameObject.tag == "Player")
         {
-            Rigidbody playerRB = other.GetComponent<Rigidbody>();
+
+            PlayerMovement playerMove = other.GetComponent<PlayerMovement>();
             HealthSystem playerHealth = other.GetComponent<HealthSystem>();
 
-            //dealing damage
-            playerHealth.TakeDamage(contactDamage);
+            if (playerHealth.GetInvulnerable())
+            {
+                //dealing damage
+                playerHealth.TakeDamage(contactDamage);
 
-            //throwing player away
-            Vector3 direction = other.transform.position - transform.position;
-            Vector3 force = direction.normalized * repulsionForce;
-            playerRB.AddForce(force, ForceMode.Impulse);
+                //throwing player away
+                Vector3 direction = other.transform.position - transform.position;
+                Vector3 force = direction.normalized * repulsionForce;
+                playerMove.AddForce(force);
+            }
+  
         }
     }
 }

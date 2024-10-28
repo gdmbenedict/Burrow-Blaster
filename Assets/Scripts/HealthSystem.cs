@@ -30,18 +30,13 @@ public class HealthSystem : MonoBehaviour
     {
         health = maxHealth;
         canTakeDamage = true;
-
-        /*
-        if (shieldModel != null)
-        {
-            shieldModel.GetComponent<MeshRenderer>().enabled = false;
-        }
-        */
         
     }
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("TakeDamage() called");
+
         if(!hasShield)
         {
             //taking damage
@@ -170,6 +165,11 @@ public class HealthSystem : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public bool GetInvulnerable()
+    {
+        return canTakeDamage;
     }
 
     private IEnumerator BreakShield()

@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeedMult;
     private bool isDodging;
 
+    private bool forcedMovement;
+    private float forcedMovementTime = 0.3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,14 +56,28 @@ public class PlayerMovement : MonoBehaviour
         //checking top boundary
         if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult * Time.deltaTime) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
         {
-            //Debug.Log("Boundry Being Called");
-            movementDir.z = 0;
+            if (rb.velocity.magnitude != 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
+            }
+            else
+            {
+                //Debug.Log("Freezing Z movement");
+                movementDir.z = 0;
+            }
         }
         //checking bottom boundary
         else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult  * Time.deltaTime) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
         {
-            //Debug.Log("Boundry Being Called");
-            movementDir.z = 0;
+            if (rb.velocity.magnitude != 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
+            }
+            else
+            {
+                //Debug.Log("Freezing Z movement");
+                movementDir.z = 0;
+            }
         }
 
         //checking for collisions
@@ -73,24 +90,66 @@ public class PlayerMovement : MonoBehaviour
             float differenceZ = Mathf.Abs(pos.z - transform.position.z);
             if (differenceX <= differenceZ)
             {
-                //Debug.Log("Freezing X movement");
-                movementDir.x = 0;
+                if (rb.velocity.magnitude != 0)
+                {
+                    rb.velocity = new Vector3(0f, 0f, rb.velocity.z);
+                }
+                else
+                {
+                    //Debug.Log("Freezing X movement");
+                    movementDir.x = 0;
+                }
+                
             }
             else
             {
-                //Debug.Log("Freezing Z movement");
-                movementDir.z = 0;
+                if (rb.velocity.magnitude != 0)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
+                }
+                else
+                {
+                    //Debug.Log("Freezing Z movement");
+                    movementDir.z = 0;
+                }
+                
             }
+
+            
         }
 
         //moving player
-        rb.MovePosition(rb.position + movementDir * moveSpeed * moveSpeedMult * Time.deltaTime);
-        rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
+        if (!isDodging && !forcedMovement)
+        {
+            rb.MovePosition(rb.position + movementDir * moveSpeed * moveSpeedMult * Time.deltaTime);
+            rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
+        }
+        
 
-        if (rb.velocity.magnitude != 0 && !isDodging)
+        if (rb.velocity.magnitude != 0 && !isDodging && !forcedMovement)
         {
             rb.velocity = Vector3.zero;
         }
+    }
+
+    public void AddForce(Vector3 force)
+    {
+        forcedMovement = true;
+        rb.AddForce(force, ForceMode.Impulse);
+        StartCoroutine(ForcedMovement());
+    }
+
+    private IEnumerator ForcedMovement()
+    {
+        float forcedMovementTimer = 0;
+
+        while (forcedMovementTimer < forcedMovementTime)
+        {
+            forcedMovementTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        forcedMovement = false;
     }
 
     public void SetMoveSpeedMult(float moveSpeedMult)
