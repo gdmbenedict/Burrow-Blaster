@@ -7,6 +7,7 @@ public class HealthSystem : MonoBehaviour
     [Header("Health Varaibles")]
     [SerializeField] private int maxHealth;
     private int health;
+    private float chipDamage =0;
 
     [Header("Shield Variables")]
     [SerializeField] private GameObject shieldModel;
@@ -60,6 +61,44 @@ public class HealthSystem : MonoBehaviour
             StopAllCoroutines(); //disable active shield cooldown co-routine
             StartCoroutine(BreakShield());
         } 
+    }
+
+    public void TakeChipDamage(float damage)
+    {
+        if (!hasShield)
+        {
+            //taking damage
+            chipDamage += damage;
+            if (chipDamage >= 1)
+            {
+                health -= (int)chipDamage;
+                if (health <= 0)
+                {
+                    Enemy enemy = GetComponent<Enemy>();
+
+                    if (enemy != null)
+                    {
+                        //Debug.Log("Calling Die Function");
+                        enemy.Die();
+                    }
+                    else
+                    {
+                        Player player = GetComponent<Player>();
+                        player.Die();
+                    }
+                }
+
+                //implement something to show taking damage
+
+                chipDamage = 0;
+            }
+        }
+
+        if (shieldUnlocked)
+        {
+            StopAllCoroutines(); //disable active shield cooldown co-routine
+            StartCoroutine(BreakShield());
+        }
     }
 
     public void SetShield(bool shieldUnlocked)

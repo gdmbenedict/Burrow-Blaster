@@ -6,21 +6,11 @@ public class Laser : MonoBehaviour
 {
     [SerializeField] private int damage;
     [SerializeField] private float scale;
-    [SerializeField] private Vector3 direction;
     [SerializeField] private float lifetime;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (direction == null)
-        {
-            SetDirection(Vector3.forward);
-        }
-        else
-        {
-            SetDirection(direction);
-        }
-
         StartCoroutine(Removal());
     }
 
@@ -39,15 +29,6 @@ public class Laser : MonoBehaviour
         {
             target.TakeDamage(damage);
         }
-    }
-
-    //Function that makes the projectile rotate towards movement direction.
-    public void SetDirection(Vector3 direction)
-    {
-        this.direction = direction;
-        transform.LookAt(direction + transform.position);
-        transform.Rotate(90f, 0f, 0f);
-
     }
 
     //Function that handles the removal of the super laser

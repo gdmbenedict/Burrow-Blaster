@@ -94,7 +94,6 @@ public class Weapon : MonoBehaviour
 
                     //setting laser properties
                     Laser laserScript = laserInstance.GetComponent<Laser>();
-                    laserScript.SetDirection(laserDirection);
                     laserScript.SetStats(laserDamage, laserScale);
 
                     //play laser SFX
