@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: A_IdleBadger
+  m_Name: A_Idle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -45,7 +45,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body
+    path: CharacterRoot/Body
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -79,50 +79,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/LowerBody/UpperBody
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.29093954, y: -0, z: -0, w: 0.95674145}
-        inSlope: {x: -0.05156636, y: 0, z: 0, w: 0.015630126}
-        outSlope: {x: -0.05156636, y: 0, z: 0, w: 0.015630126}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      - serializedVersion: 3
-        time: 1.4333334
-        value: {x: 0.24029888, y: -0, z: -0, w: 0.97069895}
-        inSlope: {x: 0.042512156, y: 0, z: 0, w: -0.010526786}
-        outSlope: {x: 0.042512156, y: 0, z: 0, w: -0.010526786}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      - serializedVersion: 3
-        time: 2.9
-        value: {x: 0.29526064, y: -0, z: -0, w: 0.95541674}
-        inSlope: {x: -0.037371702, y: 0, z: 0, w: 0.011545133}
-        outSlope: {x: -0.037371702, y: 0, z: 0, w: 0.011545133}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      - serializedVersion: 3
-        time: 3.0000002
-        value: {x: 0.29093954, y: -0, z: -0, w: 0.95674145}
-        inSlope: {x: -0.044892173, y: 0, z: 0, w: 0.013690008}
-        outSlope: {x: -0.044892173, y: 0, z: 0, w: 0.013690008}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Body/LowerBody/UpperBody/Head
+    path: CharacterRoot/Body/LowerBody/UpperBody
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -165,7 +122,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/LowerBody/UpperBody/LeftArm
+    path: CharacterRoot/Body/LowerBody/UpperBody/LeftArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -208,7 +165,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/LowerBody/UpperBody/LeftArm/LeftPaw
+    path: CharacterRoot/Body/LowerBody/UpperBody/LeftArm/LeftPawGroup
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -251,7 +208,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/LowerBody/UpperBody/RightArm
+    path: CharacterRoot/Body/LowerBody/UpperBody/RightArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -294,7 +251,50 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/LowerBody/UpperBody/RightArm/RightPaw
+    path: CharacterRoot/Body/LowerBody/UpperBody/RightArm/RightPawGroup
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0.29093954, y: -0, z: -0, w: 0.95674145}
+        inSlope: {x: -0.05156636, y: 0, z: 0, w: 0.015630126}
+        outSlope: {x: -0.05156636, y: 0, z: 0, w: 0.015630126}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      - serializedVersion: 3
+        time: 1.4333334
+        value: {x: 0.24029888, y: -0, z: -0, w: 0.97069895}
+        inSlope: {x: 0.042512156, y: 0, z: 0, w: -0.010526786}
+        outSlope: {x: 0.042512156, y: 0, z: 0, w: -0.010526786}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      - serializedVersion: 3
+        time: 2.9
+        value: {x: 0.29526064, y: -0, z: -0, w: 0.95541674}
+        inSlope: {x: -0.037371702, y: 0, z: 0, w: 0.011545133}
+        outSlope: {x: -0.037371702, y: 0, z: 0, w: 0.011545133}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      - serializedVersion: 3
+        time: 3.0000002
+        value: {x: 0.29093954, y: -0, z: -0, w: 0.95674145}
+        inSlope: {x: -0.044892173, y: 0, z: 0, w: 0.013690008}
+        outSlope: {x: -0.044892173, y: 0, z: 0, w: 0.013690008}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: CharacterRoot/Body/LowerBody/UpperBody/Head
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -337,7 +337,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/LowerBody/Tail
+    path: CharacterRoot/Body/LowerBody/Tail
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves: []
@@ -350,79 +350,7 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings:
-    - serializedVersion: 2
-      path: 2073732236
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 2992608613
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 3379135850
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 2176805925
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 677935545
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 1188766924
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 1739792899
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 4180983899
-      attribute: 2
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
+    genericBindings: []
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -434,7 +362,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
