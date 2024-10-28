@@ -11,11 +11,11 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2024
 		Month: 10
-		Day: 22
-		Hour: 15
-		Minute: 31
-		Second: 38
-		Millisecond: 320
+		Day: 28
+		Hour: 9
+		Minute: 32
+		Second: 27
+		Millisecond: 488
 	}
 	Creator: "Blockbench 4.11.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -49,7 +49,7 @@ FBXHeaderExtension:  {
 	}
 }
 FileId: "iVFoobar"
-CreationTime: "2024-10-22 18:31:38:320"
+CreationTime: "2024-10-28 12:32:27:488"
 Creator: "Made with Blockbench"
 GlobalSettings:  {
 	Version: 1000
@@ -78,7 +78,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 139591312 {
+	Document: 379780139 {
 		Scene: "Scene"
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
@@ -307,9 +307,9 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 3142493, "Geometry::BulletInverted_1", "Mesh" {
+	Geometry: 5148305, "Geometry::Bullet_outline", "Mesh" {
 		Vertices: *24 {
-			a: -25,-18.75,-25,-25,-18.75,25,-25,31.25,-25,-25,31.25,25,25,-18.75,25,25,-18.75,-25,25,31.25,25,25,31.25,-25
+			a: -25,-18.75,-62.5,-25,-18.75,62.5,-25,31.25,-62.5,-25,31.25,62.5,25,-18.75,62.5,25,-18.75,-62.5,25,31.25,62.5,25,31.25,-62.5
 		}
 		PolygonVertexIndex: *24 {
 			a: 3,6,4,-2,2,3,1,-1,7,2,0,-6,6,7,5,-5,5,0,1,-5,6,3,2,-8
@@ -330,7 +330,7 @@ Objects:  {
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "Direct"
 			UV: *48 {
-				a: 0.25,0.25,0.5,0.25,0.5,0.5,0.25,0.5,0.5,0.5,0.75,0.5,0.75,0.75,0.5,0.75,0.5,0.25,0.75,0.25,0.75,0.5,0.5,0.5,0,0,0.25,0,0.25,0.25,0,0.25,1,1,0.75,1,0.75,0.75,1,0.75,0.5,0,0.25,0,0.25,0.25,0.5,0.25
+				a: 0.75,0.75,0.5,0.75,0.5,0.5,0.75,0.5,0.75,0.5,0.5,0.5,0.5,0.25,0.75,0.25,0.5,0.5,0.25,0.5,0.25,0.25,0.5,0.25,0.5,0.25,0.25,0.25,0.25,0,0.5,0,0.75,1,1,1,1,0.75,0.75,0.75,0,0,0.25,0,0.25,0.25,0,0.25
 			}
 		}
 		LayerElementMaterial: 0 {
@@ -358,9 +358,9 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 96749012, "Geometry::Bullet_1", "Mesh" {
+	Geometry: 61245397, "Geometry::Bullet_1", "Mesh" {
 		Vertices: *24 {
-			a: 12.5,18.75,12.5,12.5,18.75,-12.5,12.5,-6.25,12.5,12.5,-6.25,-12.5,-12.5,18.75,-12.5,-12.5,18.75,12.5,-12.5,-6.25,-12.5,-12.5,-6.25,12.5
+			a: 12.5,18.75,50,12.5,18.75,-50,12.5,-6.25,50,12.5,-6.25,-50,-12.5,18.75,-50,-12.5,18.75,50,-12.5,-6.25,-50,-12.5,-6.25,50
 		}
 		PolygonVertexIndex: *24 {
 			a: 3,6,4,-2,2,3,1,-1,7,2,0,-6,6,7,5,-5,5,0,1,-5,6,3,2,-8
@@ -409,7 +409,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 73011272, "Model::Bullet", "Null" {
+	Model: 62049898, "Model::Bullet", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -423,7 +423,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 7770199, "Model::BulletInverted", "Null" {
+	Model: 90463482, "Model::Bullet2", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -437,7 +437,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 74001705, "Model::Bullet_1", "Mesh" {
+	Model: 900922, "Model::Bullet_1", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -452,7 +452,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 56840606, "Model::BulletInverted_1", "Mesh" {
+	Model: 27318079, "Model::Bullet_outline", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -467,7 +467,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Material: 6069800, "Material::BulletAlly.png", "" {
+	Material: 84400809, "Material::BulletAlly.png", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -478,7 +478,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Texture: 97555072, "Texture::BulletAlly.png", "" {
+	Texture: 78067087, "Texture::BulletAlly.png", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::BulletAlly.png"
@@ -490,7 +490,7 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	Video: 53706323, "Video::BulletAlly.png", "Clip" {
+	Video: 81534422, "Video::BulletAlly.png", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "C:\Users\W0487206\Documents\BurrowBlaster\BulletAlly\BulletAlly.png"
@@ -499,41 +499,22 @@ Objects:  {
 		Filename: "C:\Users\W0487206\Documents\BurrowBlaster\BulletAlly\BulletAlly.png"
 		RelativeFilename: "BulletAlly.png"
 	}
-	AnimationStack: 54736138, "AnimStack::BulletFriendlyRotate", "" {
+	AnimationStack: 80351952, "AnimStack::BulletFriendlyRotate", "" {
 		Properties70:  {
 			P: "LocalStop", "KTime", "Time", "",138558474000
 			P: "ReferenceStop", "KTime", "Time", "",138558474000
 		}
 	}
-	AnimationLayer: 91546512, "AnimLayer::BulletFriendlyRotate", "" {
+	AnimationLayer: 80492661, "AnimLayer::BulletFriendlyRotate", "" {
 	}
-	AnimationCurveNode: 95747767, "AnimCurveNode::BulletFriendlyRotate.R", "" {
+	AnimationCurveNode: 44108086, "AnimCurveNode::BulletFriendlyRotate.R", "" {
 		Properties70:  {
 			P: "d|X", "Number", "", "A",1
 			P: "d|Y", "Number", "", "A",1
 			P: "d|Z", "Number", "", "A",1
 		}
 	}
-	AnimationCurve: 37395485, "AnimCurve::BulletFriendlyRotate.RX", "" {
-		Default: 0
-		KeyVer: 4008
-		KeyTime: *2 {
-			a: 0,138558472192
-		}
-		KeyValueFloat: *2 {
-			a: 0,-360
-		}
-		KeyAttrFlags: *1 {
-			a: 24836
-		}
-		KeyAttrDataFloat: *4 {
-			a: 0,0,255790911,0
-		}
-		KeyAttrRefCount: *1 {
-			a: 2
-		}
-	}
-	AnimationCurve: 74726063, "AnimCurve::BulletFriendlyRotate.RY", "" {
+	AnimationCurve: 32481555, "AnimCurve::BulletFriendlyRotate.RX", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *2 {
@@ -552,52 +533,7 @@ Objects:  {
 			a: 2
 		}
 	}
-	AnimationCurve: 45485559, "AnimCurve::BulletFriendlyRotate.RZ", "" {
-		Default: 0
-		KeyVer: 4008
-		KeyTime: *2 {
-			a: 0,138558472192
-		}
-		KeyValueFloat: *2 {
-			a: 0,360
-		}
-		KeyAttrFlags: *1 {
-			a: 24836
-		}
-		KeyAttrDataFloat: *4 {
-			a: 0,0,255790911,0
-		}
-		KeyAttrRefCount: *1 {
-			a: 2
-		}
-	}
-	AnimationCurveNode: 42484659, "AnimCurveNode::BulletFriendlyRotate.R", "" {
-		Properties70:  {
-			P: "d|X", "Number", "", "A",1
-			P: "d|Y", "Number", "", "A",1
-			P: "d|Z", "Number", "", "A",1
-		}
-	}
-	AnimationCurve: 98229917, "AnimCurve::BulletFriendlyRotate.RX", "" {
-		Default: 0
-		KeyVer: 4008
-		KeyTime: *2 {
-			a: 0,138558472192
-		}
-		KeyValueFloat: *2 {
-			a: 0,360
-		}
-		KeyAttrFlags: *1 {
-			a: 24836
-		}
-		KeyAttrDataFloat: *4 {
-			a: 0,0,255790911,0
-		}
-		KeyAttrRefCount: *1 {
-			a: 2
-		}
-	}
-	AnimationCurve: 98558552, "AnimCurve::BulletFriendlyRotate.RY", "" {
+	AnimationCurve: 9385029, "AnimCurve::BulletFriendlyRotate.RY", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *2 {
@@ -616,14 +552,78 @@ Objects:  {
 			a: 2
 		}
 	}
-	AnimationCurve: 88179809, "AnimCurve::BulletFriendlyRotate.RZ", "" {
+	AnimationCurve: 91782099, "AnimCurve::BulletFriendlyRotate.RZ", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *2 {
 			a: 0,138558472192
 		}
 		KeyValueFloat: *2 {
-			a: 0,-360
+			a: 0,360
+		}
+		KeyAttrFlags: *1 {
+			a: 24836
+		}
+		KeyAttrDataFloat: *4 {
+			a: 0,0,255790911,0
+		}
+		KeyAttrRefCount: *1 {
+			a: 2
+		}
+	}
+	AnimationCurveNode: 74524503, "AnimCurveNode::BulletFriendlyRotate.R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurve: 43082045, "AnimCurve::BulletFriendlyRotate.RX", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *2 {
+			a: 0,138558472192
+		}
+		KeyValueFloat: *2 {
+			a: 0,0
+		}
+		KeyAttrFlags: *1 {
+			a: 24836
+		}
+		KeyAttrDataFloat: *4 {
+			a: 0,0,255790911,0
+		}
+		KeyAttrRefCount: *1 {
+			a: 2
+		}
+	}
+	AnimationCurve: 43015136, "AnimCurve::BulletFriendlyRotate.RY", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *2 {
+			a: 0,138558472192
+		}
+		KeyValueFloat: *2 {
+			a: 0,0
+		}
+		KeyAttrFlags: *1 {
+			a: 24836
+		}
+		KeyAttrDataFloat: *4 {
+			a: 0,0,255790911,0
+		}
+		KeyAttrRefCount: *1 {
+			a: 2
+		}
+	}
+	AnimationCurve: 77129903, "AnimCurve::BulletFriendlyRotate.RZ", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *2 {
+			a: 0,138558472192
+		}
+		KeyValueFloat: *2 {
+			a: 0,-720
 		}
 		KeyAttrFlags: *1 {
 			a: 24836
@@ -641,27 +641,27 @@ Objects:  {
 ;------------------------------------------------------------------
 
 Connections:  {
-	C: "OO",73011272,0
-	C: "OO",7770199,0
-	C: "OO",74001705,73011272
-	C: "OO",96749012,74001705
-	C: "OO",6069800,74001705
-	C: "OO",56840606,7770199
-	C: "OO",3142493,56840606
-	C: "OO",6069800,56840606
-	C: "OP",97555072,6069800, "DiffuseColor"
-	C: "OO",53706323,97555072
-	C: "OO",91546512,54736138
-	C: "OP",95747767,73011272, "Lcl Rotation"
-	C: "OO",95747767,91546512
-	C: "OP",37395485,95747767, "d|X"
-	C: "OP",74726063,95747767, "d|Y"
-	C: "OP",45485559,95747767, "d|Z"
-	C: "OP",42484659,7770199, "Lcl Rotation"
-	C: "OO",42484659,91546512
-	C: "OP",98229917,42484659, "d|X"
-	C: "OP",98558552,42484659, "d|Y"
-	C: "OP",88179809,42484659, "d|Z"
+	C: "OO",62049898,0
+	C: "OO",90463482,0
+	C: "OO",900922,62049898
+	C: "OO",61245397,900922
+	C: "OO",84400809,900922
+	C: "OO",27318079,90463482
+	C: "OO",5148305,27318079
+	C: "OO",84400809,27318079
+	C: "OP",78067087,84400809, "DiffuseColor"
+	C: "OO",81534422,78067087
+	C: "OO",80492661,80351952
+	C: "OP",44108086,62049898, "Lcl Rotation"
+	C: "OO",44108086,80492661
+	C: "OP",32481555,44108086, "d|X"
+	C: "OP",9385029,44108086, "d|Y"
+	C: "OP",91782099,44108086, "d|Z"
+	C: "OP",74524503,90463482, "Lcl Rotation"
+	C: "OO",74524503,80492661
+	C: "OP",43082045,74524503, "d|X"
+	C: "OP",43015136,74524503, "d|Y"
+	C: "OP",77129903,74524503, "d|Z"
 }
 
 ; Takes section
