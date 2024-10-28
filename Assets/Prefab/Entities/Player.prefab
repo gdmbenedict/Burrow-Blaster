@@ -950,7 +950,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Model: {fileID: 4550084228869730673}
   maxHealth: 1
+  invulnerabilityTime: 1
+  flashingIntervals: 8
   shieldModel: {fileID: 35566363881194831}
   shieldCooldown: 5
   shieldTransition: 0.1

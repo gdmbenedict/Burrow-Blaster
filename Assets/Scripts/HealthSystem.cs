@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    [Header("Outside References")]
+    [SerializeField] private GameObject Model;
+
     [Header("Health Varaibles")]
     [SerializeField] private int maxHealth;
     private int health;
     private float chipDamage =0;
+
+    [Header("Invulnerability Variables")]
+    [SerializeField] private float invulnerabilityTime;
+    [SerializeField] private float flashingIntervals;
+    private bool canTakeDamage;
 
     [Header("Shield Variables")]
     [SerializeField] private GameObject shieldModel;
@@ -21,6 +29,7 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+        canTakeDamage = true;
 
         /*
         if (shieldModel != null)
@@ -36,29 +45,38 @@ public class HealthSystem : MonoBehaviour
         if(!hasShield)
         {
             //taking damage
-
-            health -= damage;
-            if (health <= 0)
+            if (canTakeDamage)
             {
-                Enemy enemy = GetComponent<Enemy>();
+                health -= damage;
+                if (health <= 0)
+                {
+                    Enemy enemy = GetComponent<Enemy>();
 
-                if (enemy != null)
-                {
-                    //Debug.Log("Calling Die Function");
-                    enemy.Die();
+                    if (enemy != null)
+                    {
+                        //Debug.Log("Calling Die Function");
+                        enemy.Die();
+                    }
+                    else
+                    {
+                        Player player = GetComponent<Player>();
+                        player.Die();
+                    }
                 }
-                else
+                //implement something to show taking damage
+
+                if (invulnerabilityTime > 0)
                 {
-                    Player player = GetComponent<Player>();
-                    player.Die();
+                    StartCoroutine(Invulnerability());
                 }
             }
-            //implement something to show taking damage
+
         }
 
         if (shieldUnlocked)
         {
-            StopAllCoroutines(); //disable active shield cooldown co-routine
+            StopCoroutine(BreakShield());
+            StopCoroutine(ActivateShield());
             StartCoroutine(BreakShield());
         } 
     }
@@ -96,7 +114,8 @@ public class HealthSystem : MonoBehaviour
 
         if (shieldUnlocked)
         {
-            StopAllCoroutines(); //disable active shield cooldown co-routine
+            StopCoroutine(BreakShield());
+            StopCoroutine(ActivateShield());
             StartCoroutine(BreakShield());
         }
     }
@@ -193,5 +212,31 @@ public class HealthSystem : MonoBehaviour
         }
 
         shieldModel.transform.localScale = originScale;      
+    }
+
+    private IEnumerator Invulnerability()
+    {
+        float invulnTimer = 0;
+        float flashingTimer = 0;
+        float flashIntervalTime = invulnerabilityTime / flashingIntervals;
+        canTakeDamage = false;
+        Model.SetActive(false);
+
+        while (invulnTimer < invulnerabilityTime)
+        {
+            invulnTimer += Time.deltaTime;
+            flashingTimer += Time.deltaTime;
+
+            if (flashingTimer >= flashIntervalTime)
+            {
+                Model.SetActive(!Model.activeSelf);
+                flashingTimer = 0;
+            }
+
+            yield return null;
+        }
+
+        canTakeDamage = true;
+        Model.SetActive(true);
     }
 }
