@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
 
     [Header("Super Laser Muzzle")]
     public Transform superLaserMuzzle;
-    public Vector3 suplerLasterDirection;
-    public Vector3 lasereOffset;
+    public Vector3 superLaserDirection;
+    public Vector3 laserOffset;
 
     //external connections
     private GameManager gameManager;
@@ -191,9 +191,17 @@ public class Player : MonoBehaviour
             sideShot.Disable();
         }
 
+        Debug.Log(upgradeManager.GetSuperLaser());
         if (superLaser != null && upgradeManager.GetSuperLaser())
         {
-            //TODO: implement super laser
+            superLaser.enabled = true;
+            superLaser.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
+            superLaser.SetLaserStats(upgradeManager.GetSpreadShot(), upgradeManager.GetPiercing());
+            superLaser.SetLaserOffset(laserOffset);
+            superLaser.SetMuzzles(
+                new Transform[] {superLaserMuzzle },
+                new Vector3[] {superLaserDirection }
+                );
         }
         else if (sideShot != null)
         {
@@ -201,7 +209,6 @@ public class Player : MonoBehaviour
         }
 
         //Dodge
-        //TODO: implement dodge
         playerMovement.SetDodge(upgradeManager.GetDodge());
 
         //Shield

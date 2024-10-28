@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 8245243727392018292}
   - component: {fileID: 5835627055176722606}
   - component: {fileID: 8423207816667815078}
-  - component: {fileID: 2879659070897812514}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InnerCylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1211,7 +1210,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8
+  m_VersionIndex: 11
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1266,19 +1265,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583209649172024126}
   m_Mesh: {fileID: 0}
---- !u!114 &2879659070897812514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583209649172024126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55d70c02092c73c4ab79cd57c4f29c64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 0, z: 180}
 --- !u!1 &1792688721112307061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1275,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9006841219996765869}
   - component: {fileID: 4144130833425541153}
-  m_Layer: 0
+  - component: {fileID: 8776741794073235426}
+  - component: {fileID: 8502727529257508507}
+  - component: {fileID: 2843053331621183425}
+  m_Layer: 9
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1312,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 640
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 320
@@ -1334,6 +1323,60 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8776741794073235426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792688721112307061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5b31473e54589448109621ec8830b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  lifetime: 0
+--- !u!54 &8502727529257508507
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792688721112307061}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 48
+  m_CollisionDetection: 0
+--- !u!114 &2843053331621183425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792688721112307061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d70c02092c73c4ab79cd57c4f29c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 0, z: 180}
 --- !u!1 &2762764402244064662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,9 +1390,7 @@ GameObject:
   - component: {fileID: 3042791417835702574}
   - component: {fileID: 625546842450120289}
   - component: {fileID: 977128649922814194}
-  - component: {fileID: 380614092593600526}
-  - component: {fileID: 6872332222098751639}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OuterCylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2547,7 +2588,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8
+  m_VersionIndex: 11
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2612,42 +2653,15 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 640
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &380614092593600526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762764402244064662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55d70c02092c73c4ab79cd57c4f29c64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 0, z: -180}
---- !u!114 &6872332222098751639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762764402244064662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b5b31473e54589448109621ec8830b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  lifetime: 0

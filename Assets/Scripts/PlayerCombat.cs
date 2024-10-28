@@ -31,7 +31,7 @@ public class PlayerCombat : MonoBehaviour
         }
         else if (chargingLaser && laser != null)
         {
-            //laser.Charge();
+            laser.Charge();
         }
     }
 
@@ -73,7 +73,7 @@ public class PlayerCombat : MonoBehaviour
         else if (input.canceled)
         {
             chargingLaser = false;
-            //laser.Fire();
+            laser.Fire();
         }
     }
 

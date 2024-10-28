@@ -22,10 +22,13 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("Laser Collision Detected: " + other.gameObject.name);
+
         HealthSystem target = other.GetComponent<HealthSystem>();
 
         if (target != null)
         {
+            Debug.Log("Calling damage function");
             target.TakeChipDamage((float)(damage*Time.deltaTime));
         }
     }

@@ -47,7 +47,6 @@ public class Weapon : MonoBehaviour
         fireRateMult = 1;
         damageMult = 1;
         piercing = 1;
-        laserScaleIncrement = 1;
     }
 
     public void SetWeaponStats(float fireRateMult, float damageMult, int piercing)
@@ -86,6 +85,8 @@ public class Weapon : MonoBehaviour
 
                 if (weaponCharge >= 0.5f)
                 {
+                    Debug.Log("Laser Firing");
+
                     //determine laser scale
                     float laserScale = laserScaleIncrement * laserScaleFactor;
                     int laserDamage = (int)(damage * damageMult * weaponCharge);
@@ -105,6 +106,8 @@ public class Weapon : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("Laser Misfire");
+
                     //play laser misfire effect
 
                     weaponCharge = 0;
@@ -122,6 +125,8 @@ public class Weapon : MonoBehaviour
     {
         if (canFire)
         {
+            Debug.Log("Laser Charge = " + weaponCharge);
+
             if (!chargeVisual.activeSelf)
             {
                 chargeVisual.SetActive(true);
