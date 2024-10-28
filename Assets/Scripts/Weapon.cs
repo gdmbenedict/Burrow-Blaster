@@ -69,9 +69,10 @@ public class Weapon : MonoBehaviour
         {
             if (!isLaser)
             {
+                Debug.Log(gameObject.name + " firing");
                 for (int i = 0; i < muzzlePositions.Count; i++)
                 {
-                    Debug.Log(projectileOffset);
+                    //Debug.Log(projectileOffset);
                     GameObject projectileInstance = Instantiate(projectile, muzzlePositions[i].position + projectileOffset, Quaternion.identity);
                     Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
                     projectileScript.SetDirection(projectileDirections[i]);
@@ -158,6 +159,11 @@ public class Weapon : MonoBehaviour
         {
             this.projectileDirections.Add(projectileDirections[i]);
         }
+    }
+
+    public List<Transform> GetMuzzles()
+    {
+        return muzzlePositions;
     }
 
     public Transform GetMuzzlePos(int index)

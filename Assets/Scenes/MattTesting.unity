@@ -41709,6 +41709,11 @@ PrefabInstance:
       propertyPath: blaster
       value: 
       objectReference: {fileID: 693800843947828257}
+    - target: {fileID: 4573408158417628984, guid: e1ceaed264a146f4eb66e4de61c1f76a,
+        type: 3}
+      propertyPath: sideShotUnlocked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4881219312375807529, guid: e1ceaed264a146f4eb66e4de61c1f76a,
         type: 3}
       propertyPath: m_LocalPosition.x

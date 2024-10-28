@@ -300,6 +300,8 @@ public class UpgradeManager : MonoBehaviour
     //Mutator method that sets if this ability is accessible 
     public void SetSideShots(bool active)
     {
+        Debug.Log("Sideshot being set");
+        Debug.Log("Sideshots: " + active);
         sideShots = active;
 
         if (sideShots)

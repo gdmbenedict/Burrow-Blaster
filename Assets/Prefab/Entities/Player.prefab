@@ -185,6 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5397465133986499242}
+  - component: {fileID: 365473093114551476}
   m_Layer: 6
   m_Name: SideShot
   m_TagString: Untagged
@@ -204,8 +205,170 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 810198134327427727}
+  - {fileID: 7272847208527913480}
+  - {fileID: 543551026258505100}
+  - {fileID: 7093090848833686858}
+  - {fileID: 8026856848250941048}
+  - {fileID: 4587481215950012750}
+  - {fileID: 4693357891686654329}
+  - {fileID: 8952575455839813798}
+  - {fileID: 1939588064864329050}
+  - {fileID: 7390385556304970887}
   m_Father: {fileID: 4881219312375807529}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365473093114551476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159296068919845562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e63450f13af2d54da3da6fd408dec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firerate: 4
+  damage: 10
+  piercing: 0
+  projectile: {fileID: 6587886115793933328, guid: fd7b1422782127144bf46add567e4678,
+    type: 3}
+  muzzlePositions: []
+  projectileDirections: []
+  projectileOffset: {x: 0, y: 0, z: 0}
+  isLaser: 0
+  laser: {fileID: 0}
+  laserMuzzle: {fileID: 0}
+  laserDirection: {x: 0, y: 0, z: 0}
+  laserOffset: {x: 0, y: 0, z: 0}
+  weaponCharge: 0
+  laserScaleFactor: 0.25
+  laserLifetime: 0
+--- !u!1 &1187715402984194557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 810198134327427727}
+  m_Layer: 6
+  m_Name: MuzzlePosL1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &810198134327427727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187715402984194557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: 0.5, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1231394205781972328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7093090848833686858}
+  m_Layer: 6
+  m_Name: MuzzlePosL4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7093090848833686858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231394205781972328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1456998080632718896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3938444976178145174}
+  m_Layer: 6
+  m_Name: LaserMuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3938444976178145174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456998080632718896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7955382154765359363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1483470683730942506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4587481215950012750}
+  m_Layer: 6
+  m_Name: MuzzlePosR1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4587481215950012750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483470683730942506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.25, y: 0.5, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2369758502797687224
 GameObject:
@@ -216,6 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7955382154765359363}
+  - component: {fileID: 3923021820271083751}
   m_Layer: 6
   m_Name: SuperLaser
   m_TagString: Untagged
@@ -235,9 +399,37 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3938444976178145174}
   m_Father: {fileID: 4881219312375807529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3923021820271083751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369758502797687224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e63450f13af2d54da3da6fd408dec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firerate: 0
+  damage: 0
+  piercing: 0
+  projectile: {fileID: 0}
+  muzzlePositions: []
+  projectileDirections: []
+  projectileOffset: {x: 0, y: 0, z: 0}
+  isLaser: 1
+  laser: {fileID: 0}
+  laserMuzzle: {fileID: 0}
+  laserDirection: {x: 0, y: 0, z: 0}
+  laserOffset: {x: 0, y: 0, z: 0}
+  weaponCharge: 0
+  laserScaleFactor: 0.25
+  laserLifetime: 0
 --- !u!1 &2865293057883559934
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +461,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4275882948448521011}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3883132753715253312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543551026258505100}
+  m_Layer: 6
+  m_Name: MuzzlePosL3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &543551026258505100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883132753715253312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3910644779726027994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8026856848250941048}
+  m_Layer: 6
+  m_Name: MuzzlePosL5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8026856848250941048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910644779726027994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4345637831900497148
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +553,99 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4275882948448521011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5279607962599338346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8952575455839813798}
+  m_Layer: 6
+  m_Name: MuzzlePosR3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8952575455839813798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279607962599338346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5829776913102268832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1939588064864329050}
+  m_Layer: 6
+  m_Name: MuzzlePosR4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1939588064864329050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5829776913102268832}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5971833498730383270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7272847208527913480}
+  m_Layer: 6
+  m_Name: MuzzlePosL2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7272847208527913480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5971833498730383270}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6062204871964251105
 GameObject:
@@ -565,6 +912,7 @@ MonoBehaviour:
   moveSpeed: 10
   screenTopBuffer: 2.5
   screenBottomBuffer: 0.5
+  dodgeUnlocked: 0
   dodgeSpeed: 25
   dodgeTime: 0.3
   rb: {fileID: 9147357286841321469}
@@ -582,11 +930,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8609b36f0321acb40b33905dbd60c6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sideShotUnlocked: 0
+  sideShotUnlocked: 1
   laserUnlocked: 0
   blaster: {fileID: 5230115248971302998}
-  sideShot: {fileID: 0}
-  laser: {fileID: 0}
+  sideShot: {fileID: 365473093114551476}
+  laser: {fileID: 3923021820271083751}
 --- !u!114 &8879282499683176147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,8 +966,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 4550084228869730673}
   blaster: {fileID: 5230115248971302998}
-  sideShot: {fileID: 0}
-  superLaser: {fileID: 0}
+  sideShot: {fileID: 365473093114551476}
+  superLaser: {fileID: 3923021820271083751}
   colliders:
   - {fileID: 1724905610801203515}
   playerHealth: {fileID: 8879282499683176147}
@@ -638,8 +986,28 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   blasterProjectileOffset: {x: 0, y: 0, z: 0}
-  sideShotMuzzles: []
-  sideShotDirections: []
+  sideShotMuzzles:
+  - {fileID: 810198134327427727}
+  - {fileID: 7272847208527913480}
+  - {fileID: 543551026258505100}
+  - {fileID: 7093090848833686858}
+  - {fileID: 8026856848250941048}
+  - {fileID: 4587481215950012750}
+  - {fileID: 4693357891686654329}
+  - {fileID: 8952575455839813798}
+  - {fileID: 1939588064864329050}
+  - {fileID: 7390385556304970887}
+  sideShotDirections:
+  - {x: -0.707, y: 0, z: 0.707}
+  - {x: -0.924, y: 0, z: 0.383}
+  - {x: -1, y: 0, z: 0}
+  - {x: -0.924, y: 0, z: -0.383}
+  - {x: -0.707, y: 0, z: -0.707}
+  - {x: 0.707, y: 0, z: 0.707}
+  - {x: 0.924, y: 0, z: 0.383}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0.924, y: 0, z: -0.383}
+  - {x: 0.707, y: 0, z: -0.707}
   sideShotOffset: {x: 0, y: 0, z: 0}
   superLaserMuzzle: {fileID: 0}
   suplerLasterDirection: {x: 0, y: 0, z: 0}
@@ -712,7 +1080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firerate: 4
   damage: 10
-  piercing: 1
+  piercing: 0
   projectile: {fileID: 6587886115793933328, guid: fd7b1422782127144bf46add567e4678,
     type: 3}
   muzzlePositions: []
@@ -726,6 +1094,68 @@ MonoBehaviour:
   weaponCharge: 0
   laserScaleFactor: 0.25
   laserLifetime: 0
+--- !u!1 &7210142279110588626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4693357891686654329}
+  m_Layer: 6
+  m_Name: MuzzlePosR2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4693357891686654329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7210142279110588626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4, y: 0.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8962636358422179469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7390385556304970887}
+  m_Layer: 6
+  m_Name: MuzzlePosR5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7390385556304970887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8962636358422179469}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.25, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5397465133986499242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8678088331011708859
 PrefabInstance:
   m_ObjectHideFlags: 0

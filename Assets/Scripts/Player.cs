@@ -127,57 +127,64 @@ public class Player : MonoBehaviour
             }
         }
 
+        Debug.Log(upgradeManager.GetSideShots());
+
+        //Setting up sideshots
         if (sideShot != null && upgradeManager.GetSideShots())
         {
             sideShot.enabled = true;
             sideShot.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
             sideShot.SetProjectileOffset(sideShotOffset);
 
+            Debug.Log("Getting to switch statement");
+
             //setting blaster muzzle positions
             switch (upgradeManager.GetSpreadShot())
             {
                 case 1:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[2] },
-                        new Vector3[] { sideShotDirections[2] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[2], sideShotMuzzles[7] },
+                        new Vector3[] { sideShotDirections[2], sideShotDirections[7] }
                         );
                     break;
 
                 case 2:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[3] },
-                        new Vector3[] { sideShotDirections[1], sideShotDirections[3] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[3], sideShotMuzzles[6], sideShotMuzzles[8] },
+                        new Vector3[] { sideShotDirections[1], sideShotDirections[3], sideShotDirections[6], sideShotDirections[8] }
                         );
                     break;
 
                 case 3:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3] },
-                        new Vector3[] { sideShotDirections[1], sideShotDirections[2], sideShotDirections[3] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3], sideShotMuzzles[6], sideShotMuzzles[7], sideShotMuzzles[8] },
+                        new Vector3[] { sideShotDirections[1], sideShotDirections[2], sideShotDirections[3], sideShotDirections[6], sideShotDirections[7], sideShotDirections[8] }
                         );
                     break;
 
                 case 4:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[3], sideShotMuzzles[4] },
-                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[3], sideShotDirections[4] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[3], sideShotMuzzles[4], sideShotMuzzles[5], sideShotMuzzles[6], sideShotMuzzles[8], sideShotMuzzles[9] },
+                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[3], sideShotDirections[4], sideShotDirections[5], sideShotDirections[6], sideShotDirections[8], sideShotDirections[9] }
                         );
                     break;
 
                 case 5:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3], sideShotMuzzles[4] },
-                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[2], sideShotDirections[3], sideShotDirections[4] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3], sideShotMuzzles[4], sideShotMuzzles[5], sideShotMuzzles[6], sideShotMuzzles[7], sideShotMuzzles[8], sideShotMuzzles[9], },
+                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[2], sideShotDirections[3], sideShotDirections[4], sideShotDirections[5], sideShotDirections[6], sideShotDirections[7], sideShotDirections[8], sideShotDirections[9]}
                         );
                     break;
 
                 default:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[2] },
-                        new Vector3[] { sideShotDirections[2] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[2], sideShotMuzzles[7] },
+                        new Vector3[] { sideShotDirections[2], sideShotDirections[7] }
                         );
                     break;
             }
+
+            Debug.Log(sideShot.GetMuzzles());
         }
         else if (sideShot != null)
         {
