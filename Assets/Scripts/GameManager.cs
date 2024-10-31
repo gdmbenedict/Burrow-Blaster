@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public GameState GetGameState()
+    {
+        return gameState;
+    }
+
     public bool GetWin()
     {
         return win;

@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public enum UIState
     {
         TitleScreen,
+        OptionsScreen,
         UpgradeScreen,
         GameplayScreen,
         PauseScreen,
@@ -36,6 +37,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject GameplayUI;
     [SerializeField] private GameObject PauseScreen;
     [SerializeField] private GameObject ResultScreen;
+    [SerializeField] private GameObject OptionsMenuScreen;
+    [SerializeField] private GameObject OptionsPauseScreen;
 
     [Header("First Selected Objects")]
     [SerializeField] private GameObject mainMenuFirst;
@@ -70,6 +73,43 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ChangeUIButton(string targetScreen)
+    {
+        UIState state;
+        switch (targetScreen)
+        {
+            case "TitleScreen":
+                state = UIState.TitleScreen;
+                break;
+
+            case "UpgradeScreen":
+                state = UIState.UpgradeScreen;
+                break;
+
+            case "GameplayUI":
+                state = UIState.GameplayScreen;
+                break;
+
+            case "PauseScreen":
+                state = UIState.PauseScreen;
+                break;
+
+            case "ResultScreen":
+                state = UIState.ResultScreen;
+                break;
+
+            case "OptionsScreen":
+                state = UIState.OptionsScreen;
+                break;
+
+            default:
+                state = UIState.TitleScreen;
+                break;
+        }
+
+        ChangeUIScreen(state);
+    }
+
     public void ChangeUIScreen(UIState targetScreen)
     {
         DisableAllScreens();
@@ -80,6 +120,18 @@ public class UIManager : MonoBehaviour
                 uiState = UIState.TitleScreen;
                 TitleScreen.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+                break;
+
+            case UIState.OptionsScreen:
+                uiState = UIState.OptionsScreen;
+                if (gameManager.GetGameState() == GameManager.GameState.TitleMenu)
+                {
+                    OptionsMenuScreen.SetActive(true);
+                }
+                else
+                {
+                    OptionsPauseScreen.SetActive(true);
+                }
                 break;
 
             case UIState.UpgradeScreen:
@@ -125,6 +177,8 @@ public class UIManager : MonoBehaviour
     private void DisableAllScreens()
     {
         TitleScreen.SetActive(false);
+        OptionsMenuScreen.SetActive(false);
+        OptionsPauseScreen.SetActive(false);
         UpgradeScreen.SetActive(false);
         PauseScreen.SetActive(false);
         GameplayUI.SetActive(false);
