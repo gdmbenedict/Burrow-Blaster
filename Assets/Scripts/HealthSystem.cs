@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    public enum EntityType
+    {
+        player,
+        enemy,
+        boss
+    }
+
     [Header("Outside References")]
     [SerializeField] private GameObject Model;
 
@@ -23,6 +30,9 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float shieldTransition;
     [SerializeField] private bool hasShield;
     private bool shieldUnlocked;
+
+    [Header("Entity Type")]
+    [SerializeField] private EntityType entityType;
     
 
     // Start is called before the first frame update
@@ -45,12 +55,17 @@ public class HealthSystem : MonoBehaviour
                 health -= damage;
                 if (health <= 0)
                 {
-                    Enemy enemy = GetComponent<Enemy>();
 
-                    if (enemy != null)
+                    if (entityType == EntityType.enemy)
                     {
                         //Debug.Log("Calling Die Function");
+                        Enemy enemy = GetComponent<Enemy>();
                         enemy.Die();
+                    }
+                    else if (entityType == EntityType.boss)
+                    {
+                        Boss boss = GetComponent<Boss>();
+                        boss.Die();
                     }
                     else
                     {
