@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Object references")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Camera cam;
+    [SerializeField] private CameraController camController;
     private float cameraSpeed;
 
     private Vector3 movementDir;
@@ -40,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeedMult = 1;
         }
-        cameraSpeed = cam.GetComponent<CameraController>().GetSpeed();
+        camController = cam.GetComponent<CameraController>();
+        cameraSpeed = camController.GetSpeed();
     }
 
     // Update is called once per frame
@@ -121,10 +124,15 @@ public class PlayerMovement : MonoBehaviour
         //moving player
         if (!isDodging && !forcedMovement)
         {
-            rb.MovePosition(rb.position + movementDir * moveSpeed * moveSpeedMult * Time.deltaTime);
+            rb.MovePosition(rb.position + movementDir * moveSpeed * moveSpeedMult * Time.deltaTime);   
+        }
+
+        //move with camera if not arrived at boss
+        if (!camController.HasArrived())
+        {
             rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
         }
-        
+
 
         if (rb.velocity.magnitude != 0 && !isDodging && !forcedMovement)
         {

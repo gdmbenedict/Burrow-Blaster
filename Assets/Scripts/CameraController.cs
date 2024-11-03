@@ -7,6 +7,8 @@ public class CameraController : MonoBehaviour
 {
     [Header("Camera Varaibles")]
     [SerializeField] private float scrollSpeed = 2f;
+    [SerializeField] private float stopPos;
+    private bool arrived = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +20,20 @@ public class CameraController : MonoBehaviour
     {
         //moves camera up along the level
         transform.position += Vector3.forward * scrollSpeed * Time.fixedDeltaTime;
+
+        if (transform.position.z >= stopPos)
+        {
+            arrived = true;
+        }
     }
 
     public float GetSpeed()
     {
         return scrollSpeed;
+    }
+
+    public bool HasArrived()
+    {
+        return arrived;
     }
 }
