@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
 
         if (transform.position.z >= stopPos)
         {
+            scrollSpeed = 0;
             arrived = true;
         }
     }
