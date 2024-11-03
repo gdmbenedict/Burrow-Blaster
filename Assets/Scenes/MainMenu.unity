@@ -1121,6 +1121,143 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &167164580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167164581}
+  - component: {fileID: 167164583}
+  - component: {fileID: 167164582}
+  m_Layer: 5
+  m_Name: BossHealthText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &167164581
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167164580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 512425813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -0.00001971735, y: -25}
+  m_SizeDelta: {x: 400, y: 100}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &167164582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167164580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Boss Health:
+
+    XXXXX / XXXXX'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: c3988ebb98b4c524ea1cd25ec8816c4a, type: 2}
+  m_sharedMaterial: {fileID: 8590268463776620760, guid: c3988ebb98b4c524ea1cd25ec8816c4a,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &167164583
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167164580}
+  m_CullTransparentMesh: 1
 --- !u!1 &176911639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,7 +2996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &372713722
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3612,6 +3749,7 @@ RectTransform:
   m_Children:
   - {fileID: 2072300573}
   - {fileID: 587260092}
+  - {fileID: 167164581}
   - {fileID: 2100372717}
   - {fileID: 1884761481}
   m_Father: {fileID: 1505145044}
@@ -3721,7 +3859,7 @@ GameObject:
   - component: {fileID: 585733098}
   - component: {fileID: 585733097}
   m_Layer: 5
-  m_Name: Resume (1)
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4516,9 +4654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Resume
-
-'
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3988ebb98b4c524ea1cd25ec8816c4a, type: 2}
   m_sharedMaterial: {fileID: 8590268463776620760, guid: c3988ebb98b4c524ea1cd25ec8816c4a,
@@ -5555,7 +5691,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Version 0.2.3
+  m_text: 'Version 0.2.4
+
 
 
 '
@@ -9733,6 +9870,7 @@ MonoBehaviour:
   scrapTextGameplay: {fileID: 587260093}
   scrapTextUpgrade: {fileID: 1728059587}
   healthText: {fileID: 2100372718}
+  bossHealthText: {fileID: 167164582}
   distanceText: {fileID: 1884761482}
   scrapResult: {fileID: 221626364}
   distanceResult: {fileID: 391227023}
@@ -9751,13 +9889,13 @@ MonoBehaviour:
   upgradeMenuFirst: {fileID: 919498556}
   pauseScreenFirst: {fileID: 1170868699}
   resultScreenFirst: {fileID: 1450696620}
-  optionsMenuFirst: {fileID: 0}
-  optionsPauseFirst: {fileID: 0}
-  infoScreenFirst: {fileID: 0}
-  optionsInfoFirst: {fileID: 0}
+  optionsMenuFirst: {fileID: 62083217}
+  optionsPauseFirst: {fileID: 1747744993}
+  infoScreenFirst: {fileID: 585733095}
+  optionsInfoFirst: {fileID: 2087336732}
   scrapManager: {fileID: 240980723}
   player: {fileID: 0}
-  goal: {fileID: 0}
+  boss: {fileID: 0}
 --- !u!4 &1675274540
 Transform:
   m_ObjectHideFlags: 0
@@ -10980,7 +11118,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Travelled XXX / XXX m
+  m_text: 'Travelled:
+
+    XXX / XXX m'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3988ebb98b4c524ea1cd25ec8816c4a, type: 2}
   m_sharedMaterial: {fileID: 8590268463776620760, guid: c3988ebb98b4c524ea1cd25ec8816c4a,
@@ -11015,7 +11155,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
