@@ -8,7 +8,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Detection Variables")]
     [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private float detectionScale =2f;
 
     [Header("Player Movement Variables")]
     [SerializeField] private float moveSpeed = 5f;
@@ -57,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Player Pos Z = " + (gameObject.transform.position.z + (movementDir.z * moveSpeed * Time.deltaTime)));
 
         //checking top boundary
-        if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult * Time.deltaTime) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
+        if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult * Time.deltaTime * detectionScale) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
         {
             if (rb.velocity.magnitude != 0)
             {
@@ -70,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         //checking bottom boundary
-        else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult  * Time.deltaTime) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
+        else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult  * Time.deltaTime * detectionScale) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
         {
             if (rb.velocity.magnitude != 0)
             {
@@ -83,8 +85,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (rb.velocity.magnitude != 0)
+        {
+            movementDir = rb.velocity.normalized;
+        }
+
         //checking for collisions
-        if (Physics.Raycast(rb.position, movementDir, out RaycastHit hit, moveSpeed * moveSpeedMult * Time.deltaTime, obstacleLayer))
+        if (Physics.Raycast(rb.position, movementDir, out RaycastHit hit, moveSpeed * moveSpeedMult * Time.deltaTime * detectionScale, obstacleLayer))
         {
             //Debug.Log("Collision Detected");
 
