@@ -1097,7 +1097,7 @@ MonoBehaviour:
     type: 3}
   muzzlePositions: []
   projectileDirections: []
-  projectileOffset: {x: 0, y: 0, z: 0}
+  projectileOffset: {x: 0.5, y: 0, z: 0}
   isLaser: 0
   laser: {fileID: 0}
   chargeVisual: {fileID: 0}
