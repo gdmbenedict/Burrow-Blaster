@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject scrap;
     [SerializeField] private Weapon weapon;
+    [SerializeField] private bool targetPlayer = true;
     
     //Checking if enemy is on screen
     private Camera cam;
@@ -23,8 +24,12 @@ public class Enemy : MonoBehaviour
     {
         onScreen = false;
         cam = Camera.main;
-        player = FindAnyObjectByType<Player>();
         collider = GetComponent<Collider>();
+
+        if (targetPlayer)
+        {
+            player = FindAnyObjectByType<Player>();
+        }
     }
     
 
@@ -41,7 +46,15 @@ public class Enemy : MonoBehaviour
 
         if (onScreen)
         {
-            Attack(player.transform);
+            if (targetPlayer)
+            {
+                Attack(player.transform);
+            }
+            else
+            {
+                FireWeapons();
+            }
+            
         }
     }
 
@@ -92,5 +105,11 @@ public class Enemy : MonoBehaviour
                 weapon.Fire();
             }
         }
+    }
+
+    //simple fire function
+    public void FireWeapons()
+    {
+        weapon.Fire();
     }
 }
