@@ -30,6 +30,7 @@ public class Weapon : MonoBehaviour
     private float fireRateMult;
     private float damageMult;
     private int laserScaleIncrement;
+    private bool weaponSet = false;
 
 
     private void Start()
@@ -43,10 +44,13 @@ public class Weapon : MonoBehaviour
         {
             projectileDirections = new List<Vector3>();
         }
+
+        if (!weaponSet)
+        {
+            fireRateMult = 1;
+            damageMult = 1;
+        }
         
-        fireRateMult = 1;
-        damageMult = 1;
-        piercing = 1;
     }
 
     public void SetWeaponStats(float fireRateMult, float damageMult, int piercing)
@@ -54,6 +58,7 @@ public class Weapon : MonoBehaviour
         this.fireRateMult = fireRateMult;
         this.damageMult = damageMult;
         this.piercing = piercing;
+        weaponSet = true;
     }
 
     public void SetLaserStats(int laserScaleIncrement, float laserLifetime)

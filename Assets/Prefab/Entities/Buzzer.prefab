@@ -140,7 +140,7 @@ MonoBehaviour:
   hitParticles: {fileID: 3070156744043288124}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
-  maxHealth: 20
+  maxHealth: 15
   invulnerabilityTime: 0
   flashingIntervals: 0
   shieldModel: {fileID: 0}

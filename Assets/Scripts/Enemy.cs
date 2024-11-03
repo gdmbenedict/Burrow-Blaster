@@ -78,10 +78,17 @@ public class Enemy : MonoBehaviour
         {
             if (weapon.GetCanFire())
             {
-                //Debug.Log("WeaponFired");
-                Vector3 direction = target.position - weapon.GetMuzzlePos(0).position;
-                direction.y = 0;
-                weapon.ChangeProjectileDirection(0, direction);
+                //getting muzzle positions
+                List<Transform> muzzlePositions = weapon.GetMuzzles();
+
+                //looping through muzzles to set directions
+                for (int i=0; i<muzzlePositions.Count; i++)
+                {
+                    Vector3 direction = target.position - muzzlePositions[i].position;
+                    direction.y = 0;
+                    weapon.ChangeProjectileDirection(i, direction);
+                }
+                
                 weapon.Fire();
             }
         }

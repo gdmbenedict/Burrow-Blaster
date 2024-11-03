@@ -226,6 +226,8 @@ MonoBehaviour:
   - {fileID: 3027530816040405354}
   projectileDirections:
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   projectileOffset: {x: 0, y: 0, z: 0}
   isLaser: 0
   laser: {fileID: 0}
