@@ -274,7 +274,7 @@ public class Player : MonoBehaviour
         yield return null;
 
         //wait till explosion is over
-        while (particleExplosion.isPlaying)
+        while (particleExplosion != null)
         {
             yield return null;
         }

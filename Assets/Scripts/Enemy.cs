@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
     public void Die(GameObject explosion)
     {
         //instantiate scrap object & explosion
-        Instantiate(explosion);
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Instantiate(scrap, transform.position, Quaternion.identity);
 
         Destroy(gameObject);

@@ -42,7 +42,6 @@ public class HealthSystem : MonoBehaviour
     {
         health = maxHealth;
         canTakeDamage = true;
-        
     }
 
     public void TakeDamage(int damage)
@@ -62,20 +61,23 @@ public class HealthSystem : MonoBehaviour
                         //Debug.Log("Calling Die Function");
                         Enemy enemy = GetComponent<Enemy>();
                         enemy.Die(explosion);
+                        return;
                     }
                     else if (entityType == EntityType.boss)
                     {
                         Boss boss = GetComponent<Boss>();
                         boss.Die(explosion);
+                        return;
                     }
                     else
                     {
                         Player player = GetComponent<Player>();
                         player.Die(explosion);
+                        return;
                     }
                 }
 
-                GetComponent<ParticleSystem>().Play();
+                hitParticles.Play();
 
                 if (invulnerabilityTime > 0)
                 {
