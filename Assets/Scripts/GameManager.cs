@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviour
             score = 0;
             levelManager.LoadScene(GameSceneName);
             gameState = GameState.Gameplay;
+            uiManager.ChangeUIScreen(UIManager.UIState.InfoScreen);
+            uiManager.ResetGameplayUI();
         }
         else
         {
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
             levelManager.LoadScene(GameSceneName);
             gameState = GameState.Gameplay;
             uiManager.ChangeUIScreen(UIManager.UIState.GameplayScreen);
+            uiManager.ResetGameplayUI();
 
             if (win)
             {

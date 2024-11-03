@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scrapTextGameplay;
     [SerializeField] private TextMeshProUGUI scrapTextUpgrade;
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI bossHealthText;
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private TextMeshProUGUI scrapResult;
     [SerializeField] private TextMeshProUGUI distanceResult;
@@ -218,11 +219,33 @@ public class UIManager : MonoBehaviour
     {
         if (player != null)
         {
-            scrapTextGameplay.text = "Scrap Collected: " + player.collector.GetScrapCollected();
-            distanceText.text = "Travelled " + (int)player.transform.position.z + "m / " + (int)goal.position.z + "m";
+            scrapTextGameplay.text = "Scrap Collected: " + player.collector.GetScrapCollected();    
             healthText.text = "Health: " + player.playerHealth.GetHealth() + " / " + player.playerHealth.GetMaxHealth();
         }
+
+        if (player != null && boss != null)
+        {
+            distanceText.text = "Travelled:\n" + (int)player.transform.position.z + "m / " + (int)boss.transform.position.z + "m";
+        }
+
+        if (boss != null && boss.GetBossBattleStarted())
+        {
+            bossHealthText.text = "Boss Health:\n" + boss.bossHealth.GetHealth() + " / " + boss.bossHealth.GetMaxHealth();
+            if (!bossHealthText.enabled)
+            {
+                bossHealthText.enabled = true;
+            }
+        }
         
+    }
+
+    public void ResetGameplayUI()
+    {
+        scrapTextGameplay.text = "Scrap Collected: " + 0;
+        healthText.text = "Health: " + 0 + " / " + 0;
+        distanceText.text = "Travelled:\n" + 0 + "m / " + 0 + "m";
+        bossHealthText.text = "Boss Health:\n" + 0 + " / " + 0;
+        bossHealthText.enabled = false;
     }
 
     public void UpdateUpgradeUI()

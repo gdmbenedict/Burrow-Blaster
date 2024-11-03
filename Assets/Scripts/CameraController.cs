@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
         {
             scrollSpeed = 0;
             arrived = true;
+            FindObjectOfType<Boss>().StartBossBattle();
         }
     }
 
@@ -35,6 +36,6 @@ public class CameraController : MonoBehaviour
 
     public bool HasArrived()
     {
-        return arrived;
+        return arrived;    
     }
 }

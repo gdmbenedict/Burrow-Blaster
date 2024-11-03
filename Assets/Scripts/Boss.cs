@@ -4,23 +4,45 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    [Header("Object References")]
+    public HealthSystem bossHealth;
+    [SerializeField] private GameObject bossShield;
+    [SerializeField] private Weapon bossWeapon;
+
+    [Header("Explosion Variables")]
     [SerializeField] private int numExplosions = 10;
     [SerializeField] private float explosionSpawnRadius = 2;
-    [SerializeField] private float explosionInterval = 0.3f;
-    private GameManager gameManager;
+    [SerializeField] private float explosionInterval = 0.3f; 
     private ParticleSystem particleExplosion;
+
+    private GameManager gameManager;
+    private bool bossBattleStarted = false;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        FindObjectOfType<UIManager>().goal = transform;
+        FindObjectOfType<UIManager>().boss = this;
+        bossWeapon.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void StartBossBattle()
+    {
+        bossHealth.ToggleTakeDamage();
+        bossWeapon.Enable();
+        bossShield.SetActive(false);
+        bossBattleStarted = true;
+    }
+
+    public bool GetBossBattleStarted()
+    {
+        return bossBattleStarted;
     }
 
     public void Die(GameObject explosion)

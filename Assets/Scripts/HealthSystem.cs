@@ -195,6 +195,11 @@ public class HealthSystem : MonoBehaviour
         return canTakeDamage;
     }
 
+    public void ToggleTakeDamage()
+    {
+        canTakeDamage = !canTakeDamage;
+    }
+
     private IEnumerator BreakShield()
     {
         if (hasShield)
