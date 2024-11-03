@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 7705981167903737185}
   - component: {fileID: 1092619585464597524}
   - component: {fileID: 812627264707572117}
+  - component: {fileID: 1726595066342871702}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
@@ -96,8 +97,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 16.010458, y: 8.043599, z: 8.392069}
+  m_Center: {x: 0.016503334, y: 3.5217996, z: -0.70730305}
 --- !u!114 &7705981167903737185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Model: {fileID: 0}
+  hitParticles: {fileID: 8608173959937144654, guid: b1d4f9a094f20104cae50ea21034e71b,
+    type: 3}
+  explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
+    type: 3}
   maxHealth: 25000
   invulnerabilityTime: 0
   flashingIntervals: 0
@@ -164,6 +169,20 @@ MonoBehaviour:
   weaponCharge: 0
   laserScaleFactor: 0.25
   laserLifetime: 0
+--- !u!114 &1726595066342871702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976310428112141259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9553195cc1c0f84e89ea42bb36e12ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactDamage: 1
+  repulsionForce: 20
 --- !u!1001 &8568881710505790059
 PrefabInstance:
   m_ObjectHideFlags: 0

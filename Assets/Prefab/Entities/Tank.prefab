@@ -42,10 +42,10 @@ GameObject:
   - component: {fileID: 8294997133757494487}
   - component: {fileID: 3212573054769410070}
   - component: {fileID: 566835563271145500}
-  - component: {fileID: 9176048949082641098}
   - component: {fileID: 7705981167903737185}
   - component: {fileID: 1092619585464597524}
   - component: {fileID: 812627264707572117}
+  - component: {fileID: -3298664448004132906}
   m_Layer: 7
   m_Name: Tank
   m_TagString: Untagged
@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 8976310428112141259}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 30}
+  m_LocalPosition: {x: 0, y: 0.5234375, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -97,31 +97,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9176048949082641098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8976310428112141259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_LoopMode: 0
-  m_Method: 1
-  m_Duration: 4.300048
-  m_MaxSpeed: 10
-  m_EasingMode: 0
-  m_AlignmentMode: 1
-  m_ObjectForwardAxis: 5
-  m_ObjectUpAxis: 1
-  m_StartOffset: 0
+  m_Size: {x: 1.6533005, y: 1, z: 1.3493061}
+  m_Center: {x: -0.012234569, y: 0, z: -0.009448051}
 --- !u!114 &7705981167903737185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  Model: {fileID: 0}
+  hitParticles: {fileID: 8608173959937144654, guid: b1d4f9a094f20104cae50ea21034e71b,
+    type: 3}
+  explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
+    type: 3}
+  maxHealth: 250
+  invulnerabilityTime: 0
+  flashingIntervals: 0
+  shieldModel: {fileID: 0}
+  shieldCooldown: 0
+  shieldTransition: 0
+  hasShield: 0
+  entityType: 1
 --- !u!114 &1092619585464597524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83b69bad99cfa34b8a0570f53a82b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrap: {fileID: 1188973507034171806, guid: 064418f1b9cc14a4b91b96f928117ea9, type: 3}
+  scrap: {fileID: 1188973507034171806, guid: a29d1c5e6da7c8c4f9a3b2e00af882cb, type: 3}
   weapon: {fileID: 812627264707572117}
 --- !u!114 &812627264707572117
 MonoBehaviour:
@@ -161,15 +150,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e63450f13af2d54da3da6fd408dec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 3615971726096595373, guid: 6484b725392b95a44b4e514455575009,
-    type: 3}
-  firerate: 1
-  damage: 1
+  firerate: 0.5
+  damage: 2
   piercing: 1
+  projectile: {fileID: 3615971726096595373, guid: adee3357de31c7143b7b7bb8d8bb833d,
+    type: 3}
   muzzlePositions:
   - {fileID: 7619971051294465002}
   projectileDirections:
   - {x: 0, y: 0, z: 0}
+  projectileOffset: {x: 0, y: 0, z: 0}
+  isLaser: 0
+  laser: {fileID: 0}
+  chargeVisual: {fileID: 0}
+  laserMuzzle: {fileID: 0}
+  laserDirection: {x: 0, y: 0, z: 0}
+  laserOffset: {x: 0, y: 0, z: 0}
+  weaponCharge: 0
+  laserScaleFactor: 0.25
+  laserLifetime: 0
+--- !u!114 &-3298664448004132906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976310428112141259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9553195cc1c0f84e89ea42bb36e12ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactDamage: 0
+  repulsionForce: 0
 --- !u!1001 &8693732234078855550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,7 +199,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5ae007614ed62bd46872f423e0197426,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.50349355
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae007614ed62bd46872f423e0197426,
         type: 3}

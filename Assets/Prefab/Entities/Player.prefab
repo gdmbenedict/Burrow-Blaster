@@ -951,6 +951,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Model: {fileID: 4550084228869730673}
+  hitParticles: {fileID: 8608173959937144654, guid: 589e87877bb6e504d90c80ba3ef21750,
+    type: 3}
+  explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
+    type: 3}
   maxHealth: 1
   invulnerabilityTime: 1
   flashingIntervals: 8
@@ -958,6 +962,7 @@ MonoBehaviour:
   shieldCooldown: 5
   shieldTransition: 0.1
   hasShield: 1
+  entityType: 0
 --- !u!114 &2466576206604131918
 MonoBehaviour:
   m_ObjectHideFlags: 0

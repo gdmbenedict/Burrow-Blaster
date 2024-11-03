@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         collider = GetComponent<Collider>();
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -49,7 +50,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log("ToggleScreenCalled");
 
         onScreen = !onScreen;
-        if (onScreen)
+        if (onScreen && weapon != null)
         {
             //added in to give player moment before the enemy starts shooting
             weapon.ActivateCooldown();
@@ -73,13 +74,16 @@ public class Enemy : MonoBehaviour
     //Method that makes the enemy attack with its weapon
     public void Attack(Transform target)
     {
-        if (weapon.GetCanFire())
+        if (weapon != null)
         {
-            //Debug.Log("WeaponFired");
-            Vector3 direction = target.position - weapon.GetMuzzlePos(0).position;
-            direction.y = 0;
-            weapon.ChangeProjectileDirection(0, direction);
-            weapon.Fire();
+            if (weapon.GetCanFire())
+            {
+                //Debug.Log("WeaponFired");
+                Vector3 direction = target.position - weapon.GetMuzzlePos(0).position;
+                direction.y = 0;
+                weapon.ChangeProjectileDirection(0, direction);
+                weapon.Fire();
+            }
         }
     }
 }
