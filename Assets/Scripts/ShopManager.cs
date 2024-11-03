@@ -107,6 +107,9 @@ public class ShopManager : MonoBehaviour
                 {
                     upgradePrices[i, j] = 0;
                 }
+
+                UpdatePrices();
+                UpdateButtons();
                 
             }
 
