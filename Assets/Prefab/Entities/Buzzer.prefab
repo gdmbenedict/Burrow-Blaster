@@ -136,13 +136,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Model: {fileID: 0}
-  maxHealth: 1
+  maxHealth: 25
   invulnerabilityTime: 0
   flashingIntervals: 0
   shieldModel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
   hasShield: 0
+  entityType: 1
 --- !u!114 &1092619585464597524
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -226,7 +226,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void Die()
+    public void Die(GameObject explosion)
     {
         DisablePlayerVisual();
 
@@ -247,9 +247,9 @@ public class Player : MonoBehaviour
         if (superLaser != null)
         {
             superLaser.Disable();
-        }  
+        }
 
-        gameManager.LoseGame();
+        StartCoroutine(WaitForPlayerDeath(explosion));
     }
     
     public void DisablePlayerVisual()
@@ -260,5 +260,26 @@ public class Player : MonoBehaviour
     public void EnablePlayerVisual()
     {
         model.SetActive(true);
+    }
+
+    public IEnumerator WaitForPlayerDeath(GameObject explosion)
+    {
+        ParticleSystem particleExplosion;
+
+        //getting particle system instance
+        GameObject explosionInstance = Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        particleExplosion = explosionInstance.GetComponent<ParticleSystem>();
+        
+        //wait for explosion to start
+        yield return null;
+
+        //wait till explosion is over
+        while (particleExplosion.isPlaying)
+        {
+            yield return null;
+        }
+
+        gameManager.LoseGame();
+
     }
 }

@@ -11,8 +11,10 @@ public class HealthSystem : MonoBehaviour
         boss
     }
 
-    [Header("Outside References")]
+    [Header("Object References")]
     [SerializeField] private GameObject Model;
+    [SerializeField] private ParticleSystem hitParticles;
+    [SerializeField] private GameObject explosion;
 
     [Header("Health Varaibles")]
     [SerializeField] private int maxHealth;
@@ -55,25 +57,25 @@ public class HealthSystem : MonoBehaviour
                 health -= damage;
                 if (health <= 0)
                 {
-
                     if (entityType == EntityType.enemy)
                     {
                         //Debug.Log("Calling Die Function");
                         Enemy enemy = GetComponent<Enemy>();
-                        enemy.Die();
+                        enemy.Die(explosion);
                     }
                     else if (entityType == EntityType.boss)
                     {
                         Boss boss = GetComponent<Boss>();
-                        boss.Die();
+                        boss.Die(explosion);
                     }
                     else
                     {
                         Player player = GetComponent<Player>();
-                        player.Die();
+                        player.Die(explosion);
                     }
                 }
-                //implement something to show taking damage
+
+                GetComponent<ParticleSystem>().Play();
 
                 if (invulnerabilityTime > 0)
                 {
@@ -102,17 +104,21 @@ public class HealthSystem : MonoBehaviour
                 health -= (int)chipDamage;
                 if (health <= 0)
                 {
-                    Enemy enemy = GetComponent<Enemy>();
-
-                    if (enemy != null)
+                    if (entityType == EntityType.enemy)
                     {
                         //Debug.Log("Calling Die Function");
-                        enemy.Die();
+                        Enemy enemy = GetComponent<Enemy>();
+                        enemy.Die(explosion);
+                    }
+                    else if (entityType == EntityType.boss)
+                    {
+                        Boss boss = GetComponent<Boss>();
+                        boss.Die(explosion);
                     }
                     else
                     {
                         Player player = GetComponent<Player>();
-                        player.Die();
+                        player.Die(explosion);
                     }
                 }
 

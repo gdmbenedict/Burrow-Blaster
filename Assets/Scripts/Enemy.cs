@@ -61,10 +61,12 @@ public class Enemy : MonoBehaviour
         return onScreen;
     }
 
-    public void Die()
+    public void Die(GameObject explosion)
     {
-        //instantiate scrap object
+        //instantiate scrap object & explosion
+        Instantiate(explosion);
         Instantiate(scrap, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
