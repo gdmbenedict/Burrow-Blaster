@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log("ToggleScreenCalled");
 
         onScreen = !onScreen;
-        if (onScreen && weapon != null)
+        if (onScreen && weapon != null && !weapon.GetDisabled())
         {
             //added in to give player moment before the enemy starts shooting
             weapon.ActivateCooldown();

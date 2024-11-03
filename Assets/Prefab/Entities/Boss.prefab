@@ -351,9 +351,11 @@ MonoBehaviour:
   bossHealth: {fileID: 7705981167903737185}
   bossShield: {fileID: 2798545302169861101}
   bossWeapon: {fileID: 812627264707572117}
+  model: {fileID: 8803307286979622714}
   numExplosions: 10
-  explosionSpawnRadius: 2
+  explosionSpawnRadius: 4
   explosionInterval: 0.3
+  bigExplosionScale: 10
 --- !u!1001 &5567105194105540381
 PrefabInstance:
   m_ObjectHideFlags: 0

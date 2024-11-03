@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -8,12 +9,13 @@ public class Boss : MonoBehaviour
     public HealthSystem bossHealth;
     [SerializeField] private GameObject bossShield;
     [SerializeField] private Weapon bossWeapon;
+    [SerializeField] private GameObject model;
 
     [Header("Explosion Variables")]
     [SerializeField] private int numExplosions = 10;
     [SerializeField] private float explosionSpawnRadius = 2;
-    [SerializeField] private float explosionInterval = 0.3f; 
-    private ParticleSystem particleExplosion;
+    [SerializeField] private float explosionInterval = 0.3f;
+    [SerializeField] private float bigExplosionScale = 10;
 
     private GameManager gameManager;
     private bool bossBattleStarted = false;
@@ -24,6 +26,7 @@ public class Boss : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         FindObjectOfType<UIManager>().boss = this;
         bossWeapon.Disable();
+        bossHealth.SetTakeDamage(false);
     }
 
     // Update is called once per frame
@@ -34,10 +37,12 @@ public class Boss : MonoBehaviour
 
     public void StartBossBattle()
     {
-        bossHealth.ToggleTakeDamage();
+        bossHealth.SetTakeDamage(true);
         bossWeapon.Enable();
+        bossWeapon.ActivateCooldown();
         bossShield.SetActive(false);
         bossBattleStarted = true;
+
     }
 
     public bool GetBossBattleStarted()
@@ -47,11 +52,15 @@ public class Boss : MonoBehaviour
 
     public void Die(GameObject explosion)
     {
+        bossWeapon.Disable();
+        bossHealth.SetTakeDamage(false);
         StartCoroutine(BossExplode(explosion));
     }
 
     private IEnumerator BossExplode(GameObject explosion)
     {
+        GameObject explosionInstance = null;
+
         for (int i=0; i<numExplosions; i++)
         {
             //generate explosion spawn position
@@ -61,8 +70,7 @@ public class Boss : MonoBehaviour
             Vector3 exPos = new Vector3(exPosX, exPosY, exPosZ);
 
             //spawn explosion and wait
-            GameObject explosionInstance = Instantiate(explosion, exPos, Quaternion.identity);
-            particleExplosion = explosionInstance.GetComponent<ParticleSystem>();
+            explosionInstance = Instantiate(explosion, exPos, Quaternion.identity);
 
             if (i<numExplosions-1)
             {
@@ -70,8 +78,18 @@ public class Boss : MonoBehaviour
             }
         }
 
-        //wait for final explosion to stop
-        while (particleExplosion.isPlaying)
+        //wait for final small explosion to stop
+        while (explosionInstance != null)
+        {
+            yield return null;
+        }
+
+        explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
+        explosionInstance.transform.localScale *= bigExplosionScale;
+        model.SetActive(false);
+
+        //wait for big explosion to stop
+        while (explosionInstance != null)
         {
             yield return null;
         }

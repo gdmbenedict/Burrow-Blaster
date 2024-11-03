@@ -27,10 +27,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float laserLifetime;
 
     private bool canFire = true;
-    private float fireRateMult;
-    private float damageMult;
+    private float fireRateMult =1;
+    private float damageMult =1;
     private int laserScaleIncrement;
     private bool weaponSet = false;
+    private bool disabled = false;
 
 
     private void Start()
@@ -43,14 +44,7 @@ public class Weapon : MonoBehaviour
         if (projectileDirections == null)
         {
             projectileDirections = new List<Vector3>();
-        }
-
-        if (!weaponSet)
-        {
-            fireRateMult = 1;
-            damageMult = 1;
-        }
-        
+        }        
     }
 
     public void SetWeaponStats(float fireRateMult, float damageMult, int piercing)
@@ -65,6 +59,7 @@ public class Weapon : MonoBehaviour
     {
         this.laserScaleIncrement = laserScaleIncrement;
         this.laserLifetime = laserLifetime;
+        weaponSet = true;
     }
 
     //Function that fires a projectile
@@ -204,11 +199,18 @@ public class Weapon : MonoBehaviour
     {
         StopAllCoroutines();
         canFire = false;
+        disabled = true;
     }
 
     public void Enable()
     {
         canFire = true;
+        disabled = false;
+    }
+
+    public bool GetDisabled()
+    {
+        return disabled;
     }
 
     //Function that puts weapon operation on a timer
@@ -216,6 +218,11 @@ public class Weapon : MonoBehaviour
     {
         float timer = 0f;
         float cooldown = 1f / (firerate * fireRateMult);
+        Debug.Log(
+            "Cooldown: " + cooldown + "\n" +
+            "Firerate: " + firerate + "\n" +
+            "Firerate Mult:" + fireRateMult
+            );
 
         while (timer < cooldown)
         {

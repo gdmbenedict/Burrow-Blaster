@@ -194,7 +194,7 @@ public class UIManager : MonoBehaviour
                     gameLostText.SetActive(true);
                 }
 
-                scrapResult.text = "Scrap Collected: " + player.collector.GetScrapCollected();
+                scrapResult.text = "Scrap Collected:\n" + player.collector.GetScrapCollected();
                 distanceResult.text = "Distance Travelled: " + (int)player.transform.position.z;
                 EventSystem.current.SetSelectedGameObject(resultScreenFirst);
                 break;
@@ -219,7 +219,7 @@ public class UIManager : MonoBehaviour
     {
         if (player != null)
         {
-            scrapTextGameplay.text = "Scrap Collected: " + player.collector.GetScrapCollected();    
+            scrapTextGameplay.text = "Scrap Collected:\n" + player.collector.GetScrapCollected();    
             healthText.text = "Health: " + player.playerHealth.GetHealth() + " / " + player.playerHealth.GetMaxHealth();
         }
 
@@ -241,7 +241,7 @@ public class UIManager : MonoBehaviour
 
     public void ResetGameplayUI()
     {
-        scrapTextGameplay.text = "Scrap Collected: " + 0;
+        scrapTextGameplay.text = "Scrap Collected:\n" + 0;
         healthText.text = "Health: " + 0 + " / " + 0;
         distanceText.text = "Travelled:\n" + 0 + "m / " + 0 + "m";
         bossHealthText.text = "Boss Health:\n" + 0 + " / " + 0;

@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
         //moves camera up along the level
         transform.position += Vector3.forward * scrollSpeed * Time.fixedDeltaTime;
 
-        if (transform.position.z >= stopPos)
+        if (transform.position.z >= stopPos && !arrived)
         {
             scrollSpeed = 0;
             arrived = true;
