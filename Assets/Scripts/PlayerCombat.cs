@@ -1,32 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private bool isFiring;
-    [SerializeField] private Weapon weapon;
+    [Header("Unlocks")]
+    [SerializeField] private bool sideShotUnlocked;
+    [SerializeField] private bool laserUnlocked;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        isFiring = false;
-    }
+    [Header("Weapons")]
+    [SerializeField] private Weapon blaster;
+    [SerializeField] private Weapon sideShot;
+    [SerializeField] private Weapon laser;
 
-    // Update is called once per frame
+    private bool firingBlaster;
+    private bool firingSideShots;
+    private bool chargingLaser;
+
     void Update()
     {
-        if (isFiring)
+        if (firingBlaster)
         {
-            weapon.Fire();
+            blaster.Fire();
+        }
+        else if (firingSideShots && sideShot != null)
+        {
+            sideShot.Fire();
+        }
+        else if (chargingLaser && laser != null)
+        {
+            laser.Charge();
         }
     }
 
-    public void GetFiring(InputAction.CallbackContext input)
+    //method that gets input for the blaster
+    public void GetBlaster(InputAction.CallbackContext input)
     {
-        isFiring = input.action.IsPressed();
+        if (input.action.IsPressed())
+        {
+            firingBlaster = true;
+        }
+        else if (input.canceled)
+        {
+            firingBlaster = false;
+        }
+
     }
+
+    //method that gets input for the blaster
+    public void GetSideShot(InputAction.CallbackContext input)
+    {
+        if (input.action.IsPressed())
+        {
+            //Debug.Log("GotSideshot Input");
+            firingSideShots = true;
+        }
+        else if (input.canceled)
+        {
+            firingSideShots = false;
+        }
+    }
+
+    //method that gets input for the blaster
+    public void GetLaser(InputAction.CallbackContext input)
+    {
+        if (input.action.IsPressed())
+        {
+            chargingLaser = true;
+        }
+        else if (input.canceled)
+        {
+            chargingLaser = false;
+            laser.Fire();
+        }
+    }
+
+
 
 
 }

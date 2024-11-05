@@ -112,7 +112,7 @@ MonoBehaviour:
       type: 3}
     m_PressedSprite: {fileID: -1983306089, guid: 768681748eda74844a66b93c5c60abb3,
       type: 3}
-    m_SelectedSprite: {fileID: -942594072, guid: 768681748eda74844a66b93c5c60abb3,
+    m_SelectedSprite: {fileID: 1033663685, guid: 768681748eda74844a66b93c5c60abb3,
       type: 3}
     m_DisabledSprite: {fileID: 190664211, guid: 768681748eda74844a66b93c5c60abb3,
       type: 3}

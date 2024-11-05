@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject scrap;
     [SerializeField] private Weapon weapon;
+    [SerializeField] private bool targetPlayer = true;
     
     //Checking if enemy is on screen
     private Camera cam;
@@ -23,9 +24,14 @@ public class Enemy : MonoBehaviour
     {
         onScreen = false;
         cam = Camera.main;
-        player = FindAnyObjectByType<Player>();
         collider = GetComponent<Collider>();
+
+        if (targetPlayer)
+        {
+            player = FindAnyObjectByType<Player>();
+        }
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -40,7 +46,15 @@ public class Enemy : MonoBehaviour
 
         if (onScreen)
         {
-            Attack(player.transform);
+            if (targetPlayer)
+            {
+                Attack(player.transform);
+            }
+            else
+            {
+                FireWeapons();
+            }
+            
         }
     }
 
@@ -49,7 +63,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log("ToggleScreenCalled");
 
         onScreen = !onScreen;
-        if (onScreen)
+        if (onScreen && weapon != null && !weapon.GetDisabled())
         {
             //added in to give player moment before the enemy starts shooting
             weapon.ActivateCooldown();
@@ -61,21 +75,41 @@ public class Enemy : MonoBehaviour
         return onScreen;
     }
 
-    public void Die()
+    public void Die(GameObject explosion)
     {
-        //instantiate scrap object
+        //instantiate scrap object & explosion
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Instantiate(scrap, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
     //Method that makes the enemy attack with its weapon
     public void Attack(Transform target)
     {
-        if (weapon.GetCanFire())
+        if (weapon != null)
         {
-            //Debug.Log("WeaponFired");
-            weapon.ChangeProjectileDirection(0, target.position - weapon.GetMuzzlePos(0).position);
-            weapon.Fire();
+            if (weapon.GetCanFire())
+            {
+                //getting muzzle positions
+                List<Transform> muzzlePositions = weapon.GetMuzzles();
+
+                //looping through muzzles to set directions
+                for (int i=0; i<muzzlePositions.Count; i++)
+                {
+                    Vector3 direction = target.position - muzzlePositions[i].position;
+                    direction.y = 0;
+                    weapon.ChangeProjectileDirection(i, direction);
+                }
+                
+                weapon.Fire();
+            }
         }
+    }
+
+    //simple fire function
+    public void FireWeapons()
+    {
+        weapon.Fire();
     }
 }

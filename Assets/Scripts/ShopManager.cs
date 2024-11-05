@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
+    [Header("Debug")]
+    [SerializeField] private bool everythingFree = false;
 
     [Header("Object References")]
     [SerializeField] private UpgradeManager upgradeManager;
@@ -27,8 +29,12 @@ public class ShopManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI[] priceLabels; //must align with upgrade manager order
     [SerializeField] private Button[] upgradeButtons; //must align with upgrade manager order
-    
-    
+    [SerializeField] private Image[] upgradeBars; //must align with upgrade manager order
+
+    [Header("Upgrade Bar Images")]
+    [SerializeField] private Sprite[] upgradeBarLevels;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,7 +99,22 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (everythingFree)
+        {
+            for (int i =0; i<upgradePrices.GetLength(0); i++)
+            {
+                for (int j =0; j < upgradePrices.GetLength(1); j++)
+                {
+                    upgradePrices[i, j] = 0;
+                }
+
+                UpdatePrices();
+                UpdateButtons();
+                
+            }
+
+            everythingFree = false;
+        }
     }
 
     public void UpdatePrices()
@@ -103,6 +124,7 @@ public class ShopManager : MonoBehaviour
         {
             string cost = "Cost: ";
 
+            //Update costs of non-special upgrades
             if (i<upgradeManager.GetNumSpecialUpgrade())
             {
                 if (upgradeManager.GetUpgradeLevel(i) < upgradeManager.GetSpecialUpgradeMax())
@@ -114,6 +136,7 @@ public class ShopManager : MonoBehaviour
                     cost += "NA";
                 }
             }
+            //Updates the costss of special upgrades
             else
             {
                 if (upgradeManager.GetUpgradeLevel(i) < upgradeManager.GetUpgradeMax())
@@ -134,10 +157,12 @@ public class ShopManager : MonoBehaviour
     {
         int[] upgradeLevels = upgradeManager.GetAllUpgradeLevels();
 
+        //loop through all buttons to update them
         for (int i = 0; i < upgradeLevels.Length; i++)
         {
             if (i < upgradeManager.GetNumSpecialUpgrade())
             {
+                //check if special button should be interactable
                 if (upgradeLevels[i] < upgradeManager.GetSpecialUpgradeMax() && scrapManager.GetScrap() >= upgradePrices[0, upgradeManager.GetSpecialUppgradeLevel()])
                 {
                     upgradeButtons[i].interactable = true;
@@ -149,6 +174,10 @@ public class ShopManager : MonoBehaviour
             }
             else
             {
+                //update the upgrade bar sprites
+                upgradeBars[i - (upgradeManager.GetNumSpecialUpgrade())].sprite = upgradeBarLevels[upgradeLevels[i]];
+
+                //check if button should be interactable
                 if (upgradeLevels[i] < upgradeManager.GetUpgradeMax() && scrapManager.GetScrap() >= upgradePrices[i - (upgradeManager.GetNumSpecialUpgrade() - 1), upgradeLevels[i]])
                 {
                     upgradeButtons[i].interactable = true;

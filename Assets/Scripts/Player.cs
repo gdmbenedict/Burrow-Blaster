@@ -17,14 +17,17 @@ public class Player : MonoBehaviour
     [Header("Blaster Muzzles")]
     public List<Transform> blasterMuzzles;
     public List<Vector3> blasterDirections;
+    public Vector3 blasterProjectileOffset;
 
     [Header("Sideshot Muzzles")]
     public List<Transform> sideShotMuzzles;
     public List<Vector3> sideShotDirections;
+    public Vector3 sideShotOffset;
 
     [Header("Super Laser Muzzle")]
     public Transform superLaserMuzzle;
-    public Vector3 suplerLasterDirection;
+    public Vector3 superLaserDirection;
+    public Vector3 laserOffset;
 
     //external connections
     private GameManager gameManager;
@@ -59,6 +62,8 @@ public class Player : MonoBehaviour
 
     private void SetupPlayer()
     {
+        Debug.Log("Setting player values");
+
         //make player active
         model.SetActive(true);
 
@@ -73,6 +78,7 @@ public class Player : MonoBehaviour
         {
             blaster.enabled = true;
             blaster.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
+            blaster.SetProjectileOffset(blasterProjectileOffset);
 
             //setting blaster muzzle positions
             switch (upgradeManager.GetSpreadShot())
@@ -121,65 +127,81 @@ public class Player : MonoBehaviour
             }
         }
 
+        Debug.Log(upgradeManager.GetSideShots());
+
+        //Setting up sideshots
         if (sideShot != null && upgradeManager.GetSideShots())
         {
             sideShot.enabled = true;
             sideShot.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
+            sideShot.SetProjectileOffset(sideShotOffset);
+
+            Debug.Log("Getting to switch statement");
 
             //setting blaster muzzle positions
             switch (upgradeManager.GetSpreadShot())
             {
                 case 1:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[2] },
-                        new Vector3[] { sideShotDirections[2] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[2], sideShotMuzzles[7] },
+                        new Vector3[] { sideShotDirections[2], sideShotDirections[7] }
                         );
                     break;
 
                 case 2:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[3] },
-                        new Vector3[] { sideShotDirections[1], sideShotDirections[3] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[3], sideShotMuzzles[6], sideShotMuzzles[8] },
+                        new Vector3[] { sideShotDirections[1], sideShotDirections[3], sideShotDirections[6], sideShotDirections[8] }
                         );
                     break;
 
                 case 3:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3] },
-                        new Vector3[] { sideShotDirections[1], sideShotDirections[2], sideShotDirections[3] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3], sideShotMuzzles[6], sideShotMuzzles[7], sideShotMuzzles[8] },
+                        new Vector3[] { sideShotDirections[1], sideShotDirections[2], sideShotDirections[3], sideShotDirections[6], sideShotDirections[7], sideShotDirections[8] }
                         );
                     break;
 
                 case 4:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[3], sideShotMuzzles[4] },
-                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[3], sideShotDirections[4] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[3], sideShotMuzzles[4], sideShotMuzzles[5], sideShotMuzzles[6], sideShotMuzzles[8], sideShotMuzzles[9] },
+                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[3], sideShotDirections[4], sideShotDirections[5], sideShotDirections[6], sideShotDirections[8], sideShotDirections[9] }
                         );
                     break;
 
                 case 5:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3], sideShotMuzzles[4] },
-                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[2], sideShotDirections[3], sideShotDirections[4] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[0], sideShotMuzzles[1], sideShotMuzzles[2], sideShotMuzzles[3], sideShotMuzzles[4], sideShotMuzzles[5], sideShotMuzzles[6], sideShotMuzzles[7], sideShotMuzzles[8], sideShotMuzzles[9], },
+                        new Vector3[] { sideShotDirections[0], sideShotDirections[1], sideShotDirections[2], sideShotDirections[3], sideShotDirections[4], sideShotDirections[5], sideShotDirections[6], sideShotDirections[7], sideShotDirections[8], sideShotDirections[9]}
                         );
                     break;
 
                 default:
-                    blaster.SetMuzzles(
-                        new Transform[] { sideShotMuzzles[2] },
-                        new Vector3[] { sideShotDirections[2] }
+                    sideShot.SetMuzzles(
+                        new Transform[] { sideShotMuzzles[2], sideShotMuzzles[7] },
+                        new Vector3[] { sideShotDirections[2], sideShotDirections[7] }
                         );
                     break;
             }
+
+            Debug.Log(sideShot.GetMuzzles());
         }
         else if (sideShot != null)
         {
             sideShot.Disable();
         }
 
+        Debug.Log(upgradeManager.GetSuperLaser());
         if (superLaser != null && upgradeManager.GetSuperLaser())
         {
-            //TODO: implement super laser
+            superLaser.enabled = true;
+            superLaser.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
+            superLaser.SetLaserStats(upgradeManager.GetSpreadShot(), upgradeManager.GetPiercing());
+            superLaser.SetLaserOffset(laserOffset);
+            superLaser.SetMuzzles(
+                new Transform[] {superLaserMuzzle },
+                new Vector3[] {superLaserDirection }
+                );
         }
         else if (sideShot != null)
         {
@@ -187,11 +209,10 @@ public class Player : MonoBehaviour
         }
 
         //Dodge
-        //TODO: implement dodge
-        //playerMovement.SetDodge(upgradeManager.GetDodge());
+        playerMovement.SetDodge(upgradeManager.GetDodge());
 
         //Shield
-        //TODO: implement shield
+        playerHealth.SetShield(upgradeManager.GetShield());
 
         //setting up player movement
         playerMovement.SetMoveSpeedMult(upgradeManager.GetMovementSpeed());
@@ -205,7 +226,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void Die()
+    public void Die(GameObject explosion)
     {
         DisablePlayerVisual();
 
@@ -226,9 +247,9 @@ public class Player : MonoBehaviour
         if (superLaser != null)
         {
             superLaser.Disable();
-        }  
+        }
 
-        gameManager.LoseGame();
+        StartCoroutine(WaitForPlayerDeath(explosion));
     }
     
     public void DisablePlayerVisual()
@@ -239,5 +260,26 @@ public class Player : MonoBehaviour
     public void EnablePlayerVisual()
     {
         model.SetActive(true);
+    }
+
+    public IEnumerator WaitForPlayerDeath(GameObject explosion)
+    {
+        ParticleSystem particleExplosion;
+
+        //getting particle system instance
+        GameObject explosionInstance = Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        particleExplosion = explosionInstance.GetComponent<ParticleSystem>();
+        
+        //wait for explosion to start
+        yield return null;
+
+        //wait till explosion is over
+        while (particleExplosion != null)
+        {
+            yield return null;
+        }
+
+        gameManager.LoseGame();
+
     }
 }

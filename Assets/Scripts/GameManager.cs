@@ -31,10 +31,12 @@ public class GameManager : MonoBehaviour
     private bool paused;
     private GameState gameState;
     private bool win;
+    private bool firstPlay;
 
     // Start is called before the first frame update
     void Start()
     {
+        firstPlay = true;
         win = false;
         paused = false;
         gameState = GameState.TitleMenu;
@@ -51,6 +53,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public GameState GetGameState()
+    {
+        return gameState;
+    }
+
     public bool GetWin()
     {
         return win;
@@ -58,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause Input Called");
+        //Debug.Log("Pause Input Called");
         if (context.started)
         {
             TogglePause();
@@ -68,7 +75,7 @@ public class GameManager : MonoBehaviour
     //Function that toggles if the game is paused
     public void TogglePause()
     {
-        Debug.Log("Toggle Pause Called");
+        //Debug.Log("Toggle Pause Called");
 
         //check if in the gameplay state so can't pause in menus
         if (gameState == GameState.Gameplay)
@@ -91,21 +98,38 @@ public class GameManager : MonoBehaviour
     //function that loads into the gameplay scene
     public void GoToGame()
     {
-        //return game to normal timescale if paused
-        if (Time.timeScale <= 0)
+        if (firstPlay)
         {
-            Time.timeScale = 1; 
+            Time.timeScale = 0;
+            paused = true;
+
+            firstPlay = false;
+
+            score = 0;
+            levelManager.LoadScene(GameSceneName);
+            gameState = GameState.Gameplay;
+            uiManager.ChangeUIScreen(UIManager.UIState.InfoScreen);
+            uiManager.ResetGameplayUI();
         }
-
-        score = 0;
-        levelManager.LoadScene(GameSceneName);
-        gameState = GameState.Gameplay;
-        uiManager.ChangeUIScreen(UIManager.UIState.GameplayScreen);
-
-        if (win)
+        else
         {
-            win = false;
-        }
+            //return game to normal timescale if paused
+            if (Time.timeScale <= 0)
+            {
+                Time.timeScale = 1;
+            }
+
+            score = 0;
+            levelManager.LoadScene(GameSceneName);
+            gameState = GameState.Gameplay;
+            uiManager.ChangeUIScreen(UIManager.UIState.GameplayScreen);
+            uiManager.ResetGameplayUI();
+
+            if (win)
+            {
+                win = false;
+            }
+        }     
     }
 
     public void WinGame()

@@ -49,6 +49,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Collision with " + other.gameObject.name);
+
         HealthSystem target = other.GetComponent<HealthSystem>();
 
         if (target != null)
@@ -74,7 +76,7 @@ public class Projectile : MonoBehaviour
     {
         this.direction = direction;
         transform.LookAt(direction + transform.position);
-        transform.Rotate(90f, 0f, 0f);
+        transform.Rotate(0f, 0f, 0f);
 
     }
 
