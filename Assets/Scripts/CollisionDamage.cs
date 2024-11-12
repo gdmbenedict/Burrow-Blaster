@@ -38,8 +38,7 @@ public class CollisionDamage : MonoBehaviour
 
                 //throwing player away
                 Vector3 direction = other.transform.position - transform.position;
-                Vector3 force = direction.normalized * repulsionForce;
-                playerMove.AddForce(force);
+                playerMove.ForceMovement(direction, repulsionForce);
             }
   
         }

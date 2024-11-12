@@ -5,12 +5,14 @@ using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Detection Variables")]
-    [SerializeField] private LayerMask obstacleLayer;
-    [SerializeField] private float detectionScale =2f;
+    [SerializeField] private LayerMask collisionsLayers;
+    [SerializeField] private Vector3 detectionBoxSize;
+    [SerializeField] private Transform playerPos;
 
     [Header("Player Movement Variables")]
     [SerializeField] private float moveSpeed = 5f;
@@ -19,8 +21,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Dodge Movement Variables")]
     [SerializeField] private bool dodgeUnlocked = false;
-    [SerializeField] private float dodgeSpeed = 10f;
+    [SerializeField] private float dodgeSpeedMult = 3f;
     [SerializeField] private float dodgeTime = 0.5f;
+
+    [Header("Forced Movement Variables")]
+    private bool lockedMovement;
+    [SerializeField] private float forcedMovementTime = 0.3f;
 
     [Header("Object references")]
     [SerializeField] private Rigidbody rb;
@@ -31,11 +37,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementDir;
     private float maxZ;
     private float minZ;
-    [SerializeField] private float moveSpeedMult;
-    private bool isDodging;
+    private float moveSpeedMult;
+    private float lockedMovementFactor = 1;
 
-    private bool forcedMovement;
-    private float forcedMovementTime = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -54,136 +58,64 @@ public class PlayerMovement : MonoBehaviour
         //getting screen boundaries
         GetBoudaries();
 
-        //Debug.Log("Top boundary = " + (maxZ - screenTopBuffer));
-        //Debug.Log("Bottom boundary = " + (minZ + screenBottomBuffer));
-        //Debug.Log("Player Pos Z = " + (gameObject.transform.position.z + (movementDir.z * moveSpeed * Time.deltaTime)));
-
-        //checking top boundary
-        if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult * Time.deltaTime * detectionScale) >= (maxZ - screenTopBuffer) && movementDir.z > 0)
-        {
-            if (rb.velocity.magnitude != 0)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
-            }
-            else
-            {
-                //Debug.Log("Freezing Z movement");
-                movementDir.z = 0;
-            }
-        }
-        //checking bottom boundary
-        else if ((gameObject.transform.position.z + movementDir.z * moveSpeed * moveSpeedMult  * Time.deltaTime * detectionScale) <= (minZ + screenBottomBuffer) && movementDir.z < 0)
-        {
-            if (rb.velocity.magnitude != 0)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
-            }
-            else
-            {
-                //Debug.Log("Freezing Z movement");
-                movementDir.z = 0;
-            }
-        }
-
-        if (rb.velocity.magnitude != 0)
-        {
-            movementDir = rb.velocity.normalized;
-        }
-
-        //checking for collisions
-        if (Physics.Raycast(rb.position, movementDir, out RaycastHit hit, moveSpeed * moveSpeedMult * Time.deltaTime * detectionScale, obstacleLayer))
-        {
-            //Debug.Log("Collision Detected");
-
-            Vector3 pos = hit.collider.transform.position;
-            float differenceX = Mathf.Abs(pos.x - transform.position.x);
-            float differenceZ = Mathf.Abs(pos.z - transform.position.z);
-            if (differenceX <= differenceZ)
-            {
-                if (rb.velocity.magnitude != 0)
-                {
-                    rb.velocity = new Vector3(0f, 0f, rb.velocity.z);
-                }
-                else
-                {
-                    //Debug.Log("Freezing X movement");
-                    movementDir.x = 0;
-                }
-                
-            }
-            else
-            {
-                if (rb.velocity.magnitude != 0)
-                {
-                    rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
-                }
-                else
-                {
-                    //Debug.Log("Freezing Z movement");
-                    movementDir.z = 0;
-                }
-                
-            }
-
-            
-        }
+        //checking for boundaries and collisions
+        float projectedMovementLength = 1 * moveSpeed * moveSpeedMult * lockedMovementFactor * Time.fixedDeltaTime;
+        
+        CheckCollisions(projectedMovementLength);
 
         //moving player
-        if (!isDodging && !forcedMovement)
-        {
-            rb.MovePosition(rb.position + movementDir * moveSpeed * moveSpeedMult * Time.deltaTime);   
-        }
+        rb.MovePosition(rb.position + movementDir * projectedMovementLength);   
 
         //move with camera if not arrived at boss
         if (!camController.HasArrived())
         {
-            rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.deltaTime);
+            rb.MovePosition(rb.position + Vector3.forward * cameraSpeed * Time.fixedDeltaTime);
         }
+        
+        //set velocity to zero to stop issues with maintained velocity
+        rb.velocity = Vector3.zero;
+    }
 
+    //function that forces the movement of the player in specified direction
+    public void ForceMovement(Vector3 direction, float repulsionStrength)
+    { 
+        movementDir = direction;
+        StopAllCoroutines();
+        StartCoroutine(LockedMovement(repulsionStrength, forcedMovementTime));
+    }
 
-        if (rb.velocity.magnitude != 0 && !isDodging && !forcedMovement)
+    public void DodgeButton(InputAction.CallbackContext input)
+    {
+        if (input.action.WasPressedThisFrame() && dodgeUnlocked && !lockedMovement)
         {
-            rb.velocity = Vector3.zero;
+            Dodge();
         }
     }
 
-    public void AddForce(Vector3 force)
+    public void Dodge()
     {
-        forcedMovement = true;
-        rb.AddForce(force, ForceMode.Impulse);
-        StartCoroutine(ForcedMovement());
+        StartCoroutine(LockedMovement(dodgeSpeedMult, dodgeTime));
     }
 
-    private IEnumerator ForcedMovement()
+    private IEnumerator LockedMovement(float movementMult, float timerLength)
     {
-        float forcedMovementTimer = 0;
+        //setting locked movement to be true
+        lockedMovement = true;
 
-        while (forcedMovementTimer < forcedMovementTime)
+        //setting loop values
+        float timer = 0f;
+        lockedMovementFactor = movementMult;
+
+        //lerp loop
+        while (timer < dodgeTime)
         {
-            forcedMovementTimer += Time.deltaTime;
+            lockedMovementFactor = Mathf.Lerp(dodgeSpeedMult, 1f, timer / timerLength);
+            timer += Time.deltaTime;
             yield return null;
         }
 
-        forcedMovement = false;
-    }
-
-    public void SetMoveSpeedMult(float moveSpeedMult)
-    {
-        this.moveSpeedMult = moveSpeedMult;
-    }
-
-    public void SetDodge(bool dodge)
-    {
-        dodgeUnlocked = dodge;
-    }
-
-    //Method that updates the movement direction of the player
-    public void GetMovement(InputAction.CallbackContext input)
-    {
-        //Getting input from controls and translating to a 3D vector
-        Vector2 inputDir = input.ReadValue<Vector2>();
-        //Debug.Log(inputDir);
-        movementDir = new Vector3(inputDir.x, 0f, inputDir.y);
+        //unlocking movement
+        lockedMovement = false;
     }
 
     private void GetBoudaries()
@@ -207,34 +139,54 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void DodgeButton(InputAction.CallbackContext input)
+    //Function that checks if the player is 
+    private void CheckCollisions(float projectedMovementLength)
     {
-        if (input.action.WasPressedThisFrame() && dodgeUnlocked)
+        float projectedZPos = playerPos.position.z + (movementDir.normalized.z * projectedMovementLength);
+
+        //check that the projected Z direction is within screen zone
+        if (projectedZPos >= maxZ - screenTopBuffer || projectedZPos <= minZ + screenBottomBuffer)
         {
-            Dodge();
+            movementDir.z = 0;
+        }    
+
+        //use Boxcast to detect collisions with obstacles
+        if (Physics.BoxCast(playerPos.position, detectionBoxSize, movementDir, out RaycastHit hitInfo, Quaternion.identity, projectedMovementLength, collisionsLayers, QueryTriggerInteraction.Ignore))
+        {
+            Vector3 obstaclePos = hitInfo.collider.transform.position;
+            float differenceX = Mathf.Abs(obstaclePos.x - transform.position.x);
+            float differenceZ = Mathf.Abs(obstaclePos.z - transform.position.z);
+
+            if (differenceX <= differenceZ)
+            {
+                movementDir.x = 0;
+            }
+            else
+            {
+                movementDir.z = 0;
+            }
         }
     }
 
-    public void Dodge()
+    public void SetMoveSpeedMult(float moveSpeedMult)
     {
-        rb.velocity = movementDir * dodgeSpeed;
-        isDodging = true;
-        StartCoroutine(dodgeCooldown());
+        this.moveSpeedMult = moveSpeedMult;
     }
 
-    private IEnumerator dodgeCooldown()
+    public void SetDodge(bool dodge)
     {
-        float timer = 0f;
-        Vector3 originalVelocity = rb.velocity;
+        dodgeUnlocked = dodge;
+    }
 
-        while (timer < dodgeTime)
+    //Method that updates the movement direction of the player
+    public void GetMovement(InputAction.CallbackContext input)
+    {
+        if (!lockedMovement)
         {
-            rb.velocity = Vector3.Lerp(originalVelocity, Vector3.zero, timer/dodgeTime);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        isDodging = false;
-        rb.velocity = Vector3.zero;
+            //Getting input from controls and translating to a 3D vector
+            Vector2 inputDir = input.ReadValue<Vector2>();
+            //Debug.Log(inputDir);
+            movementDir = new Vector3(inputDir.x, 0f, inputDir.y);
+        }  
     }
 }
