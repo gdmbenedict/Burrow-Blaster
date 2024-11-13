@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CameraController camController;
     private float cameraSpeed;
 
-    private Vector3 movementDir;
+    private Vector3 inputDir;
+    private Vector3 movementAllow = Vector3.zero;
+    private Vector3 movementDir = Vector3.zero;
     private float maxZ;
     private float minZ;
     private float moveSpeedMult;
@@ -69,11 +71,11 @@ public class PlayerMovement : MonoBehaviour
             projectedMovementLength = 1 * moveSpeed * moveSpeedMult * Time.fixedDeltaTime;
         }
         
-        
+        //check for collisions and bounderies
         CheckCollisions(projectedMovementLength);
 
         //moving player
-        rb.MovePosition(rb.position + movementDir * projectedMovementLength);   
+        rb.MovePosition(rb.position + movementDir.normalized * projectedMovementLength);   
 
         //move with camera if not arrived at boss
         if (!camController.HasArrived())
@@ -88,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
     //function that forces the movement of the player in specified direction
     public void ForceMovement(Vector3 direction, float repulsionStrength)
     { 
-        movementDir = direction;
+        inputDir = direction;
         StopAllCoroutines();
         StartCoroutine(LockedMovement(repulsionStrength, forcedMovementTime));
     }
@@ -151,30 +153,67 @@ public class PlayerMovement : MonoBehaviour
     //Function that checks if the player is 
     private void CheckCollisions(float projectedMovementLength)
     {
-        float projectedZPos = playerPos.position.z + (movementDir.normalized.z * projectedMovementLength);
+        movementAllow = Vector3.one;
+
+        float projectedZPos = playerPos.position.z + (inputDir.normalized.z * projectedMovementLength);
+        float topBorderPos = maxZ - screenTopBuffer;
+        float bottomBorderPos = minZ + screenBottomBuffer;
 
         //check that the projected Z direction is within screen zone
-        if (projectedZPos >= maxZ - screenTopBuffer || projectedZPos <= minZ + screenBottomBuffer)
+        if (projectedZPos >= topBorderPos && inputDir.z > 0 || projectedZPos <= bottomBorderPos && inputDir.z < 0)
         {
-            movementDir.z = 0;
+            movementAllow.z = 0;
         }    
 
         //use Boxcast to detect collisions with obstacles
-        if (Physics.BoxCast(playerPos.position, detectionBoxSize, movementDir, out RaycastHit hitInfo, Quaternion.identity, projectedMovementLength, collisionsLayers, QueryTriggerInteraction.Ignore))
+        if (Physics.BoxCast(playerPos.position, detectionBoxSize, inputDir, out RaycastHit hitInfo, Quaternion.identity, projectedMovementLength, collisionsLayers, QueryTriggerInteraction.Ignore))
         {
+            
             Vector3 obstaclePos = hitInfo.collider.transform.position;
-            float differenceX = Mathf.Abs(obstaclePos.x - transform.position.x);
-            float differenceZ = Mathf.Abs(obstaclePos.z - transform.position.z);
 
-            if (differenceX <= differenceZ)
+            float zDifference = obstaclePos.z - playerPos.position.z;
+            float xDifference = obstaclePos.x - playerPos.position.x;
+
+            if (hitInfo.collider.tag == "Obstacles")
             {
-                movementDir.x = 0;
+                if (zDifference > 0 && inputDir.z > 0)
+                {
+                    Debug.Log("Detecting top collision");
+                    movementAllow.z = 0;
+                }
+                if (zDifference < 0 && inputDir.z < 0)
+                {
+                    Debug.Log("Detecting bottom collision");
+                    movementAllow.z = 0;
+                }
+                if (xDifference > 0 && inputDir.x > 0)
+                {
+                    Debug.Log("Detecting right collision");
+                    movementAllow.x = 0;
+                }
+                if (xDifference < 0 && inputDir.x < 0)
+                {
+                    Debug.Log("Detecting left collision");
+                    movementAllow.x = 0;
+                }
             }
-            else
+            else if (hitInfo.collider.tag == "Walls")
             {
-                movementDir.z = 0;
+                if (xDifference > 0 && inputDir.x > 0)
+                {
+                    Debug.Log("Detecting right collision");
+                    movementAllow.x = 0;
+                }
+                if (xDifference < 0 && inputDir.x < 0)
+                {
+                    Debug.Log("Detecting left collision");
+                    movementAllow.x = 0;
+                }
             }
+
         }
+
+        movementDir = new Vector3(inputDir.x * movementAllow.x, inputDir.y * movementAllow.y, inputDir.z * movementAllow.z);
     }
 
     public void SetMoveSpeedMult(float moveSpeedMult)
@@ -195,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
             //Getting input from controls and translating to a 3D vector
             Vector2 inputDir = input.ReadValue<Vector2>();
             //Debug.Log(inputDir);
-            movementDir = new Vector3(inputDir.x, 0f, inputDir.y);
+            this.inputDir = new Vector3(inputDir.x, 0f, inputDir.y);
         }  
     }
 }
