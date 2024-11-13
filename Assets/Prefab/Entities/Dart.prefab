@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrap: {fileID: 1188973507034171806, guid: 0bcfd58e09203da47b855d6463232c8d, type: 3}
   weapon: {fileID: 812627264707572117}
+  targetPlayer: 1
 --- !u!114 &812627264707572117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 20
+  repulsionForce: 2
 --- !u!1001 &3080890900841267045
 PrefabInstance:
   m_ObjectHideFlags: 0

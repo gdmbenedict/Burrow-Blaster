@@ -146,13 +146,13 @@ public class HealthSystem : MonoBehaviour
         {
             Debug.Log("Setting Shield On");
             hasShield = true;
-            shieldModel.GetComponent<MeshRenderer>().enabled = true;
+            shieldModel.SetActive(true);
         }
         else
         {
             Debug.Log("Setting Shield off");
             hasShield = false;
-            shieldModel.GetComponent<MeshRenderer>().enabled = false;
+            shieldModel.SetActive(false);
         }
     }
 

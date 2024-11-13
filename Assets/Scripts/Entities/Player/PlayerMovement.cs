@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Forced Movement Variables")]
     private bool lockedMovement;
-    [SerializeField] private float forcedMovementTime = 0.3f;
+    [SerializeField] private float forcedMovementTime = 0.15f;
 
     [Header("Object references")]
     [SerializeField] private Rigidbody rb;
@@ -58,8 +58,17 @@ public class PlayerMovement : MonoBehaviour
         //getting screen boundaries
         GetBoudaries();
 
+        float projectedMovementLength;
         //checking for boundaries and collisions
-        float projectedMovementLength = 1 * moveSpeed * moveSpeedMult * lockedMovementFactor * Time.fixedDeltaTime;
+        if (lockedMovement)
+        {
+            projectedMovementLength = 1 * moveSpeed * lockedMovementFactor * Time.fixedDeltaTime;
+        }
+        else
+        {
+            projectedMovementLength = 1 * moveSpeed * moveSpeedMult * Time.fixedDeltaTime;
+        }
+        
         
         CheckCollisions(projectedMovementLength);
 
@@ -107,9 +116,9 @@ public class PlayerMovement : MonoBehaviour
         lockedMovementFactor = movementMult;
 
         //lerp loop
-        while (timer < dodgeTime)
+        while (timer < timerLength)
         {
-            lockedMovementFactor = Mathf.Lerp(dodgeSpeedMult, 1f, timer / timerLength);
+            lockedMovementFactor = Mathf.Lerp(movementMult, 1f, timer / timerLength);
             timer += Time.deltaTime;
             yield return null;
         }
