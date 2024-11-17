@@ -2421,7 +2421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 20
+  repulsionForce: 2
 --- !u!114 &1669737018047703932
 MonoBehaviour:
   m_ObjectHideFlags: 0

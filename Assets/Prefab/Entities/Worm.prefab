@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 20
+  repulsionForce: 2
 --- !u!1001 &925115369370841539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 20
+  repulsionForce: 2
 --- !u!4 &818550104090154536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca73685da905e2c469e1efec78473723,
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 20
+  repulsionForce: 2
 --- !u!1001 &3265108417907263371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1704,7 +1704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 20
+  repulsionForce: 2
 --- !u!1001 &6733123090283281858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 20
+  repulsionForce: 2
 --- !u!4 &6555660765438532137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d10256274b169814b8d155a3f6589771,

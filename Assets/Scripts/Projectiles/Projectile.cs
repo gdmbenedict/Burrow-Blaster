@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision with " + other.gameObject.name);
+        //Debug.Log("Collision with " + other.gameObject.name);
 
         HealthSystem target = other.GetComponent<HealthSystem>();
 

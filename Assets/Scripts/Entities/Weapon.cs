@@ -218,11 +218,11 @@ public class Weapon : MonoBehaviour
     {
         float timer = 0f;
         float cooldown = 1f / (firerate * fireRateMult);
-        Debug.Log(
+        /*Debug.Log(
             "Cooldown: " + cooldown + "\n" +
             "Firerate: " + firerate + "\n" +
             "Firerate Mult:" + fireRateMult
-            );
+            );*/
 
         while (timer < cooldown)
         {
