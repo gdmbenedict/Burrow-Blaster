@@ -32,6 +32,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float shieldTransition;
     [SerializeField] private bool hasShield;
     private bool shieldUnlocked;
+    private Coroutine shieldCoroutine;
 
     [Header("Entity Type")]
     [SerializeField] private EntityType entityType;
@@ -89,8 +90,11 @@ public class HealthSystem : MonoBehaviour
 
             if (shieldUnlocked)
             {
-                StopAllCoroutines();
-                StartCoroutine(BreakShield());
+                if (shieldCoroutine != null)
+                {
+                    StopCoroutine(shieldCoroutine);
+                }
+                shieldCoroutine = StartCoroutine(BreakShield());
             }
         }
     }
@@ -224,6 +228,7 @@ public class HealthSystem : MonoBehaviour
         }
 
         StartCoroutine(ActivateShield());
+        shieldCoroutine = null;
     }
 
     private IEnumerator ActivateShield()
