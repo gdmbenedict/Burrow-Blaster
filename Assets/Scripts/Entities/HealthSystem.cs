@@ -48,11 +48,11 @@ public class HealthSystem : MonoBehaviour
     {
         Debug.Log("TakeDamage() called");
 
-        if(!hasShield)
+        if (canTakeDamage)
         {
-            //taking damage
-            if (canTakeDamage)
+            if (!hasShield)
             {
+                //taking damage
                 health -= damage;
                 if (health <= 0)
                 {
@@ -83,59 +83,62 @@ public class HealthSystem : MonoBehaviour
                 {
                     StartCoroutine(Invulnerability());
                 }
+
+
             }
 
+            if (shieldUnlocked)
+            {
+                StopAllCoroutines();
+                StartCoroutine(BreakShield());
+            }
         }
-
-        if (shieldUnlocked)
-        {
-            StopCoroutine(BreakShield());
-            StopCoroutine(ActivateShield());
-            StartCoroutine(BreakShield());
-        } 
     }
 
     public void TakeChipDamage(float damage)
     {
-        if (!hasShield)
+        if (canTakeDamage)
         {
-            //taking damage
-            chipDamage += damage;
-            if (chipDamage >= 1)
+            if (!hasShield)
             {
-                health -= (int)chipDamage;
-                if (health <= 0)
+                //taking damage
+                chipDamage += damage;
+                if (chipDamage >= 1)
                 {
-                    if (entityType == EntityType.enemy)
+                    health -= (int)chipDamage;
+                    if (health <= 0)
                     {
-                        //Debug.Log("Calling Die Function");
-                        Enemy enemy = GetComponent<Enemy>();
-                        enemy.Die(explosion);
+                        if (entityType == EntityType.enemy)
+                        {
+                            //Debug.Log("Calling Die Function");
+                            Enemy enemy = GetComponent<Enemy>();
+                            enemy.Die(explosion);
+                        }
+                        else if (entityType == EntityType.boss)
+                        {
+                            Boss boss = GetComponent<Boss>();
+                            boss.Die(explosion);
+                        }
+                        else
+                        {
+                            Player player = GetComponent<Player>();
+                            player.Die(explosion);
+                        }
                     }
-                    else if (entityType == EntityType.boss)
-                    {
-                        Boss boss = GetComponent<Boss>();
-                        boss.Die(explosion);
-                    }
-                    else
-                    {
-                        Player player = GetComponent<Player>();
-                        player.Die(explosion);
-                    }
+
+                    //implement something to show taking damage
+
+                    chipDamage = 0;
                 }
+            }
 
-                //implement something to show taking damage
-
-                chipDamage = 0;
+            if (shieldUnlocked)
+            {
+                StopAllCoroutines();
+                StartCoroutine(BreakShield());
             }
         }
-
-        if (shieldUnlocked)
-        {
-            StopCoroutine(BreakShield());
-            StopCoroutine(ActivateShield());
-            StartCoroutine(BreakShield());
-        }
+        
     }
 
     public void SetShield(bool shieldUnlocked)
@@ -205,7 +208,7 @@ public class HealthSystem : MonoBehaviour
         if (hasShield)
         {
             hasShield = false;
-            shieldModel.GetComponent<MeshRenderer>().enabled = false;
+            shieldModel.SetActive(false);
 
             //shield break SFX
         }
@@ -215,8 +218,9 @@ public class HealthSystem : MonoBehaviour
 
         while (timer < shieldCooldown)
         {
+            Debug.Log(timer);
             yield return null;
-            timer += Time.deltaTime;
+            timer += Time.deltaTime;       
         }
 
         StartCoroutine(ActivateShield());
@@ -224,10 +228,12 @@ public class HealthSystem : MonoBehaviour
 
     private IEnumerator ActivateShield()
     {
+        Debug.Log("ActivateShield Called");
+
         hasShield = true;
         Vector3 originScale = shieldModel.transform.localScale;
         shieldModel.transform.localScale = Vector3.zero;
-        shieldModel.GetComponent<MeshRenderer>().enabled = true;
+        shieldModel.SetActive(true);
         //shiled activation SFX
 
         float growtimer = 0f;
