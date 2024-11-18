@@ -118,7 +118,7 @@ MonoBehaviour:
   m_LoopMode: 3
   m_Method: 1
   m_Duration: 4.300048
-  m_MaxSpeed: 7.5
+  m_MaxSpeed: 5
   m_EasingMode: 0
   m_AlignmentMode: 1
   m_ObjectForwardAxis: 2
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e63450f13af2d54da3da6fd408dec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firerate: 0.5
+  firerate: 0.25
   damage: 1
   piercing: 1
   projectile: {fileID: 3615971726096595373, guid: 126c25fe8dc18b241bc5d48316634170,

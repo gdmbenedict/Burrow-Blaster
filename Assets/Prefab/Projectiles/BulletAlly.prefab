@@ -188,5 +188,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   piercing: 0
-  speed: 40
+  speed: 60
   direction: {x: 0, y: 0, z: 0}
