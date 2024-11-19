@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int piercing;
     [SerializeField] private float speed;
     [SerializeField] private Vector3 direction;
+    [SerializeField] private float checkTime = 0.05f;
 
     private Camera cam;
     private Plane[] cameraFrustem;
@@ -18,12 +19,13 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //set variables to their starting values
         collisions = 0;
-
         cam = Camera.main;
         collider = GetComponent<Collider>();
 
-        if (direction == null)
+        //if direction is not set, change direction to forward
+        if (direction == Vector3.zero)
         {
             SetDirection(Vector3.forward);
         }
@@ -32,6 +34,7 @@ public class Projectile : MonoBehaviour
             SetDirection(direction);
         }
 
+        //starting removal coroutine
         StartCoroutine(Removal());
     }
 
@@ -74,10 +77,9 @@ public class Projectile : MonoBehaviour
     //Function that makes the projectile rotate towards movement direction.
     public void SetDirection(Vector3 direction)
     {
-        this.direction = direction;
-        transform.LookAt(direction + transform.position);
-        transform.Rotate(0f, 0f, 0f);
-
+        //update direction & align to direction
+        this.direction = direction.normalized;
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
     //Function that acts as a timer to remove the instantiated projectile
@@ -85,16 +87,18 @@ public class Projectile : MonoBehaviour
     {
         while (true)
         {
+            //get camera view
             cameraFrustem = GeometryUtility.CalculateFrustumPlanes(cam);
-            bool detectedOnScreen = GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds);
 
-            if (!detectedOnScreen)
+            //check if bullet collider is in camera view
+            if (!GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds))
             {
                 //Debug.Log("Destroyed projectile cause off screen");
                 Destroy(gameObject);
             }
 
-            yield return null;
+            //delay next check (because check is computationaly expensive)
+            yield return new WaitForSeconds(checkTime);
         }
         
     }
