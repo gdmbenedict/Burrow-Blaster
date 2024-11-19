@@ -5,7 +5,6 @@ using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
-using static UnityEditor.PlayerSettings;
 
 public class PlayerMovement : MonoBehaviour
 {
