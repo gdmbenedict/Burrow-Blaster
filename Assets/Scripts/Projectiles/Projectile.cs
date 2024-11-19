@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 
@@ -9,21 +10,22 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int piercing;
     [SerializeField] private float speed;
     [SerializeField] private Vector3 direction;
+    [SerializeField] private float checkTime = 0.05f;
+    [SerializeField] private Collider collider;
 
     private Camera cam;
     private Plane[] cameraFrustem;
-    private Collider collider;
     int collisions;
 
     // Start is called before the first frame update
     void Awake()
     {
+        //set variables to 
         collisions = 0;
-
         cam = Camera.main;
-        collider = GetComponent<Collider>();
 
-        if (direction == null)
+        //Set direction of projectile (forward if direction is not set)
+        if (direction == Vector3.zero)
         {
             SetDirection(Vector3.forward);
         }
@@ -32,6 +34,7 @@ public class Projectile : MonoBehaviour
             SetDirection(direction);
         }
 
+        //start removal logic
         StartCoroutine(Removal());
     }
 
@@ -41,12 +44,14 @@ public class Projectile : MonoBehaviour
         transform.position += direction.normalized * speed * Time.deltaTime;
     }
 
+    // Accessor method that sets the stats of the projectile
     public void SetStats(int damage, int piercing)
     {
         this.damage = damage;
         this.piercing = piercing;
     }
 
+    // Go through hit logic
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Collision with " + other.gameObject.name);
@@ -74,9 +79,8 @@ public class Projectile : MonoBehaviour
     //Function that makes the projectile rotate towards movement direction.
     public void SetDirection(Vector3 direction)
     {
-        this.direction = direction;
-        transform.LookAt(direction + transform.position);
-        transform.Rotate(0f, 0f, 0f);
+        this.direction = direction.normalized;
+        transform.rotation = Quaternion.LookRotation(direction);
 
     }
 
@@ -85,16 +89,14 @@ public class Projectile : MonoBehaviour
     {
         while (true)
         {
-            cameraFrustem = GeometryUtility.CalculateFrustumPlanes(cam);
-            bool detectedOnScreen = GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds);
+            yield return new WaitForSeconds(checkTime); // Check every x seconds to reduce computation
 
-            if (!detectedOnScreen)
+            //check if projectile is outside of camera space
+            cameraFrustem = GeometryUtility.CalculateFrustumPlanes(cam);
+            if (!GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds))
             {
-                //Debug.Log("Destroyed projectile cause off screen");
                 Destroy(gameObject);
             }
-
-            yield return null;
         }
         
     }

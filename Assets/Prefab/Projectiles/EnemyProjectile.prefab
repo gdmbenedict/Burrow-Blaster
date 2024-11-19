@@ -108,6 +108,8 @@ MonoBehaviour:
   piercing: 0
   speed: 7.5
   direction: {x: 0, y: 0, z: 0}
+  checkTime: 0.05
+  collider: {fileID: 3393459233880336969}
 --- !u!1001 &7279013240041038830
 PrefabInstance:
   m_ObjectHideFlags: 0
