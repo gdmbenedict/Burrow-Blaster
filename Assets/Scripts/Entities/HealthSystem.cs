@@ -135,11 +135,7 @@ public class HealthSystem : MonoBehaviour
     //Function for healing damage taken by entity
     public void HealDamage(int healing)
     {
-        health += healing;
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        health = Mathf.Min(health + healing, maxHealth);
     }
 
     //Function that returns the current health of entity
