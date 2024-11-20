@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerVisualsManager : MonoBehaviour
 {
-
     [Header("Special Upgrades")]
     [SerializeField] private GameObject[] shieldVisuals;
     [SerializeField] private GameObject[] dodgeVisuals;
@@ -76,80 +75,79 @@ public class PlayerVisualsManager : MonoBehaviour
     [SerializeField] private GameObject[] healthVisuals4;
 
     private UpgradeManager upgradeManager;
+    private ShopManager shopManager;
 
     // Start is called before the first frame update
     void Start()
     {
         //get upgrade manager from scene
         upgradeManager = FindObjectOfType<UpgradeManager>();
+        UpdateModel();
+
+        //bind to UI Manager
+        shopManager = FindFirstObjectByType<ShopManager>();
+        if (shopManager != null)
+        {
+            shopManager.AddPlayerVisualsManager(this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Function that updates the player model to reflect upgrades
+    // Function that updates the player model to reflect upgrades (doesn't proc upgade tramsition)
     public void UpdateModel()
     {
-        //call each  visual update
+        //updates all visuals
+        UpdateDodgeVisuals(false);
+        UpdateShieldVisuals(false);
+        UpdateSideshotVisuals(false);
+        UpdateSuperLaserVisuals(false);
+        UpdateSpreadShotVisuals(false);
+        UpdateFireRateVisuals(false);
+        UpdateDamageVisuals(false);
+        UpdatePiercingVisuals(false);
+        UpdateCollectionVisuals(false);
+        UpdateMagnetVisuals(false);
+        UpdateMovementSpeedVisuals(false);
+        UpdateHealthVisuals(false);
     }
 
     // Function that updates the player model's dodge visuals
-    public void UpdateDodgeVisuals()
+    public void UpdateDodgeVisuals(bool transition)
     {
-        //turn off laser visual
-        foreach (GameObject visual in dodgeVisuals)
-        {
-            if (visual.activeSelf)
-            {
-                visual.SetActive(true);
-            }
-        }
-
-        //activate if laser unlocked
-        if (upgradeManager.GetDodge())
-        {
-            foreach (GameObject visual in dodgeVisuals)
-            {
-                visual.SetActive(true);
-            }
-        }
+        UpdateSpecialVisuals(upgradeManager.GetDodge(), dodgeVisuals, transition);
     }
 
     // Function that updates the player model's shield visuals
-    public void UpdateShieldVisuals()
+    public void UpdateShieldVisuals(bool transition)
     {
-        UpdateSpecialVisuals(upgradeManager.GetShield(), shieldVisuals);
+        UpdateSpecialVisuals(upgradeManager.GetShield(), shieldVisuals, transition);
     }
 
     // Function that updates the player model's side shot visuals
-    public void UpdateSideshotVisuals()
+    public void UpdateSideshotVisuals(bool transition)
     {
-        UpdateSpecialVisuals(upgradeManager.GetSideShots(), sideShotVisuals);
+        UpdateSpecialVisuals(upgradeManager.GetSideShots(), sideShotVisuals, transition);
     }
 
     // Function that updates the player model's super laser visuals
-    public void UpdateSuperLaserVisuals()
+    public void UpdateSuperLaserVisuals(bool transition)
     {
-        UpdateSpecialVisuals(upgradeManager.GetSuperLaser(), superLaserVisuals);
+        UpdateSpecialVisuals(upgradeManager.GetSuperLaser(), superLaserVisuals, transition);
     }
 
     // Function that updates the player model's spread shot visuals
-    public void UpdateSpreadShotVisuals()
+    public void UpdateSpreadShotVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetSpreadShotUpgradeLevel(), false, allSpreadShotVisuals);
+        UpdateVisualsFromList(upgradeManager.GetSpreadShotUpgradeLevel(), false, allSpreadShotVisuals, transition);
     }
 
     // Function that updates the player model's fire rate visuals
-    public void UpdateFireRateVisuals()
+    public void UpdateFireRateVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetFireRateUpgradeLevel(), true, allFireRateVisuals);
+        UpdateVisualsFromList(upgradeManager.GetFireRateUpgradeLevel(), true, allFireRateVisuals, transition);
     }
 
     // Function that updates the player model's piercing visuals
-    public void UpdatePiercingVisuals()
+    public void UpdatePiercingVisuals(bool transition)
     {
         float barrelYPos; //barrel Y pos holder
 
@@ -179,40 +177,46 @@ public class PlayerVisualsManager : MonoBehaviour
 
         //set position of gun barrel
         gunBarrel.transform.position = new Vector3(gunBarrel.transform.position.x, yPosPiercingVisual1, gunBarrel.transform.position.z);
+
+        //play transition effects
+        if (transition)
+        {
+            PlayTransitionEffects();
+        }
     }
 
     // Function that updates the player model's damage visuals
-    public void UpdateDamageVisuals()
+    public void UpdateDamageVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetDamageUpgradeLevel(), false, allSpeedVisuals);
+        UpdateVisualsFromList(upgradeManager.GetDamageUpgradeLevel(), false, allSpeedVisuals, transition);
     }
 
     // Function that updates the player model's movement speed visuals
-    public void UpdateMovementSpeedVisuals()
+    public void UpdateMovementSpeedVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetMovementSpeedUpgradeLevel(), false, allSpeedVisuals);
+        UpdateVisualsFromList(upgradeManager.GetMovementSpeedUpgradeLevel(), false, allSpeedVisuals, transition);
     }
 
     // Function that updates the player model's magnet visuals
-    public void UpdateMagnetVisuals()
+    public void UpdateMagnetVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetCollectionMultUpgradeLevel(), false, allMagnetVisuals);
+        UpdateVisualsFromList(upgradeManager.GetCollectionMultUpgradeLevel(), false, allMagnetVisuals, transition);
     }
 
     // Function that updates the player model's collection visuals
-    public void UpdateCollectionVisuals()
+    public void UpdateCollectionVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetCollectionMultUpgradeLevel(), true, allCollectionVisuals);
+        UpdateVisualsFromList(upgradeManager.GetCollectionMultUpgradeLevel(), true, allCollectionVisuals, transition);
     }
 
     // Function that updates the player model's health visuals
-    public void UpdateHealthVisuals()
+    public void UpdateHealthVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetMaxHealthUpgradeLevel(), true, allHealthVisuals);
+        UpdateVisualsFromList(upgradeManager.GetMaxHealthUpgradeLevel(), true, allHealthVisuals, transition);
     }
 
     //Function that updates the visuals for a special upgrade
-    private void UpdateSpecialVisuals(bool unlocked, GameObject[] visuals)
+    private void UpdateSpecialVisuals(bool unlocked, GameObject[] visuals, bool transition)
     {
         //turn off visual
         foreach (GameObject visual in visuals)
@@ -231,10 +235,16 @@ public class PlayerVisualsManager : MonoBehaviour
                 visual.SetActive(true);
             }
         }
+
+        //play transition effects
+        if (transition)
+        {
+            PlayTransitionEffects();
+        }
     }
 
     //Function that updates the visuals for a badger
-    private void UpdateVisualsFromList(int upgradeLevel, bool addative, List<GameObject[]> visualsList)
+    private void UpdateVisualsFromList(int upgradeLevel, bool addative, List<GameObject[]> visualsList, bool transition)
     {
         //Turn off visuals if visuals are on
         foreach (GameObject[] visuals in visualsList)
@@ -305,5 +315,16 @@ public class PlayerVisualsManager : MonoBehaviour
                     break;
             }
         }
+
+        //play transition effects
+        if (transition)
+        {
+            PlayTransitionEffects();
+        }
+    }
+
+    public void PlayTransitionEffects()
+    {
+        //TODO: implement transition effects
     }
 }

@@ -34,6 +34,7 @@ public class ShopManager : MonoBehaviour
     [Header("Upgrade Bar Images")]
     [SerializeField] private Sprite[] upgradeBarLevels;
 
+    private PlayerVisualsManager playerVisualsManager;
 
     // Start is called before the first frame update
     void Start()
@@ -117,6 +118,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    //function that updates all prices in shop
     public void UpdatePrices()
     {
         //looping through updating costs
@@ -153,6 +155,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    //function that updates the buttons and buton states in shop
     public void UpdateButtons()
     {
         int[] upgradeLevels = upgradeManager.GetAllUpgradeLevels();
@@ -190,72 +193,104 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    //Function that purchases an upgrade
     public void Purchase(int targetUpgrade)
     {
         switch (targetUpgrade)
         {
+            //Dodge
             case 0:
                 scrapManager.RemoveScrap(upgradePrices[0, upgradeManager.GetSpecialUppgradeLevel()]);
                 upgradeManager.SetDodge(true);
+                playerVisualsManager.UpdateDodgeVisuals(true);
                 break;
 
+            //Shield
             case 1:
                 scrapManager.RemoveScrap(upgradePrices[0, upgradeManager.GetSpecialUppgradeLevel()]);
                 upgradeManager.SetShield(true);
+                playerVisualsManager.UpdateShieldVisuals(true);
                 break;
-
+            
+            //Side Shots
             case 2:
                 scrapManager.RemoveScrap(upgradePrices[0, upgradeManager.GetSpecialUppgradeLevel()]);
                 upgradeManager.SetSideShots(true);
+                playerVisualsManager.UpdateSideshotVisuals(true);
                 break;
 
+            //Super Laser
             case 3:
                 scrapManager.RemoveScrap(upgradePrices[0, upgradeManager.GetSpecialUppgradeLevel()]);
                 upgradeManager.SetSuperLaser(true);
+                playerVisualsManager.UpdateSuperLaserVisuals(true);
                 break;
 
+            //Spread Shot
             case 4:
                 scrapManager.RemoveScrap(upgradePrices[1, upgradeManager.GetSpreadShotUpgradeLevel()]);
                 upgradeManager.UpgradeSpreadShot();
+                playerVisualsManager.UpdateSpreadShotVisuals(true);
                 break;
 
+            //Fire Rate
             case 5:
                 scrapManager.RemoveScrap(upgradePrices[2, upgradeManager.GetFireRateUpgradeLevel()]);
                 upgradeManager.UpgradeFireRate();
+                playerVisualsManager.UpdateFireRateVisuals(true);
                 break;
 
+            //Piercing
             case 6:
                 scrapManager.RemoveScrap(upgradePrices[3, upgradeManager.GetPiercingUpgradeLevel()]);
                 upgradeManager.UpgradePiercing();
+                playerVisualsManager.UpdatePiercingVisuals(true);
                 break;
 
+            //Damage
             case 7:
                 scrapManager.RemoveScrap(upgradePrices[4,upgradeManager.GetDamageUpgradeLevel()]);
                 upgradeManager.UpgradeDamage();
+                playerVisualsManager.UpdateDamageVisuals(true);
                 break;
 
+            //Movement Speed
             case 8:
                 scrapManager.RemoveScrap(upgradePrices[5, upgradeManager.GetMovementSpeedUpgradeLevel()]);
                 upgradeManager.UpgradeMovementSpeed();
+                playerVisualsManager.UpdateMovementSpeedVisuals(true);
                 break;
 
+            //Magnet Range
             case 9:
                 scrapManager.RemoveScrap(upgradePrices[6, upgradeManager.GetCollectionRangeUpgradeLevel()]);
                 upgradeManager.UpgradeCollectionRange();
+                playerVisualsManager.UpdateMagnetVisuals(true);
                 break;
 
+            //Collection Multiplier
             case 10:
                 scrapManager.RemoveScrap(upgradePrices[7, upgradeManager.GetCollectionMultUpgradeLevel()]);
                 upgradeManager.UpgradeCollectionMult();
+                playerVisualsManager.UpdateCollectionVisuals(true);
                 break;
 
+            //Max Health
             case 11:
                 scrapManager.RemoveScrap(upgradePrices[8, upgradeManager.GetMaxHealthUpgradeLevel()]);
                 upgradeManager.UpgradeMaxHealth();
+                playerVisualsManager.UpdateHealthVisuals(true);
                 break;
         }
 
+        //Update store to reflect changes
         UpdatePrices();
         UpdateButtons();
+    }
+
+    //Function that sets the player visuals manager to the shop
+    public void AddPlayerVisualsManager(PlayerVisualsManager pvm)
+    {
+        playerVisualsManager = pvm;
     }
 }
