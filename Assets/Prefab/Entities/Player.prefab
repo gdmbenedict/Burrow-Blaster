@@ -1366,14 +1366,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 3199210861880361681}
+  model: {fileID: 3199210861880361681}
   hitParticles: {fileID: 6718377332962087096}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
   maxHealth: 1
   invulnerabilityTime: 1
   flashingIntervals: 8
-  shieldModel: {fileID: 4693808710688071897}
+  shieldmodel: {fileID: 4693808710688071897}
   shieldCooldown: 5
   shieldTransition: 0.1
   hasShield: 1
@@ -1973,6 +1973,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6f18900f8c2325741a80438c6dffb2f4, type: 2}
+    - target: {fileID: -7484583587566343269, guid: 68fdea56068b1eb469baeca236e1f712,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7390213384597746713, guid: 68fdea56068b1eb469baeca236e1f712,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2408,6 +2413,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fc05dbf4de72a764b9078daf3f316081, type: 2}
+    - target: {fileID: 2068188977657449736, guid: 68fdea56068b1eb469baeca236e1f712,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2136700903892841979, guid: 68fdea56068b1eb469baeca236e1f712,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

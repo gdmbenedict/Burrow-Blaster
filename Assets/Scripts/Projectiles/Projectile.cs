@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 
@@ -10,21 +11,20 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Vector3 direction;
     [SerializeField] private float checkTime = 0.05f;
+    [SerializeField] private Collider collider;
 
     private Camera cam;
     private Plane[] cameraFrustem;
-    private Collider collider;
     int collisions;
 
     // Start is called before the first frame update
     void Awake()
     {
-        //set variables to their starting values
+        //set variables to 
         collisions = 0;
         cam = Camera.main;
-        collider = GetComponent<Collider>();
 
-        //if direction is not set, change direction to forward
+        //Set direction of projectile (forward if direction is not set)
         if (direction == Vector3.zero)
         {
             SetDirection(Vector3.forward);
@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
             SetDirection(direction);
         }
 
-        //starting removal coroutine
+        //start removal logic
         StartCoroutine(Removal());
     }
 
@@ -44,12 +44,14 @@ public class Projectile : MonoBehaviour
         transform.position += direction.normalized * speed * Time.deltaTime;
     }
 
+    // Accessor method that sets the stats of the projectile
     public void SetStats(int damage, int piercing)
     {
         this.damage = damage;
         this.piercing = piercing;
     }
 
+    // Go through hit logic
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Collision with " + other.gameObject.name);
@@ -77,9 +79,9 @@ public class Projectile : MonoBehaviour
     //Function that makes the projectile rotate towards movement direction.
     public void SetDirection(Vector3 direction)
     {
-        //update direction & align to direction
         this.direction = direction.normalized;
         transform.rotation = Quaternion.LookRotation(direction);
+
     }
 
     //Function that acts as a timer to remove the instantiated projectile
@@ -87,18 +89,14 @@ public class Projectile : MonoBehaviour
     {
         while (true)
         {
-            //get camera view
-            cameraFrustem = GeometryUtility.CalculateFrustumPlanes(cam);
+            yield return new WaitForSeconds(checkTime); // Check every x seconds to reduce computation
 
-            //check if bullet collider is in camera view
+            //check if projectile is outside of camera space
+            cameraFrustem = GeometryUtility.CalculateFrustumPlanes(cam);
             if (!GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds))
             {
-                //Debug.Log("Destroyed projectile cause off screen");
                 Destroy(gameObject);
             }
-
-            //delay next check (because check is computationaly expensive)
-            yield return new WaitForSeconds(checkTime);
         }
         
     }
