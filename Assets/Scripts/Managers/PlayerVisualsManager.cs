@@ -21,6 +21,7 @@ public class PlayerVisualsManager : MonoBehaviour
 
     [Header("FireRate Upgrades")]
     [SerializeField] private List<GameObject[]> allFireRateVisuals;
+    [SerializeField] private GameObject[] fireRateVisuals0;
     [SerializeField] private GameObject[] fireRateVisuals1;
     [SerializeField] private GameObject[] fireRateVisuals2;
     [SerializeField] private GameObject[] fireRateVisuals3;
@@ -52,6 +53,7 @@ public class PlayerVisualsManager : MonoBehaviour
 
     [Header("Magnet Upgrades")]
     [SerializeField] private List<GameObject[]> allMagnetVisuals;
+    [SerializeField] private GameObject[] magnetVisuals0;
     [SerializeField] private GameObject[] magnetVisuals1;
     [SerializeField] private GameObject[] magnetVisuals2;
     [SerializeField] private GameObject[] magnetVisuals3;
@@ -59,6 +61,7 @@ public class PlayerVisualsManager : MonoBehaviour
 
     [Header("Collection Upgrades")]
     [SerializeField] private List<GameObject[]> allCollectionVisuals;
+    [SerializeField] private GameObject[] collectionVisuals0;
     [SerializeField] private GameObject[] collectionVisuals1;
     [SerializeField] private GameObject[] collectionVisuals2;
     [SerializeField] private GameObject[] collectionVisuals3;
@@ -66,6 +69,7 @@ public class PlayerVisualsManager : MonoBehaviour
 
     [Header("Health Upgrades")]
     [SerializeField] private List<GameObject[]> allHealthVisuals;
+    [SerializeField] private GameObject[] healthVisuals0;
     [SerializeField] private GameObject[] healthVisuals1;
     [SerializeField] private GameObject[] healthVisuals2;
     [SerializeField] private GameObject[] healthVisuals3;
@@ -117,183 +121,31 @@ public class PlayerVisualsManager : MonoBehaviour
     // Function that updates the player model's shield visuals
     public void UpdateShieldVisuals()
     {
-        //turn off laser visual
-        foreach (GameObject visual in shieldVisuals)
-        {
-            if (visual.activeSelf)
-            {
-                visual.SetActive(true);
-            }
-        }
-
-        //activate if shield unlocked
-        if (upgradeManager.GetShield())
-        {
-            foreach (GameObject visual in shieldVisuals)
-            {
-                visual.SetActive(true);
-            }
-        }
+        UpdateSpecialVisuals(upgradeManager.GetShield(), shieldVisuals);
     }
 
     // Function that updates the player model's side shot visuals
     public void UpdateSideshotVisuals()
     {
-        //turn off side shots visual
-        foreach (GameObject visual in sideShotVisuals)
-        {
-            if (visual.activeSelf)
-            {
-                visual.SetActive(true);
-            }
-        }
-
-        //activate if sides shots are unlocked
-        if (upgradeManager.GetSideShots())
-        {
-            foreach (GameObject visual in sideShotVisuals)
-            {
-                visual.SetActive(true);
-            }
-        }
+        UpdateSpecialVisuals(upgradeManager.GetSideShots(), sideShotVisuals);
     }
 
     // Function that updates the player model's super laser visuals
     public void UpdateSuperLaserVisuals()
     {
-        //turn off laser visual
-        foreach (GameObject visual in superLaserVisuals)
-        {
-            if (visual.activeSelf)
-            {
-                visual.SetActive(true);
-            }    
-        }
-
-        //activate if laser unlocked
-        if (upgradeManager.GetSuperLaser())
-        {
-            foreach (GameObject visual in superLaserVisuals)
-            {
-                visual.SetActive(true);
-            }
-        }
+        UpdateSpecialVisuals(upgradeManager.GetSuperLaser(), superLaserVisuals);
     }
 
     // Function that updates the player model's spread shot visuals
     public void UpdateSpreadShotVisuals()
     {
-        //Turn off visuals if visuals are on
-        foreach (GameObject[] visuals in allSpreadShotVisuals)
-        {
-            foreach (GameObject visual in visuals)
-            {
-                if (visual.activeSelf)
-                {
-                    visual.SetActive(false);
-                }
-            }
-        }
-
-        //determine which version of the spread shot visual to use
-        switch (upgradeManager.GetSpreadShotUpgradeLevel())
-        {
-            //level 1
-            case 1:
-                foreach (GameObject visual in spreadShotVisuals1)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 2
-            case 2:
-                foreach (GameObject visual in spreadShotVisuals2)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 3
-            case 3:
-                foreach (GameObject visual in spreadShotVisuals3)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 4
-            case 4:
-                foreach (GameObject visual in spreadShotVisuals4)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 0
-            default:
-                foreach (GameObject visual in spreadShotVisuals0)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-        }
+        UpdateVisualsFromList(upgradeManager.GetSpreadShotUpgradeLevel(), false, allSpreadShotVisuals);
     }
 
     // Function that updates the player model's fire rate visuals
     public void UpdateFireRateVisuals()
     {
-        //Turn off visuals if visuals are on
-        foreach (GameObject[] visuals in allFireRateVisuals)
-        {
-            foreach (GameObject visual in visuals)
-            {
-                if (visual.activeSelf)
-                {
-                    visual.SetActive(false);
-                }
-            }
-        }
-
-        //determine which version of the fire rate visual to use
-        switch (upgradeManager.GetFireRateUpgradeLevel())
-        {
-            //level 1
-            case 1:
-                foreach (GameObject visual in fireRateVisuals1)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 2
-            case 2:
-                foreach (GameObject visual in fireRateVisuals2)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 3
-            case 3:
-                foreach (GameObject visual in fireRateVisuals3)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 4
-            case 4:
-                foreach (GameObject visual in fireRateVisuals4)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 0
-            default:
-                break;
-        }
+        UpdateVisualsFromList(upgradeManager.GetFireRateUpgradeLevel(), true, allFireRateVisuals);
     }
 
     // Function that updates the player model's piercing visuals
@@ -332,240 +184,60 @@ public class PlayerVisualsManager : MonoBehaviour
     // Function that updates the player model's damage visuals
     public void UpdateDamageVisuals()
     {
-        //Turn off visuals if visuals are on
-        foreach (GameObject[] visuals in allDamageVisuals)
-        {
-            foreach (GameObject visual in visuals)
-            {
-                if (visual.activeSelf)
-                {
-                    visual.SetActive(false);
-                }
-            }
-        }
-
-        //determine which version of the damage visual to use
-        switch (upgradeManager.GetDamageUpgradeLevel())
-        {
-            //level 1
-            case 1:
-                foreach (GameObject visual in damageVisuals1)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 2
-            case 2:
-                foreach (GameObject visual in damageVisuals2)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 3
-            case 3:
-                foreach (GameObject visual in damageVisuals3)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 4
-            case 4:
-                foreach (GameObject visual in damageVisuals4)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 0
-            default:
-                foreach (GameObject visual in damageVisuals0)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-        }
+        UpdateVisualsFromList(upgradeManager.GetDamageUpgradeLevel(), false, allSpeedVisuals);
     }
 
     // Function that updates the player model's movement speed visuals
     public void UpdateMovementSpeedVisuals()
     {
-        //Turn off visuals if visuals are on
-        foreach (GameObject[] visuals in allSpeedVisuals)
-        {
-            foreach (GameObject visual in visuals)
-            {
-                if (visual.activeSelf)
-                {
-                    visual.SetActive(false);
-                }
-            }
-        }
-
-        //determine which version of the movement speed visual to use
-        switch (upgradeManager.GetMovementSpeedUpgradeLevel())
-        {
-            //level 1
-            case 1:
-                foreach (GameObject visual in speedVisuals1)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 2
-            case 2:
-                foreach (GameObject visual in speedVisuals2)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 3
-            case 3:
-                foreach (GameObject visual in speedVisuals3)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 4
-            case 4:
-                foreach (GameObject visual in speedVisuals4)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 0
-            default:
-                foreach (GameObject visual in speedVisuals0)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-        }
+        UpdateVisualsFromList(upgradeManager.GetMovementSpeedUpgradeLevel(), false, allSpeedVisuals);
     }
 
     // Function that updates the player model's magnet visuals
     public void UpdateMagnetVisuals()
     {
-        //Turn off visuals if visuals are on
-        foreach (GameObject[] visuals in allMagnetVisuals)
-        {
-            foreach (GameObject visual in visuals)
-            {
-                if (visual.activeSelf)
-                {
-                    visual.SetActive(false);
-                }
-            }
-        }
-
-        //determine which version of the magnet visual to use
-        switch (upgradeManager.GetCollectionRangeUpgradeLevel())
-        {
-            //level 1
-            case 1:
-                foreach (GameObject visual in magnetVisuals1)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 2
-            case 2:
-                foreach (GameObject visual in magnetVisuals2)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 3
-            case 3:
-                foreach (GameObject visual in magnetVisuals3)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 4
-            case 4:
-                foreach (GameObject visual in magnetVisuals4)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 0
-            default:
-                break;
-        }
+        UpdateVisualsFromList(upgradeManager.GetCollectionMultUpgradeLevel(), false, allMagnetVisuals);
     }
 
     // Function that updates the player model's collection visuals
     public void UpdateCollectionVisuals()
     {
-        //Turn off visuals if visuals are on
-        foreach (GameObject[] visuals in allCollectionVisuals)
-        {
-            foreach (GameObject visual in visuals)
-            {
-                if (visual.activeSelf)
-                {
-                    visual.SetActive(false);
-                }
-            }
-        }
-
-        //determine which version of the collection visual to use
-        switch (upgradeManager.GetCollectionMultUpgradeLevel())
-        {
-            //level 1
-            case 1:
-                foreach (GameObject visual in collectionVisuals1)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 2
-            case 2:
-                foreach (GameObject visual in collectionVisuals2)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 3
-            case 3:
-                foreach (GameObject visual in collectionVisuals3)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 4
-            case 4:
-                foreach (GameObject visual in collectionVisuals4)
-                {
-                    visual.SetActive(true);
-                }
-                break;
-
-            //level 0
-            default:
-                break;
-        }
+        UpdateVisualsFromList(upgradeManager.GetCollectionMultUpgradeLevel(), true, allCollectionVisuals);
     }
 
     // Function that updates the player model's health visuals
     public void UpdateHealthVisuals()
     {
+        UpdateVisualsFromList(upgradeManager.GetMaxHealthUpgradeLevel(), true, allHealthVisuals);
+    }
+
+    //Function that updates the visuals for a special upgrade
+    private void UpdateSpecialVisuals(bool unlocked, GameObject[] visuals)
+    {
+        //turn off visual
+        foreach (GameObject visual in visuals)
+        {
+            if (visual.activeSelf)
+            {
+                visual.SetActive(true);
+            }
+        }
+
+        //activate if special upgrade unlocked
+        if (unlocked)
+        {
+            foreach (GameObject visual in visuals)
+            {
+                visual.SetActive(true);
+            }
+        }
+    }
+
+    //Function that updates the visuals for a badger
+    private void UpdateVisualsFromList(int upgradeLevel, bool addative, List<GameObject[]> visualsList)
+    {
         //Turn off visuals if visuals are on
-        foreach (GameObject[] visuals in allHealthVisuals)
+        foreach (GameObject[] visuals in visualsList)
         {
             foreach (GameObject visual in visuals)
             {
@@ -576,44 +248,62 @@ public class PlayerVisualsManager : MonoBehaviour
             }
         }
 
-        //determine which version of the collection health to use
-        switch (upgradeManager.GetMaxHealthUpgradeLevel())
+        //Determine which types of visual it is (addative or replacing)
+        if (addative)
         {
-            //level 1
-            case 1:
-                foreach (GameObject visual in healthVisuals1)
+            for (int i=0; i<upgradeLevel+1; i++)
+            {
+                foreach (GameObject visual in visualsList[i])
                 {
                     visual.SetActive(true);
                 }
-                break;
+            }
+        }
+        else
+        {
+            //determine which version of the collection health to use
+            switch (upgradeLevel)
+            {
+                //level 1
+                case 1:
+                    foreach (GameObject visual in visualsList[1])
+                    {
+                        visual.SetActive(true);
+                    }
+                    break;
 
-            //level 2
-            case 2:
-                foreach (GameObject visual in healthVisuals2)
-                {
-                    visual.SetActive(true);
-                }
-                break;
+                //level 2
+                case 2:
+                    foreach (GameObject visual in visualsList[2])
+                    {
+                        visual.SetActive(true);
+                    }
+                    break;
 
-            //level 3
-            case 3:
-                foreach (GameObject visual in healthVisuals3)
-                {
-                    visual.SetActive(true);
-                }
-                break;
+                //level 3
+                case 3:
+                    foreach (GameObject visual in visualsList[3])
+                    {
+                        visual.SetActive(true);
+                    }
+                    break;
 
-            //level 4
-            case 4:
-                foreach (GameObject visual in healthVisuals4)
-                {
-                    visual.SetActive(true);
-                }
-                break;
+                //level 4
+                case 4:
+                    foreach (GameObject visual in visualsList[4])
+                    {
+                        visual.SetActive(true);
+                    }
+                    break;
 
-            //level 0
-            default:
-                break;
+                //level 0 or wrong level
+                default:
+                    foreach (GameObject visual in visualsList[0])
+                    {
+                        visual.SetActive(true);
+                    }
+                    break;
+            }
         }
     }
 }
