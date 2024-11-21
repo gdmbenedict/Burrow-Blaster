@@ -201,3 +201,4 @@ MonoBehaviour:
   speed: 40
   direction: {x: 0, y: 0, z: 0}
   checkTime: 0.05
+  collider: {fileID: 7354989258636305832}
