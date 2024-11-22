@@ -38,8 +38,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         GrabReferences();
-        SetReferences();
         SetupPlayer();
+        SetReferences();
     }
 
     // Update is called once per frame
@@ -57,7 +57,9 @@ public class Player : MonoBehaviour
 
     private void SetReferences()
     {
+        //set to UI manager and set up health visual
         uiManager.player = this;
+        uiManager.SetupPlayerHealthVisual();
     }
 
     private void SetupPlayer()

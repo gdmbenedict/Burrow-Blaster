@@ -1456,6 +1456,7 @@ MonoBehaviour:
     m_Bits: 256
   collectionRange: 5
   attractionSpeed: 25
+  playerCenter: {fileID: 7265536132540634613}
 --- !u!114 &4588256245597097183
 MonoBehaviour:
   m_ObjectHideFlags: 0
