@@ -11,20 +11,20 @@ public class PlayerVisualsManager : MonoBehaviour
     [SerializeField] private GameObject[] superLaserVisuals;
 
     [Header("Spreadshot Upgrades")]
-    [SerializeField] private List<GameObject[]> allSpreadShotVisuals;
     [SerializeField] private GameObject[] spreadShotVisuals0;
     [SerializeField] private GameObject[] spreadShotVisuals1;
     [SerializeField] private GameObject[] spreadShotVisuals2;
     [SerializeField] private GameObject[] spreadShotVisuals3;
     [SerializeField] private GameObject[] spreadShotVisuals4;
+    private List<GameObject[]> allSpreadShotVisuals;
 
     [Header("FireRate Upgrades")]
-    [SerializeField] private List<GameObject[]> allFireRateVisuals;
     [SerializeField] private GameObject[] fireRateVisuals0;
     [SerializeField] private GameObject[] fireRateVisuals1;
     [SerializeField] private GameObject[] fireRateVisuals2;
     [SerializeField] private GameObject[] fireRateVisuals3;
     [SerializeField] private GameObject[] fireRateVisuals4;
+    private List<GameObject[]> allFireRateVisuals;
 
     [Header("Piercing Upgrades")]
     [SerializeField] private GameObject gunBarrel;
@@ -35,44 +35,44 @@ public class PlayerVisualsManager : MonoBehaviour
     [SerializeField] private float yPosPiercingVisual4;
 
     [Header("Damage Upgrades")]
-    [SerializeField] private List<GameObject[]> allDamageVisuals;
     [SerializeField] private GameObject[] damageVisuals0;
     [SerializeField] private GameObject[] damageVisuals1;
     [SerializeField] private GameObject[] damageVisuals2;
     [SerializeField] private GameObject[] damageVisuals3;
     [SerializeField] private GameObject[] damageVisuals4;
+    private List<GameObject[]> allDamageVisuals;
 
     [Header("Speed Upgrades")]
-    [SerializeField] private List<GameObject[]> allSpeedVisuals;
     [SerializeField] private GameObject[] speedVisuals0;
     [SerializeField] private GameObject[] speedVisuals1;
     [SerializeField] private GameObject[] speedVisuals2;
     [SerializeField] private GameObject[] speedVisuals3;
     [SerializeField] private GameObject[] speedVisuals4;
+    private List<GameObject[]> allSpeedVisuals;
 
     [Header("Magnet Upgrades")]
-    [SerializeField] private List<GameObject[]> allMagnetVisuals;
     [SerializeField] private GameObject[] magnetVisuals0;
     [SerializeField] private GameObject[] magnetVisuals1;
     [SerializeField] private GameObject[] magnetVisuals2;
     [SerializeField] private GameObject[] magnetVisuals3;
     [SerializeField] private GameObject[] magnetVisuals4;
+    private List<GameObject[]> allMagnetVisuals;
 
     [Header("Collection Upgrades")]
-    [SerializeField] private List<GameObject[]> allCollectionVisuals;
     [SerializeField] private GameObject[] collectionVisuals0;
     [SerializeField] private GameObject[] collectionVisuals1;
     [SerializeField] private GameObject[] collectionVisuals2;
     [SerializeField] private GameObject[] collectionVisuals3;
     [SerializeField] private GameObject[] collectionVisuals4;
+    private List<GameObject[]> allCollectionVisuals;
 
     [Header("Health Upgrades")]
-    [SerializeField] private List<GameObject[]> allHealthVisuals;
     [SerializeField] private GameObject[] healthVisuals0;
     [SerializeField] private GameObject[] healthVisuals1;
     [SerializeField] private GameObject[] healthVisuals2;
     [SerializeField] private GameObject[] healthVisuals3;
     [SerializeField] private GameObject[] healthVisuals4;
+    private List<GameObject[]> allHealthVisuals;
 
     private UpgradeManager upgradeManager;
     private ShopManager shopManager;
@@ -80,6 +80,9 @@ public class PlayerVisualsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //populate the all lists
+        PopulateAllLists();
+
         //get upgrade manager from scene
         upgradeManager = FindObjectOfType<UpgradeManager>();
         UpdateModel();
@@ -151,6 +154,7 @@ public class PlayerVisualsManager : MonoBehaviour
     {
         float barrelYPos; //barrel Y pos holder
 
+        Debug.Log(upgradeManager.GetPiercingUpgradeLevel());
         //determine legnth of barrel
         switch (upgradeManager.GetPiercingUpgradeLevel())
         {
@@ -176,7 +180,7 @@ public class PlayerVisualsManager : MonoBehaviour
         }
 
         //set position of gun barrel
-        gunBarrel.transform.position = new Vector3(gunBarrel.transform.position.x, yPosPiercingVisual1, gunBarrel.transform.position.z);
+        gunBarrel.transform.localPosition = new Vector3(gunBarrel.transform.localPosition.x, barrelYPos, gunBarrel.transform.localPosition.z);
 
         //play transition effects
         if (transition)
@@ -188,7 +192,7 @@ public class PlayerVisualsManager : MonoBehaviour
     // Function that updates the player model's damage visuals
     public void UpdateDamageVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetDamageUpgradeLevel(), false, allSpeedVisuals, transition);
+        UpdateVisualsFromList(upgradeManager.GetDamageUpgradeLevel(), false, allDamageVisuals, transition);
     }
 
     // Function that updates the player model's movement speed visuals
@@ -200,7 +204,7 @@ public class PlayerVisualsManager : MonoBehaviour
     // Function that updates the player model's magnet visuals
     public void UpdateMagnetVisuals(bool transition)
     {
-        UpdateVisualsFromList(upgradeManager.GetCollectionMultUpgradeLevel(), false, allMagnetVisuals, transition);
+        UpdateVisualsFromList(upgradeManager.GetCollectionRangeUpgradeLevel(), false, allMagnetVisuals, transition);
     }
 
     // Function that updates the player model's collection visuals
@@ -223,7 +227,7 @@ public class PlayerVisualsManager : MonoBehaviour
         {
             if (visual.activeSelf)
             {
-                visual.SetActive(true);
+                visual.SetActive(false);
             }
         }
 
@@ -326,5 +330,17 @@ public class PlayerVisualsManager : MonoBehaviour
     public void PlayTransitionEffects()
     {
         //TODO: implement transition effects
+    }
+
+    //function that populates the all lists
+    private void PopulateAllLists()
+    {
+        allSpreadShotVisuals = new List<GameObject[]> {spreadShotVisuals0, spreadShotVisuals1, spreadShotVisuals1, spreadShotVisuals2, spreadShotVisuals3, spreadShotVisuals4 };
+        allFireRateVisuals = new List<GameObject[]> { fireRateVisuals0, fireRateVisuals1, fireRateVisuals2, fireRateVisuals3, fireRateVisuals4 };
+        allDamageVisuals = new List<GameObject[]> { damageVisuals0, damageVisuals1, damageVisuals2, damageVisuals3, damageVisuals4 };
+        allMagnetVisuals = new List<GameObject[]> { magnetVisuals0, magnetVisuals1, magnetVisuals2, magnetVisuals3, magnetVisuals4 };
+        allCollectionVisuals = new List<GameObject[]> { collectionVisuals0, collectionVisuals1, collectionVisuals2, collectionVisuals3, collectionVisuals4 };
+        allSpeedVisuals = new List<GameObject[]> { speedVisuals0, speedVisuals1, speedVisuals2, speedVisuals3, speedVisuals4 };
+        allHealthVisuals = new List<GameObject[]> { healthVisuals0, healthVisuals1, healthVisuals2, healthVisuals3, healthVisuals4 };
     }
 }
