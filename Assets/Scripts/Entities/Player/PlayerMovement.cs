@@ -162,38 +162,44 @@ public class PlayerMovement : MonoBehaviour
         if (projectedZPos >= topBorderPos && inputDir.z > 0 || projectedZPos <= bottomBorderPos && inputDir.z < 0)
         {
             movementAllow.z = 0;
-        }    
+        }
+
+        //Debug.Log("before boxcast");
 
         //use Boxcast to detect collisions with obstacles
         if (Physics.BoxCast(playerPos.position, detectionBoxSize, inputDir, out RaycastHit hitInfo, Quaternion.identity, projectedMovementLength, collisionsLayers, QueryTriggerInteraction.Ignore))
         {
 
-            Debug.Log("collision detected");
+            //Debug.Log("collision detected");
             Vector3 obstaclePos = hitInfo.collider.transform.position;
 
             float zDifference = obstaclePos.z - playerPos.position.z;
             float xDifference = obstaclePos.x - playerPos.position.x;
 
+            //Debug.Log(hitInfo.collider.tag);
+            //Debug.Log("Z input:" + inputDir.z + "\tZ difference:" + zDifference);
+            //Debug.Log("X input:" + inputDir.x + "\tX difference:" + xDifference);
+
             if (hitInfo.collider.tag == "Obstacles")
             {
                 if (zDifference > 0 && inputDir.z > 0)
                 {
-                    Debug.Log("Detecting top collision");
+                    //Debug.Log("Detecting top collision");
                     movementAllow.z = 0;
                 }
                 if (zDifference < 0 && inputDir.z < 0)
                 {
-                    Debug.Log("Detecting bottom collision");
+                    //Debug.Log("Detecting bottom collision");
                     movementAllow.z = 0;
                 }
                 if (xDifference > 0 && inputDir.x > 0)
                 {
-                    Debug.Log("Detecting right collision");
+                    //Debug.Log("Detecting right collision");
                     movementAllow.x = 0;
                 }
                 if (xDifference < 0 && inputDir.x < 0)
                 {
-                    Debug.Log("Detecting left collision");
+                    //Debug.Log("Detecting left collision");
                     movementAllow.x = 0;
                 }
             }
@@ -201,12 +207,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (xDifference > 0 && inputDir.x > 0)
                 {
-                    Debug.Log("Detecting right collision");
+                    //Debug.Log("Detecting right collision");
                     movementAllow.x = 0;
                 }
                 if (xDifference < 0 && inputDir.x < 0)
                 {
-                    Debug.Log("Detecting left collision");
+                    //Debug.Log("Detecting left collision");
                     movementAllow.x = 0;
                 }
             }

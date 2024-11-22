@@ -154,7 +154,7 @@ public class PlayerVisualsManager : MonoBehaviour
     {
         float barrelYPos; //barrel Y pos holder
 
-        Debug.Log(upgradeManager.GetPiercingUpgradeLevel());
+        //Debug.Log(upgradeManager.GetPiercingUpgradeLevel());
         //determine legnth of barrel
         switch (upgradeManager.GetPiercingUpgradeLevel())
         {

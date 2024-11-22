@@ -21,7 +21,7 @@ public class CollisionDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision Detected: " + collision.gameObject.name);
+        //Debug.Log("Collision Detected: " + collision.gameObject.name);
 
         Collider other = collision.collider;
 

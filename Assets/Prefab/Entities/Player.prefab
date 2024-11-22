@@ -1309,7 +1309,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Size: {x: 0.75, y: 1, z: 1.5}
   m_Center: {x: 0.5, y: 0, z: 1}
 --- !u!114 &7774686900108604389
 MonoBehaviour:
@@ -1326,7 +1326,7 @@ MonoBehaviour:
   collisionsLayers:
     serializedVersion: 2
     m_Bits: 3072
-  detectionBoxSize: {x: 0.5, y: 0.25, z: 0.5}
+  detectionBoxSize: {x: 0.75, y: 1, z: 1.5}
   playerPos: {fileID: 7265536132540634613}
   moveSpeed: 10
   screenTopBuffer: 2.5
