@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prefab/UI/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 62865b6d37bae2145b88055ac4a9cd51
   - enabled: 1
-    path: Assets/Prefab/UI/Scenes/Upgrades.unity
+    path: Assets/Scenes/Upgrades.unity
     guid: ecb91aa5d07a1734f99eb09e32a4a358
   - enabled: 1
-    path: Assets/Prefab/UI/Scenes/Gameplay.unity
+    path: Assets/Scenes/Gameplay.unity
     guid: deefec4b761c17544af77eae266f9cc3
   m_configObjects: {}

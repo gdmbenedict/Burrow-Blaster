@@ -167,7 +167,8 @@ public class PlayerMovement : MonoBehaviour
         //use Boxcast to detect collisions with obstacles
         if (Physics.BoxCast(playerPos.position, detectionBoxSize, inputDir, out RaycastHit hitInfo, Quaternion.identity, projectedMovementLength, collisionsLayers, QueryTriggerInteraction.Ignore))
         {
-            
+
+            Debug.Log("collision detected");
             Vector3 obstaclePos = hitInfo.collider.transform.position;
 
             float zDifference = obstaclePos.z - playerPos.position.z;
