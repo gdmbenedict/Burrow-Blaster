@@ -283,7 +283,7 @@ public class UIManager : MonoBehaviour
         //place health blockers
         for (int i = healthBlockers.Length; i>missinghealthBlockers; i--)
         {
-            Debug.Log(i-1);
+            //Debug.Log(i-1);
             healthBlockers[i-1].SetActive(true);
         }
 
@@ -294,7 +294,7 @@ public class UIManager : MonoBehaviour
     //Function that updates the visual for playerhealth
     private void UpdatePlayerHealthVisual()
     {
-        Debug.Log(player.playerHealth.GetHealth());
+        //Debug.Log(player.playerHealth.GetHealth());
 
         //check if current player health matches health state visual and update if it does not
         if (!playerHealthStates[player.playerHealth.GetHealth()].activeSelf)
@@ -304,9 +304,9 @@ public class UIManager : MonoBehaviour
                 playerHealthStates[player.playerHealth.GetHealth() + 1].SetActive(false);
             }
 
-            Debug.Log(playerHealthStates[player.playerHealth.GetHealth()].activeSelf);
+            //Debug.Log(playerHealthStates[player.playerHealth.GetHealth()].activeSelf);
             playerHealthStates[player.playerHealth.GetHealth()].SetActive(true);
-            Debug.Log(playerHealthStates[player.playerHealth.GetHealth()].activeSelf);
+            //Debug.Log(playerHealthStates[player.playerHealth.GetHealth()].activeSelf);
         }
     }
 }
