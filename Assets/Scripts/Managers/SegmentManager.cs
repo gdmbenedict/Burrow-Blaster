@@ -38,12 +38,12 @@ public class SegmentManager : MonoBehaviour
         {
             //check distance from player camera
             distancefromPlayer = Mathf.Abs(segments[i].position.z - cam.transform.position.z);
-            Debug.Log(distancefromPlayer);
+            //Debug.Log(distancefromPlayer);
 
             //load if close enough and unloaded
             if (distancefromPlayer <= distance && !segments[i].loaded)
             {
-                Debug.Log("Calling load segment");
+                //Debug.Log("Calling load segment");
                 StartCoroutine(LoadSegment(segments[i]));
                 segments[i].loaded = true;
             }

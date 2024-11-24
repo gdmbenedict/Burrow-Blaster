@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
     private void SetupPlayer()
     {
-        Debug.Log("Setting player values");
+        //Debug.Log("Setting player values");
 
         //make player active
         model.SetActive(true);
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        Debug.Log(upgradeManager.GetSideShots());
+        //Debug.Log(upgradeManager.GetSideShots());
 
         //Setting up sideshots
         if (sideShot != null && upgradeManager.GetSideShots())
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
             sideShot.SetWeaponStats(upgradeManager.GetFireRate(), upgradeManager.GetDamage(), upgradeManager.GetPiercing());
             sideShot.SetProjectileOffset(sideShotOffset);
 
-            Debug.Log("Getting to switch statement");
+            //Debug.Log("Getting to switch statement");
 
             //setting blaster muzzle positions
             switch (upgradeManager.GetSpreadShot())
@@ -186,14 +186,14 @@ public class Player : MonoBehaviour
                     break;
             }
 
-            Debug.Log(sideShot.GetMuzzles());
+            //sDebug.Log(sideShot.GetMuzzles());
         }
         else if (sideShot != null)
         {
             sideShot.Disable();
         }
 
-        Debug.Log(upgradeManager.GetSuperLaser());
+        //Debug.Log(upgradeManager.GetSuperLaser());
         if (superLaser != null && upgradeManager.GetSuperLaser())
         {
             superLaser.enabled = true;
