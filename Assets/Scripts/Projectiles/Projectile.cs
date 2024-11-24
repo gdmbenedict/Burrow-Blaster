@@ -56,8 +56,10 @@ public class Projectile : MonoBehaviour
     {
         //Debug.Log("Collision with " + other.gameObject.name);
 
+        //detect if entity has health to target
         HealthSystem target = other.GetComponent<HealthSystem>();
 
+        //damage health
         if (target != null)
         {
             target.TakeDamage(damage);
@@ -97,9 +99,7 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-        }
-        
+        } 
     }
-
 
 }

@@ -39,11 +39,23 @@ public class HealthSystem : MonoBehaviour
 
     [Header("Entity Type")]
     [SerializeField] private EntityType entityType; //enum that determines the type of entity the health system is attached to
-    
+
+    [Header("SFX")]
+    [SerializeField] private AudioRandomizer audioRandomizer;
+    [SerializeField] private AudioSource shieldSource;
+    [SerializeField] private AudioClip hit;
+    [SerializeField] private AudioClip hitShield;
+    [SerializeField] private AudioClip shieldBreak;
+    [SerializeField] private AudioClip shieldRestore;
+
+    private SFXManager sfxManager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        sfxManager = FindObjectOfType<SFXManager>();
+        sfxManager.gameplayAudioSources.Add(shieldSource);
+
         health = maxHealth;
         canTakeDamage = true;
     }
@@ -69,15 +81,24 @@ public class HealthSystem : MonoBehaviour
             //playing particle hit effect
             hitParticles.Play();
 
-            //start invulneravility period
-            if (invulnerabilityTime > 0)
-            {
-                StartCoroutine(Invulnerability());
-            }
+            //hit effect
+            audioRandomizer.Play(hit);
+
+        }
+        else
+        {
+            //hit shield sfx
+            audioRandomizer.Play(hitShield);
         }
 
         //Handle shield functions
         HandleShield();
+
+        //start invulneravility period
+        if (invulnerabilityTime > 0)
+        {
+            StartCoroutine(Invulnerability());
+        }
     }
 
     //Function to handle damage that is repeted over time
@@ -103,8 +124,16 @@ public class HealthSystem : MonoBehaviour
                 //playing particle hit effect
                 hitParticles.Play();
 
+                //hit effect
+                audioRandomizer.Play(hit);
+
                 chipDamage = 0;
             }
+        }
+        else
+        {
+            //hit shield sfx
+            audioRandomizer.Play(hitShield);
         }
 
         //Handle shield functions
@@ -211,7 +240,9 @@ public class HealthSystem : MonoBehaviour
         {
             hasShield = false;
             shieldmodel.SetActive(false);
-            //shield break SFX
+
+            //shield break sfx
+            shieldSource.PlayOneShot(shieldBreak);
         }
 
         //reset shield cooldown timer
@@ -237,7 +268,8 @@ public class HealthSystem : MonoBehaviour
         shieldmodel.SetActive(true);
         float growtimer = 0f;
 
-        //shieled activation SFX here
+        //shield restore sfx
+        shieldSource.PlayOneShot(shieldRestore);
 
         //looping thorugh transition time.
         while (growtimer < shieldTransition)
@@ -272,5 +304,10 @@ public class HealthSystem : MonoBehaviour
         //return entity to normal conditions
         canTakeDamage = true;
         model.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        sfxManager.gameplayAudioSources.Remove(shieldSource);
     }
 }
