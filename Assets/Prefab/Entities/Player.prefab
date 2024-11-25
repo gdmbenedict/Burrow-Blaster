@@ -214,6 +214,8 @@ MonoBehaviour:
   firerate: 4
   damage: 10
   piercing: 0
+  firingAudio: {fileID: 0}
+  playerWeapon: 0
   projectile: {fileID: 3732428651881612599, guid: 2a4c124efbd84814ba17a3a5d44c25a6,
     type: 3}
   muzzlePositions: []
@@ -466,6 +468,8 @@ MonoBehaviour:
   firerate: 0.15
   damage: 100
   piercing: 1
+  firingAudio: {fileID: 0}
+  playerWeapon: 0
   projectile: {fileID: 0}
   muzzlePositions: []
   projectileDirections: []
@@ -1709,6 +1713,8 @@ MonoBehaviour:
   firerate: 4
   damage: 10
   piercing: 0
+  firingAudio: {fileID: 8300000, guid: 43021751d587bc44aa89f7a36466f692, type: 3}
+  playerWeapon: 1
   projectile: {fileID: 3732428651881612599, guid: 2a4c124efbd84814ba17a3a5d44c25a6,
     type: 3}
   muzzlePositions: []

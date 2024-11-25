@@ -308,6 +308,8 @@ MonoBehaviour:
   firerate: 1
   damage: 2
   piercing: 1
+  firingAudio: {fileID: 8300000, guid: 8fd78966d709eac47afa5ba79ba5f218, type: 3}
+  playerWeapon: 0
   projectile: {fileID: 3615971726096595373, guid: adee3357de31c7143b7b7bb8d8bb833d,
     type: 3}
   muzzlePositions:

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Weapon Characteristics")] 
+    [Header("Weapon Characteristics")]
     [SerializeField] private float firerate;
     [SerializeField] private float damage;
     [SerializeField] private int piercing;
+    [SerializeField] private AudioClip firingAudio;
+    [SerializeField] private bool playerWeapon;
 
     [Header("Projectiles")]
     [SerializeField] private GameObject projectile;
@@ -32,10 +34,13 @@ public class Weapon : MonoBehaviour
     private int laserScaleIncrement;
     private bool weaponSet = false;
     private bool disabled = false;
+    private SFXManager sfxManager;
 
 
     private void Start()
     {
+        sfxManager = FindObjectOfType<SFXManager>();
+
         if (muzzlePositions == null)
         {
             muzzlePositions = new List<Transform>();
@@ -78,6 +83,8 @@ public class Weapon : MonoBehaviour
                     projectileScript.SetDirection(projectileDirections[i]);
                     projectileScript.SetStats((int)(damage * damageMult), piercing);
                 }
+
+                PlayFireSFX(true);
             }
             else
             {
@@ -85,7 +92,7 @@ public class Weapon : MonoBehaviour
 
                 if (weaponCharge >= 0.5f)
                 {
-                    Debug.Log("Laser Firing");
+                    //Debug.Log("Laser Firing");
 
                     //determine laser scale
                     float laserScale = laserScaleIncrement * laserScaleFactor;
@@ -106,7 +113,7 @@ public class Weapon : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Laser Misfire");
+                    //Debug.Log("Laser Misfire");
 
                     //play laser misfire effect
 
@@ -119,6 +126,14 @@ public class Weapon : MonoBehaviour
             canFire = false;
             StartCoroutine(Cooldown());
         }
+    }
+
+    private void PlayFireSFX(bool oneshot)
+    {
+        //Debug.Log(gameObject.name);
+        SFX_Type sfxType = playerWeapon ? SFX_Type.PlayerShoot : SFX_Type.EnemyShoot;
+        Debug.Log("SFX type: " + sfxType + "\nAudio Clip: " + firingAudio.name + "\nOneshot? " + oneshot);
+        sfxManager.PlaySFX(sfxType, firingAudio, oneshot);
     }
 
     public void Charge()

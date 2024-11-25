@@ -12,16 +12,23 @@ public class SFXManager : MonoBehaviour
     {
         for (int i =0; i<sfx_Players.Count; i++)
         {
+            //Debug.Log(sfx_Players[i].sfx_Type);
+
             if (sfx_Players[i].sfx_Type == targetSFX)
             {
+                //Debug.Log("SFX Type found");
+
                 if (oneShot)
                 {
+                    //Debug.Log("Playing SFX");
                     sfx_Players[i].PlayOneShot(audioClip);
                 }
                 else
                 {
                     sfx_Players[i].Play(audioClip);
                 }
+
+                return;
             }
         }
     }

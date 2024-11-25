@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Serializable]
 public class HealthSystem : MonoBehaviour
 {
     //Types of entities

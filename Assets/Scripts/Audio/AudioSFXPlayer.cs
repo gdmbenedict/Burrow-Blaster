@@ -9,6 +9,7 @@ public enum SFX_Type
     PlayerShoot,
     EnemyHit,
     EnemyShield,
+    EnemyShoot,
     Explosion
 }
 
