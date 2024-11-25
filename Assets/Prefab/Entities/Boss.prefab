@@ -273,10 +273,12 @@ MonoBehaviour:
   shieldmodel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
-  hasShield: 0
+  hasShield: 1
   entityType: 2
-  audio: {fileID: 6541524649946211603}
-  audioSource: {fileID: 0}
+  audioRandomizer: {fileID: 0}
+  shieldSource: {fileID: 0}
+  hit: {fileID: 0}
+  hitShield: {fileID: 0}
   shieldBreak: {fileID: 0}
   shieldRestore: {fileID: 0}
 --- !u!114 &1092619585464597524
@@ -356,7 +358,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossHealth: {fileID: 7705981167903737185}
-  bossShield: {fileID: 2798545302169861101}
   bossWeapon: {fileID: 812627264707572117}
   model: {fileID: 8803307286979622714}
   numExplosions: 10
@@ -380,6 +381,7 @@ MonoBehaviour:
   pitchVariance: 0
   looping: 0
   playOnAwake: 0
+  gameplayAudio: 0
 --- !u!82 &5183009243285267847
 AudioSource:
   m_ObjectHideFlags: 0

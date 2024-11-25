@@ -136,8 +136,11 @@ public class HealthSystem : MonoBehaviour
             audioRandomizer.Play(hitShield);
         }
 
-        //Handle shield functions
-        HandleShield();
+        if (entityType != EntityType.boss)
+        {
+            //Handle shield functions
+            HandleShield();
+        }   
     }
 
     //Function that handles death of the entity
@@ -233,7 +236,7 @@ public class HealthSystem : MonoBehaviour
     }
 
     //Function that breaks shield
-    private IEnumerator BreakShield()
+    public IEnumerator BreakShield()
     {
         //deactivate shield if activated
         if (hasShield)
@@ -245,15 +248,18 @@ public class HealthSystem : MonoBehaviour
             shieldSource.PlayOneShot(shieldBreak);
         }
 
-        //reset shield cooldown timer
-        float timer = 0f;
+        if (entityType != EntityType.boss)
+        {
+            //reset shield cooldown timer
+            float timer = 0f;
 
-        //wait for shield cooldown time
-        yield return new WaitForSeconds(shieldCooldown);
+            //wait for shield cooldown time
+            yield return new WaitForSeconds(shieldCooldown);
 
-        //start activation 
-        StartCoroutine(ActivateShield());
-        shieldCoroutine = null;
+            //start activation 
+            StartCoroutine(ActivateShield());
+            shieldCoroutine = null;
+        }
     }
 
     //Function that grows shield from 0 scale to 1
