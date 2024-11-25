@@ -3,21 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+[System.Serializable]
+public struct Song
+{
+    public enum SongType
+    {
+        MenuMusic,
+        GameplayMusic,
+        BossMusic,
+        UpgradeMusic,
+        PauseMusic
+    }
+
+    public SongType type;
+    public AudioClip song;
+}
+
 public class MusicManager : MonoBehaviour
 {
     [Header("Music Output")]
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioMixerGroup musicMixerGroup;
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Songs")]
+    [SerializeField] private List<Song> songs;
+
+    public void PlayMusic(Song.SongType songType)
     {
-        
+        for (int i=0; i<songs.Count; i++)
+        {
+            if (songs[i].type == songType)
+            {
+                musicSource.clip = songs[i].song;
+                musicSource.Play();
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
