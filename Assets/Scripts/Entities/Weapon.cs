@@ -132,7 +132,7 @@ public class Weapon : MonoBehaviour
     {
         //Debug.Log(gameObject.name);
         SFX_Type sfxType = playerWeapon ? SFX_Type.PlayerShoot : SFX_Type.EnemyShoot;
-        Debug.Log("SFX type: " + sfxType + "\nAudio Clip: " + firingAudio.name + "\nOneshot? " + oneshot);
+        //Debug.Log("SFX type: " + sfxType + "\nAudio Clip: " + firingAudio.name + "\nOneshot? " + oneshot);
         sfxManager.PlaySFX(sfxType, firingAudio, oneshot);
     }
 
@@ -140,7 +140,7 @@ public class Weapon : MonoBehaviour
     {
         if (canFire)
         {
-            Debug.Log("Laser Charge = " + weaponCharge);
+            //Debug.Log("Laser Charge = " + weaponCharge);
 
             if (!chargeVisual.activeSelf)
             {

@@ -10,7 +10,8 @@ public enum SFX_Type
     EnemyHit,
     EnemyShield,
     EnemyShoot,
-    Explosion
+    Explosion,
+    UISounds
 }
 
 [System.Serializable]

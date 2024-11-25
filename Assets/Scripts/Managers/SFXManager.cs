@@ -32,4 +32,9 @@ public class SFXManager : MonoBehaviour
             }
         }
     }
+
+    public void PlayMenuSFX(AudioClip audioClip)
+    {
+        PlaySFX(SFX_Type.UISounds, audioClip, true);
+    }
 }
