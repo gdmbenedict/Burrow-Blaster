@@ -53,8 +53,11 @@ public class HealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        sfxManager = FindObjectOfType<SFXManager>();
-        sfxManager.gameplayAudioSources.Add(shieldSource);
+        if (shieldUnlocked)
+        {
+            sfxManager = FindObjectOfType<SFXManager>();
+            sfxManager.gameplayAudioSources.Add(shieldSource);
+        }  
 
         health = maxHealth;
         canTakeDamage = true;
@@ -83,7 +86,6 @@ public class HealthSystem : MonoBehaviour
 
             //hit effect
             audioRandomizer.Play(hit);
-
         }
         else
         {
@@ -180,6 +182,7 @@ public class HealthSystem : MonoBehaviour
     public void SetMaxHealth(int maxHealth)
     {
         this.maxHealth = maxHealth;
+        health = maxHealth;
     }
 
     //Function that returns max health of entity
@@ -314,6 +317,9 @@ public class HealthSystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        sfxManager.gameplayAudioSources.Remove(shieldSource);
+        if (shieldUnlocked)
+        {
+            sfxManager.gameplayAudioSources.Remove(shieldSource);
+        }
     }
 }
