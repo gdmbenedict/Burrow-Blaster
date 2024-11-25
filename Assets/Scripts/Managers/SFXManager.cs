@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    public List<AudioSource> gameplayAudioSources;
-
-    //Function that pauses all gameplay SFX sources;
-    public void PauseGameplaySFX()
+    [SerializeField] private List<AudioSFXPlayer> sfx_Players;
+    
+    //Function that finds the target SFX player and makes it play specified audio-clip
+    public void PlaySFX(SFX_Type targetSFX, AudioClip audioClip, bool oneShot)
     {
-        foreach (AudioSource audioSource in gameplayAudioSources)
+        for (int i =0; i<sfx_Players.Count; i++)
         {
-            audioSource.Pause();
-        }
-    }
-
-    //Function that un-pauses all gameplay SFX sources
-    public void UnPauseGameplaySFX()
-    {
-        foreach (AudioSource audioSource in gameplayAudioSources)
-        {
-            audioSource.UnPause();
+            if (sfx_Players[i].sfx_Type == targetSFX)
+            {
+                if (oneShot)
+                {
+                    sfx_Players[i].PlayOneShot(audioClip);
+                }
+                else
+                {
+                    sfx_Players[i].Play(audioClip);
+                }
+            }
         }
     }
 }
