@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollisionDamage : MonoBehaviour
 {
     [SerializeField] private int contactDamage;
-    [SerializeField] private float repulsionForce;
+    //[SerializeField] private float repulsionForce;
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +37,11 @@ public class CollisionDamage : MonoBehaviour
                 playerHealth.TakeDamage(contactDamage);
 
                 //throwing player away
+
+                /*
                 Vector3 direction = other.transform.position - transform.position;
                 playerMove.ForceMovement(direction, repulsionForce);
+                */
             }
   
         }
