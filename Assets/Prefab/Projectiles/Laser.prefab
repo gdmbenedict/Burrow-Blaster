@@ -1337,6 +1337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   lifetime: 0
+  shrinkTargetScale: {x: 0, y: 0, z: 1}
 --- !u!54 &8502727529257508507
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2613,7 +2614,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19a54b4ba4a37ea43bb3e9c273ea9c4e, type: 2}
+  - {fileID: 2100000, guid: 0cbe36d3483f27c439eef0b88fc7526e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
