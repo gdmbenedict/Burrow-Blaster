@@ -16,7 +16,8 @@ public class UIManager : MonoBehaviour
         PauseScreen,
         InfoScreen,
         OptionInfoScreen,
-        ResultScreen
+        ResultScreen,
+        CreditsScreen
     }
 
     [SerializeField] private UIState uiState;
@@ -49,6 +50,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject OptionsPauseScreen;
     [SerializeField] private GameObject InfoScreen;
     [SerializeField] private GameObject OptionsInfoScreen;
+    [SerializeField] private GameObject CreditsScreen;
 
     [Header("First Selected Objects")]
     [SerializeField] private GameObject mainMenuFirst;
@@ -119,6 +121,10 @@ public class UIManager : MonoBehaviour
 
             case "InfoScreen":
                 state = UIState.OptionInfoScreen;
+                break;
+
+            case "CreditsScreen":
+                state = UIState.CreditsScreen;
                 break;
 
             default:
@@ -204,6 +210,11 @@ public class UIManager : MonoBehaviour
                 distanceResult.text = "Distance Travelled: " + (int)player.transform.position.z;
                 EventSystem.current.SetSelectedGameObject(resultScreenFirst);
                 break;
+
+            case UIState.CreditsScreen:
+                uiState = UIState.CreditsScreen;
+                CreditsScreen.SetActive(true);
+                break;
         }
     }
 
@@ -218,6 +229,7 @@ public class UIManager : MonoBehaviour
         InfoScreen.SetActive(false);
         OptionsInfoScreen.SetActive(false);
         ResultScreen.SetActive(false);
+        CreditsScreen.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
     }
 

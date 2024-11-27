@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private ShopManager shopManager;
+    [SerializeField] private MusicManager musicManager;
 
     [Header("Scenes")]
     [SerializeField] private string GameSceneName;
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
         win = false;
         paused = false;
         gameState = GameState.TitleMenu;
+
+        musicManager.PlayMusic(Song.SongType.MenuMusic);
     }
 
     // Update is called once per frame
@@ -98,6 +101,8 @@ public class GameManager : MonoBehaviour
     //function that loads into the gameplay scene
     public void GoToGame()
     {
+        musicManager.PlayMusic(Song.SongType.GameplayMusic);
+
         if (firstPlay)
         {
             Time.timeScale = 0;
@@ -137,12 +142,14 @@ public class GameManager : MonoBehaviour
         win = true;
         Time.timeScale = 0;
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
+        musicManager.PlayMusic(Song.SongType.MenuMusic);
     }
 
     public void LoseGame()
     {
         Time.timeScale = 0;
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
+        musicManager.PlayMusic(Song.SongType.MenuMusic);
     }
 
     public void GoToUpgrade()

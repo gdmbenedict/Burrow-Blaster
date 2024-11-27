@@ -2348,6 +2348,10 @@ MonoBehaviour:
   shieldTransition: 0
   hasShield: 0
   entityType: 1
+  hit: {fileID: 8300000, guid: 0536a94777221ba48b4cde86bbda2f05, type: 3}
+  hitShield: {fileID: 0}
+  shieldBreak: {fileID: 0}
+  shieldRestore: {fileID: 0}
 --- !u!114 &1092619585464597524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,6 +2382,8 @@ MonoBehaviour:
   firerate: 0.75
   damage: 1
   piercing: 1
+  firingAudio: {fileID: 8300000, guid: 8fd78966d709eac47afa5ba79ba5f218, type: 3}
+  playerWeapon: 0
   projectile: {fileID: 3615971726096595373, guid: 126c25fe8dc18b241bc5d48316634170,
     type: 3}
   muzzlePositions:

@@ -123,6 +123,10 @@ MonoBehaviour:
   shieldTransition: 0
   hasShield: 0
   entityType: 1
+  hit: {fileID: 8300000, guid: 0536a94777221ba48b4cde86bbda2f05, type: 3}
+  hitShield: {fileID: 0}
+  shieldBreak: {fileID: 0}
+  shieldRestore: {fileID: 0}
 --- !u!114 &1092619585464597524
 MonoBehaviour:
   m_ObjectHideFlags: 0

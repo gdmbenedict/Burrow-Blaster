@@ -14509,3 +14509,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 8048741571022521610}
+  audioClip: {fileID: 8300000, guid: 093d9494fce4f884eaf5db40e4d363fc, type: 3}

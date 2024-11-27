@@ -7,7 +7,6 @@ public class Boss : MonoBehaviour
 {
     [Header("Object References")]
     public HealthSystem bossHealth;
-    [SerializeField] private GameObject bossShield;
     [SerializeField] private Weapon bossWeapon;
     [SerializeField] private GameObject model;
 
@@ -26,7 +25,6 @@ public class Boss : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         FindObjectOfType<UIManager>().boss = this;
         bossWeapon.Disable();
-        bossHealth.SetTakeDamage(false);
     }
 
     // Update is called once per frame
@@ -37,12 +35,10 @@ public class Boss : MonoBehaviour
 
     public void StartBossBattle()
     {
-        bossHealth.SetTakeDamage(true);
         bossWeapon.Enable();
         bossWeapon.ActivateCooldown();
-        bossShield.SetActive(false);
+        StartCoroutine(bossHealth.BreakShield());
         bossBattleStarted = true;
-
     }
 
     public bool GetBossBattleStarted()

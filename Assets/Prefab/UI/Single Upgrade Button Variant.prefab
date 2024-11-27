@@ -129,6 +129,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1033663685, guid: 768681748eda74844a66b93c5c60abb3,
         type: 3}
+    - target: {fileID: 8698005002130986050, guid: a7f5787a8fcd00b4abf24d14670e2c95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698005002130986050, guid: a7f5787a8fcd00b4abf24d14670e2c95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698005002130986050, guid: a7f5787a8fcd00b4abf24d14670e2c95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8591388582092500653, guid: a7f5787a8fcd00b4abf24d14670e2c95, type: 3}

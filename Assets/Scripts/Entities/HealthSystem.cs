@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Serializable]
 public class HealthSystem : MonoBehaviour
 {
     //Types of entities
@@ -39,11 +40,21 @@ public class HealthSystem : MonoBehaviour
 
     [Header("Entity Type")]
     [SerializeField] private EntityType entityType; //enum that determines the type of entity the health system is attached to
-    
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip hit;
+    [SerializeField] private AudioClip hitShield;
+    [SerializeField] private AudioClip shieldBreak;
+    [SerializeField] private AudioClip shieldRestore;
+
+    private SFXManager sfxManager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        //find SFX Manager
+        sfxManager = FindObjectOfType<SFXManager>();
+          
         health = maxHealth;
         canTakeDamage = true;
     }
@@ -67,17 +78,19 @@ public class HealthSystem : MonoBehaviour
             }
 
             //playing particle hit effect
-            hitParticles.Play();
-
-            //start invulneravility period
-            if (invulnerabilityTime > 0)
-            {
-                StartCoroutine(Invulnerability());
-            }
+            hitParticles.Play();  
         }
+
+        PlayHitSFX(hasShield);
 
         //Handle shield functions
         HandleShield();
+
+        //start invulneravility period
+        if (invulnerabilityTime > 0)
+        {
+            StartCoroutine(Invulnerability());
+        }
     }
 
     //Function to handle damage that is repeted over time
@@ -107,8 +120,13 @@ public class HealthSystem : MonoBehaviour
             }
         }
 
-        //Handle shield functions
-        HandleShield();
+        PlayHitSFX(hasShield);
+
+        if (entityType != EntityType.boss)
+        {
+            //Handle shield functions
+            HandleShield();
+        }   
     }
 
     //Function that handles death of the entity
@@ -132,6 +150,14 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    private void PlayHitSFX(bool shield)
+    {
+        AudioClip audioClip = shield ? hitShield : hit;
+        SFX_Type sfxType = entityType == EntityType.player ? SFX_Type.PlayerShield : SFX_Type.EnemyShield;
+
+        sfxManager.PlaySFX(sfxType, audioClip, true);
+    }
+
     //Function for healing damage taken by entity
     public void HealDamage(int healing)
     {
@@ -148,6 +174,7 @@ public class HealthSystem : MonoBehaviour
     public void SetMaxHealth(int maxHealth)
     {
         this.maxHealth = maxHealth;
+        health = maxHealth;
     }
 
     //Function that returns max health of entity
@@ -204,25 +231,30 @@ public class HealthSystem : MonoBehaviour
     }
 
     //Function that breaks shield
-    private IEnumerator BreakShield()
+    public IEnumerator BreakShield()
     {
         //deactivate shield if activated
         if (hasShield)
         {
             hasShield = false;
             shieldmodel.SetActive(false);
-            //shield break SFX
+
+            //shield breaking sfx
+            PlayShieldSFX(true);
         }
 
-        //reset shield cooldown timer
-        float timer = 0f;
+        if (entityType != EntityType.boss)
+        {
+            //reset shield cooldown timer
+            float timer = 0f;
 
-        //wait for shield cooldown time
-        yield return new WaitForSeconds(shieldCooldown);
+            //wait for shield cooldown time
+            yield return new WaitForSeconds(shieldCooldown);
 
-        //start activation 
-        StartCoroutine(ActivateShield());
-        shieldCoroutine = null;
+            //start activation 
+            StartCoroutine(ActivateShield());
+            shieldCoroutine = null;
+        }
     }
 
     //Function that grows shield from 0 scale to 1
@@ -237,7 +269,8 @@ public class HealthSystem : MonoBehaviour
         shieldmodel.SetActive(true);
         float growtimer = 0f;
 
-        //shieled activation SFX here
+        //shield restore sfx
+        PlayShieldSFX(false);
 
         //looping thorugh transition time.
         while (growtimer < shieldTransition)
@@ -250,6 +283,14 @@ public class HealthSystem : MonoBehaviour
 
         //snap to original scale
         shieldmodel.transform.localScale = originScale;      
+    }
+
+    private void PlayShieldSFX(bool shieldBreaking)
+    {
+        AudioClip audioClip = shieldBreaking ? shieldBreak : shieldRestore;
+        SFX_Type sfxType = entityType == EntityType.player ? SFX_Type.PlayerShield : SFX_Type.EnemyShield;
+
+        sfxManager.PlaySFX(sfxType, audioClip, false);
     }
 
     // Function that grants invulnerability to entity and makes model flash for invulnerability period

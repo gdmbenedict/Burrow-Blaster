@@ -112,18 +112,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 0}
+  model: {fileID: 0}
   hitParticles: {fileID: 2326024335155072040}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
   maxHealth: 250
   invulnerabilityTime: 0
   flashingIntervals: 0
-  shieldModel: {fileID: 0}
+  shieldmodel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
   hasShield: 0
   entityType: 1
+  hit: {fileID: 8300000, guid: 0536a94777221ba48b4cde86bbda2f05, type: 3}
+  hitShield: {fileID: 0}
+  shieldBreak: {fileID: 0}
+  shieldRestore: {fileID: 0}
 --- !u!114 &1092619585464597524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +158,8 @@ MonoBehaviour:
   firerate: 0.5
   damage: 2
   piercing: 1
+  firingAudio: {fileID: 8300000, guid: 8fd78966d709eac47afa5ba79ba5f218, type: 3}
+  playerWeapon: 0
   projectile: {fileID: 3615971726096595373, guid: adee3357de31c7143b7b7bb8d8bb833d,
     type: 3}
   muzzlePositions:

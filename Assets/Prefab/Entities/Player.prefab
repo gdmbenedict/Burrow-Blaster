@@ -214,6 +214,8 @@ MonoBehaviour:
   firerate: 4
   damage: 10
   piercing: 0
+  firingAudio: {fileID: 8300000, guid: 43021751d587bc44aa89f7a36466f692, type: 3}
+  playerWeapon: 0
   projectile: {fileID: 3732428651881612599, guid: 2a4c124efbd84814ba17a3a5d44c25a6,
     type: 3}
   muzzlePositions: []
@@ -466,6 +468,8 @@ MonoBehaviour:
   firerate: 0.15
   damage: 100
   piercing: 1
+  firingAudio: {fileID: 0}
+  playerWeapon: 0
   projectile: {fileID: 0}
   muzzlePositions: []
   projectileDirections: []
@@ -1079,6 +1083,7 @@ GameObject:
   - component: {fileID: 2466576206604131918}
   - component: {fileID: 258972044987899277}
   - component: {fileID: 4588256245597097183}
+  - component: {fileID: -4896837740536992562}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1309,7 +1314,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.75, y: 1, z: 1.5}
+  m_Size: {x: 0.6, y: 1, z: 1.25}
   m_Center: {x: 0.5, y: 0, z: 1}
 --- !u!114 &7774686900108604389
 MonoBehaviour:
@@ -1332,8 +1337,8 @@ MonoBehaviour:
   screenTopBuffer: 2.5
   screenBottomBuffer: 0.5
   dodgeUnlocked: 0
-  dodgeSpeedMult: 3
-  dodgeTime: 0.3
+  dodgeSpeedMult: 5
+  dodgeTime: 0.2
   forcedMovementTime: 0.1
   rb: {fileID: 9147357286841321469}
   cam: {fileID: 0}
@@ -1379,6 +1384,10 @@ MonoBehaviour:
   shieldTransition: 0.1
   hasShield: 1
   entityType: 0
+  hit: {fileID: 8300000, guid: 6c9988c5ea52cac40a9cbc7d94781d3a, type: 3}
+  hitShield: {fileID: 8300000, guid: e5b7448cedc53134da7a458558bf89c1, type: 3}
+  shieldBreak: {fileID: 8300000, guid: cfe0b2b28ffeb2945a7b701af5b8e0be, type: 3}
+  shieldRestore: {fileID: 8300000, guid: c805dbe6189f5ca419122db974d7fee7, type: 3}
 --- !u!114 &2466576206604131918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,6 +1565,102 @@ MonoBehaviour:
   - {fileID: 2864516901638446491}
   healthVisuals4:
   - {fileID: 9188487984418070306}
+--- !u!82 &-4896837740536992562
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6062204871964251105}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6712390903887096080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,6 +1713,8 @@ MonoBehaviour:
   firerate: 4
   damage: 10
   piercing: 0
+  firingAudio: {fileID: 8300000, guid: 43021751d587bc44aa89f7a36466f692, type: 3}
+  playerWeapon: 1
   projectile: {fileID: 3732428651881612599, guid: 2a4c124efbd84814ba17a3a5d44c25a6,
     type: 3}
   muzzlePositions: []
