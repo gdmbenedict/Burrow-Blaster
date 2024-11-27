@@ -311,6 +311,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -5560686847185197161, guid: d10256274b169814b8d155a3f6589771,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
     - target: {fileID: -4459142942100970941, guid: d10256274b169814b8d155a3f6589771,
         type: 3}
       propertyPath: m_Layer
@@ -321,6 +326,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -1643352998357087169, guid: d10256274b169814b8d155a3f6589771,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -1340134823492334729, guid: d10256274b169814b8d155a3f6589771,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
     - target: {fileID: -1216831131804223618, guid: d10256274b169814b8d155a3f6589771,
         type: 3}
       propertyPath: m_Layer
@@ -433,14 +448,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 0}
+  model: {fileID: 0}
   hitParticles: {fileID: 5088692449028129521}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
   maxHealth: 70
   invulnerabilityTime: 0
   flashingIntervals: 0
-  shieldModel: {fileID: 0}
+  shieldmodel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
   hasShield: 0
@@ -604,6 +619,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -5850951332091802478, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -5560686847185197161, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -4886378323433542831, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
     - target: {fileID: -1216831131804223618, guid: ca73685da905e2c469e1efec78473723,
         type: 3}
       propertyPath: m_Layer
@@ -705,14 +735,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 0}
+  model: {fileID: 0}
   hitParticles: {fileID: 8780063807429768102}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
   maxHealth: 70
   invulnerabilityTime: 0
   flashingIntervals: 0
-  shieldModel: {fileID: 0}
+  shieldmodel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
   hasShield: 0
@@ -1052,6 +1082,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -5850951332091802478, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -5560686847185197161, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -4886378323433542831, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
     - target: {fileID: -1216831131804223618, guid: ca73685da905e2c469e1efec78473723,
         type: 3}
       propertyPath: m_Layer
@@ -1159,14 +1204,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 0}
+  model: {fileID: 0}
   hitParticles: {fileID: 1665495709810407466}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
   maxHealth: 70
   invulnerabilityTime: 0
   flashingIntervals: 0
-  shieldModel: {fileID: 0}
+  shieldmodel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
   hasShield: 0
@@ -1505,6 +1550,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -5850951332091802478, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -5560686847185197161, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -4886378323433542831, guid: ca73685da905e2c469e1efec78473723,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
     - target: {fileID: -1216831131804223618, guid: ca73685da905e2c469e1efec78473723,
         type: 3}
       propertyPath: m_Layer
@@ -1633,14 +1693,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 0}
+  model: {fileID: 0}
   hitParticles: {fileID: 8655981596860026352}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
   maxHealth: 70
   invulnerabilityTime: 0
   flashingIntervals: 0
-  shieldModel: {fileID: 0}
+  shieldmodel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
   hasShield: 0
@@ -1773,6 +1833,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -5560686847185197161, guid: d10256274b169814b8d155a3f6589771,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
     - target: {fileID: -4459142942100970941, guid: d10256274b169814b8d155a3f6589771,
         type: 3}
       propertyPath: m_Layer
@@ -1783,6 +1848,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -1643352998357087169, guid: d10256274b169814b8d155a3f6589771,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
+    - target: {fileID: -1340134823492334729, guid: d10256274b169814b8d155a3f6589771,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1365330c01929e64993b50951e37db96, type: 2}
     - target: {fileID: -1216831131804223618, guid: d10256274b169814b8d155a3f6589771,
         type: 3}
       propertyPath: m_Layer
@@ -1889,14 +1964,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2a00c129263354f82c3adc27be58a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 0}
+  model: {fileID: 0}
   hitParticles: {fileID: 6501401626275885253}
   explosion: {fileID: 8219102164215892100, guid: e3e638b1d7c03d9429718c238d81b0e3,
     type: 3}
   maxHealth: 70
   invulnerabilityTime: 0
   flashingIntervals: 0
-  shieldModel: {fileID: 0}
+  shieldmodel: {fileID: 0}
   shieldCooldown: 0
   shieldTransition: 0
   hasShield: 0
