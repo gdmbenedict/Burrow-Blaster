@@ -4455,7 +4455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &372713722
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7933,7 +7933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2ebaf415353124aa3b1ab9a7d566bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  everythingFree: 0
+  everythingFree: 1
   upgradeManager: {fileID: 1592896012}
   scrapManager: {fileID: 240980723}
   numOfCategories: 9
@@ -9128,7 +9128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &999631188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21503,7 +21503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2139638920
 RectTransform:
   m_ObjectHideFlags: 0
