@@ -1343,6 +1343,7 @@ MonoBehaviour:
   rb: {fileID: 9147357286841321469}
   cam: {fileID: 0}
   camController: {fileID: 0}
+  playerHealth: {fileID: 8879282499683176147}
 --- !u!114 &4573408158417628984
 MonoBehaviour:
   m_ObjectHideFlags: 0

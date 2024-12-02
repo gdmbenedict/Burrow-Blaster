@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Device;
 using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -141,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         Ray ray;
 
         //Getting maxZ
-        ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height, 0));
+        ray = cam.ScreenPointToRay(new Vector3(UnityEngine.Screen.width / 2, UnityEngine.Screen.height, 0));
         if (Physics.Raycast(ray, out RaycastHit raycastHitmax))
         {
             maxZ = raycastHitmax.point.z;
@@ -149,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Getting minZ
-        ray = cam.ScreenPointToRay(new Vector3(Screen.width/2, 0, 0));
+        ray = cam.ScreenPointToRay(new Vector3(UnityEngine.Screen.width/2, 0, 0));
         if (Physics.Raycast(ray, out RaycastHit raycastHitmin))
         {
             minZ = raycastHitmin.point.z;
@@ -260,9 +261,24 @@ public class PlayerMovement : MonoBehaviour
         bool detectedOnScreen = GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds);
         if (!detectedOnScreen)
         {
-            Vector3 respawnPause = new Vector3(cam.transform.position.x, transform.position.y, cam.transform.position.z);
+            //declaring variables
+            Ray ray;
+            float zPos = 0;
+
+            //raycsting to get middle screen z coord
+            ray = cam.ScreenPointToRay(new Vector3(UnityEngine.Screen.width / 2, UnityEngine.Screen.height / 2, 0));
+            if (Physics.Raycast(ray, out RaycastHit raycastHitmax))
+            { 
+                zPos = raycastHitmax.point.z;
+                //Debug.Log(zPos);
+            }
+
+            //applying movement to middle of screen
+            Vector3 respawnPause = new Vector3(cam.transform.position.x, transform.position.y, zPos);
             transform.position = respawnPause;
-            
+
+            //damaging player
+            playerHealth.TakeDamage(1);
         }
     }
 }
