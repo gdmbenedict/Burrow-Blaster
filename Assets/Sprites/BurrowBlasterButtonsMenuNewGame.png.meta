@@ -97,12 +97,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BurrowBlasterButtonsMenuPlay_0
+      name: BurrowBlasterButtonsMenuNewGame_0
       rect:
         serializedVersion: 2
         x: 1
         y: 98
-        width: 78
+        width: 90
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9b6202b8c7aae842a85d407ca7551e3
-      internalID: 1383848348
+      spriteID: 27f0e4d42999a1a4fad37c85eb0cb048
+      internalID: -1136822059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BurrowBlasterButtonsMenuPlay_1
+      name: BurrowBlasterButtonsMenuNewGame_1
       rect:
         serializedVersion: 2
         x: 1
         y: 66
-        width: 78
-        height: 27
+        width: 90
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a91fa593036923a4daa663c50ed1b05d
-      internalID: 1671748491
+      spriteID: effdc9d367b5af149a0b51f10f0ee430
+      internalID: -1438587691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BurrowBlasterButtonsMenuPlay_2
+      name: BurrowBlasterButtonsMenuNewGame_2
       rect:
         serializedVersion: 2
         x: 1
         y: 34
-        width: 78
-        height: 27
+        width: 90
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,19 +153,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c5dc7efa567b434083c19e035f67f2f
-      internalID: -1146037383
+      spriteID: 23b127b067ecd0845b87109b0f103166
+      internalID: 2122175061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BurrowBlasterButtonsMenuPlay_3
+      name: BurrowBlasterButtonsMenuNewGame_3
       rect:
         serializedVersion: 2
         x: 1
         y: 2
-        width: 78
+        width: 90
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7287032f5440c34fbd180c1c6bf5314
-      internalID: 402073412
+      spriteID: 894d21f9e489d9446807ba8ef5826f1c
+      internalID: 1703932103
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BurrowBlasterButtonsMenuPlay_0: 1383848348
-      BurrowBlasterButtonsMenuPlay_1: 1671748491
-      BurrowBlasterButtonsMenuPlay_2: -1146037383
-      BurrowBlasterButtonsMenuPlay_3: 402073412
+      BurrowBlasterButtonsMenuNewGame_0: -1136822059
+      BurrowBlasterButtonsMenuNewGame_1: -1438587691
+      BurrowBlasterButtonsMenuNewGame_2: 2122175061
+      BurrowBlasterButtonsMenuNewGame_3: 1703932103
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
