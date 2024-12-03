@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.Device;
 using UnityEngine.Experimental.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Camera cam;
     [SerializeField] private CameraController camController;
+    [SerializeField] private HealthSystem playerHealth;
     private float cameraSpeed;
 
     private Vector3 inputDir;
@@ -40,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
     private float minZ;
     private float moveSpeedMult;
     private float lockedMovementFactor = 1;
+
+    //offscreen detection
+    private Collider collider;
+    private Plane[] cameraFrustem;
 
 
     // Start is called before the first frame update
@@ -51,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
         camController = cam.GetComponent<CameraController>();
         cameraSpeed = camController.GetSpeed();
+        collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -72,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         
         //check for collisions and bounderies
         CheckCollisions(projectedMovementLength);
+        FixOffscreen();
 
         //moving player
         rb.MovePosition(rb.position + movementDir.normalized * projectedMovementLength);   
@@ -133,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         Ray ray;
 
         //Getting maxZ
-        ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height, 0));
+        ray = cam.ScreenPointToRay(new Vector3(UnityEngine.Screen.width / 2, UnityEngine.Screen.height, 0));
         if (Physics.Raycast(ray, out RaycastHit raycastHitmax))
         {
             maxZ = raycastHitmax.point.z;
@@ -141,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Getting minZ
-        ray = cam.ScreenPointToRay(new Vector3(Screen.width/2, 0, 0));
+        ray = cam.ScreenPointToRay(new Vector3(UnityEngine.Screen.width/2, 0, 0));
         if (Physics.Raycast(ray, out RaycastHit raycastHitmin))
         {
             minZ = raycastHitmin.point.z;
@@ -242,5 +251,34 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log(inputDir);
             this.inputDir = new Vector3(inputDir.x, 0f, inputDir.y);
         }  
+    }
+
+    //Function that sends player to the center of the screen if offscreen
+    private void FixOffscreen()
+    {
+        //getting camera field of vision
+        cameraFrustem = GeometryUtility.CalculateFrustumPlanes(cam);
+        bool detectedOnScreen = GeometryUtility.TestPlanesAABB(cameraFrustem, collider.bounds);
+        if (!detectedOnScreen)
+        {
+            //declaring variables
+            Ray ray;
+            float zPos = 0;
+
+            //raycsting to get middle screen z coord
+            ray = cam.ScreenPointToRay(new Vector3(UnityEngine.Screen.width / 2, UnityEngine.Screen.height / 2, 0));
+            if (Physics.Raycast(ray, out RaycastHit raycastHitmax))
+            { 
+                zPos = raycastHitmax.point.z;
+                //Debug.Log(zPos);
+            }
+
+            //applying movement to middle of screen
+            Vector3 respawnPause = new Vector3(cam.transform.position.x, transform.position.y, zPos);
+            transform.position = respawnPause;
+
+            //damaging player
+            playerHealth.TakeDamage(1);
+        }
     }
 }
