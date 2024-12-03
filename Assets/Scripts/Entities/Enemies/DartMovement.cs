@@ -5,7 +5,7 @@ using UnityEngine;
 public class DartMovement : MonoBehaviour
 {
     [SerializeField] private float cameraDist;
-    [SerializeField] private float dartDistance;
+    [SerializeField] private float dartRange;
     [SerializeField] private float coolDownTime;
     [SerializeField] private float dartTime;
     private GameObject camera;
@@ -14,21 +14,33 @@ public class DartMovement : MonoBehaviour
     private Vector3 center;
     private bool canCallDart = true;
 
+    private bool onScreen;
+
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         camera = Camera.main.gameObject;
         followSpeed = camera.GetComponent<CameraController>().GetSpeed();
+
+        Debug.Log(transform.position);
         center = transform.position;
+        //Debug.Log(center);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.position.z - camera.transform.position.z < cameraDist)
+
+        if (center.z - camera.transform.position.z < cameraDist)
         {
+            Debug.Log("center being updated");
             float zMovement = followSpeed * Time.fixedDeltaTime;
-            center += new Vector3(center.x, center.y, center.z + zMovement);
+            center = new Vector3(center.x, center.y, center.z + zMovement);
+        }
+
+        if (canCallDart)
+        {
+            StartCoroutine(DartToPosition(Random.Range(-dartRange, dartRange), Random.Range(-dartRange, dartRange)));
         }
     }
 
@@ -43,6 +55,8 @@ public class DartMovement : MonoBehaviour
         zPos += center.z;
         Vector3 targetPos = new Vector3(xPos, center.y, zPos);
         Vector3 startPos = transform.position;
+        Debug.Log(startPos);
+        Debug.Log(targetPos);
 
         //move towards location
         float timer = 0;
@@ -55,6 +69,9 @@ public class DartMovement : MonoBehaviour
 
         //snap position
         transform.position = targetPos;
+
+        //start cooldown
+        StartCoroutine(DartCooldown());
     }
 
     //Function that manages the cooldown on movement

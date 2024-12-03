@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1092619585464597524}
   - component: {fileID: 812627264707572117}
   - component: {fileID: 4936316728915710327}
+  - component: {fileID: 4489446993944393200}
   m_Layer: 7
   m_Name: Dart
   m_TagString: Untagged
@@ -189,7 +190,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 1
-  repulsionForce: 2
+--- !u!114 &4489446993944393200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976310428112141259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ccc33d8684e164e9fef54b296071f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraDist: 15
+  dartRange: 2
+  coolDownTime: 0.5
+  dartTime: 0.1
 --- !u!1001 &3080890900841267045
 PrefabInstance:
   m_ObjectHideFlags: 0
