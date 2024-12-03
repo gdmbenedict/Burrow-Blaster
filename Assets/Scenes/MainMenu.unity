@@ -8096,7 +8096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2ebaf415353124aa3b1ab9a7d566bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  everythingFree: 1
+  everythingFree: 0
   upgradeManager: {fileID: 1592896012}
   scrapManager: {fileID: 240980723}
   numOfCategories: 9
