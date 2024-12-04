@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     private GameState gameState;
     private bool win;
     private bool firstPlay;
+    private Collector scrapCollector;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +97,21 @@ public class GameManager : MonoBehaviour
 
             paused = !paused;
         }
+        else if (gameState == GameState.UpgradeMenu)
+        {
+            if (!paused)
+            {
+                Time.timeScale = 0;
+                uiManager.ChangeUIScreen(UIManager.UIState.UpgradeMenuScreen);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                uiManager.ChangeUIScreen(UIManager.UIState.UpgradeScreen);
+            }
+
+            paused = !paused;
+        }
     }
 
     //function that loads into the gameplay scene
@@ -141,6 +157,7 @@ public class GameManager : MonoBehaviour
     {
         win = true;
         Time.timeScale = 0;
+        scrapCollector.DepositScrap();
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
         musicManager.PlayMusic(Song.SongType.MenuMusic);
     }
@@ -148,6 +165,7 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         Time.timeScale = 0;
+
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
         musicManager.PlayMusic(Song.SongType.MenuMusic);
     }
@@ -200,5 +218,10 @@ public class GameManager : MonoBehaviour
     public void AddScore(int scoreToAdd)
     {
         score += scoreToAdd;
+    }
+
+    public void ConnectScrapCollector(Collector scrapCollector)
+    {
+        this.scrapCollector = scrapCollector;
     }
 }
