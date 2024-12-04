@@ -202,8 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ccc33d8684e164e9fef54b296071f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraDist: 15
-  dartRange: 2
+  dartRange: 1.5
   coolDownTime: 0.5
   dartTime: 0.1
 --- !u!1001 &3080890900841267045
