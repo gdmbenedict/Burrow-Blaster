@@ -259,6 +259,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dart (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8976310428112141259, guid: de4ed3d12d4b93c448bd4ed40bfeceb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1175,7 +1180,7 @@ PrefabInstance:
     - target: {fileID: 9176048949082641098, guid: 89e94212b8880a940aab66c3c5f4ab3e,
         type: 3}
       propertyPath: m_Duration
-      value: 5.3333335
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9176048949082641098, guid: 89e94212b8880a940aab66c3c5f4ab3e,
         type: 3}
@@ -1190,7 +1195,7 @@ PrefabInstance:
     - target: {fileID: 9176048949082641098, guid: 89e94212b8880a940aab66c3c5f4ab3e,
         type: 3}
       propertyPath: m_ObjectForwardAxis
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2522,6 +2527,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dart (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8976310428112141259, guid: de4ed3d12d4b93c448bd4ed40bfeceb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2596,6 +2606,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dart (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8976310428112141259, guid: de4ed3d12d4b93c448bd4ed40bfeceb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2669,6 +2684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dart (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976310428112141259, guid: de4ed3d12d4b93c448bd4ed40bfeceb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3244,6 +3264,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dart (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8976310428112141259, guid: de4ed3d12d4b93c448bd4ed40bfeceb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3590,6 +3615,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dart (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976310428112141259, guid: de4ed3d12d4b93c448bd4ed40bfeceb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

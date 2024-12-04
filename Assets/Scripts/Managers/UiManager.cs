@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
         TitleScreen,
         OptionsScreen,
         UpgradeScreen,
+        UpgradeMenuScreen,
         GameplayScreen,
         PauseScreen,
         InfoScreen,
@@ -51,6 +52,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject InfoScreen;
     [SerializeField] private GameObject OptionsInfoScreen;
     [SerializeField] private GameObject CreditsScreen;
+    [SerializeField] private GameObject UpgradeMenuScreen;
 
     [Header("First Selected Objects")]
     [SerializeField] private GameObject mainMenuFirst;
@@ -127,6 +129,10 @@ public class UIManager : MonoBehaviour
                 state = UIState.CreditsScreen;
                 break;
 
+            case "UpgradeMenuScreen":
+                state = UIState.UpgradeMenuScreen;
+                break;
+
             default:
                 state = UIState.TitleScreen;
                 break;
@@ -144,7 +150,7 @@ public class UIManager : MonoBehaviour
             case UIState.TitleScreen:
                 uiState = UIState.TitleScreen;
                 TitleScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
 
             case UIState.OptionsScreen:
@@ -152,19 +158,19 @@ public class UIManager : MonoBehaviour
                 if (gameManager.GetGameState() == GameManager.GameState.TitleMenu)
                 {
                     OptionsMenuScreen.SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(optionsMenuFirst);
+                    EventSystem.current.SetSelectedGameObject(null);
                 }
                 else
                 {
                     OptionsPauseScreen.SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(optionsPauseFirst);
+                    EventSystem.current.SetSelectedGameObject(null);
                 }
                 break;
 
             case UIState.UpgradeScreen:
                 uiState = UIState.UpgradeScreen;
                 UpgradeScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(upgradeMenuFirst);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
 
             case UIState.GameplayScreen:
@@ -175,19 +181,19 @@ public class UIManager : MonoBehaviour
             case UIState.PauseScreen:
                 uiState = UIState.PauseScreen;
                 PauseScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(pauseScreenFirst);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
 
             case UIState.InfoScreen:
                 uiState = UIState.InfoScreen;
                 InfoScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(infoScreenFirst);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
 
             case UIState.OptionInfoScreen:
                 uiState = UIState.OptionInfoScreen;
                 OptionsInfoScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(optionsInfoFirst);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
 
             case UIState.ResultScreen:
@@ -208,12 +214,17 @@ public class UIManager : MonoBehaviour
 
                 scrapResult.text = "Scrap Collected:\n" + player.collector.GetScrapCollected();
                 distanceResult.text = "Distance Travelled: " + (int)player.transform.position.z;
-                EventSystem.current.SetSelectedGameObject(resultScreenFirst);
+                EventSystem.current.SetSelectedGameObject(null);
                 break;
 
             case UIState.CreditsScreen:
                 uiState = UIState.CreditsScreen;
                 CreditsScreen.SetActive(true);
+                break;
+
+            case UIState.UpgradeMenuScreen:
+                uiState = UIState.UpgradeMenuScreen;
+                UpgradeMenuScreen.SetActive(true);
                 break;
         }
     }
@@ -230,6 +241,7 @@ public class UIManager : MonoBehaviour
         OptionsInfoScreen.SetActive(false);
         ResultScreen.SetActive(false);
         CreditsScreen.SetActive(false);
+        UpgradeMenuScreen.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
     }
 

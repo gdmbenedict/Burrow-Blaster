@@ -21,6 +21,7 @@ public class Collector : MonoBehaviour
         collectionRangeMult = 1;
         collectionMult = 1;
         scrapManager = FindObjectOfType<ScrapManager>();
+        FindObjectOfType<GameManager>().ConnectScrapCollector(this);
     }
 
     // Update is called once per frame
@@ -32,13 +33,17 @@ public class Collector : MonoBehaviour
     public void CollectScrap(int scrapAmount)
     {
         int scrapAdd = (int)(scrapAmount * collectionMult);
-        scrapManager.AddScrap(scrapAdd);
         scrapCollected += scrapAdd;
     }
 
     public int GetScrapCollected()
     {
         return scrapCollected;
+    }
+
+    public void DepositScrap()
+    {
+        scrapManager.AddScrap(scrapCollected);
     }
 
     public void SetCollectionRangeMult(float collectionRangeMult)

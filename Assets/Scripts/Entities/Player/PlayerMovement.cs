@@ -48,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
     private Collider collider;
     private Plane[] cameraFrustem;
 
+    private void Awake()
+    {
+        //add self to player manager
+        FindObjectOfType<InputManager>().SetPlayerMovement(this);    
+    }
 
     // Start is called before the first frame update
     void Start()
