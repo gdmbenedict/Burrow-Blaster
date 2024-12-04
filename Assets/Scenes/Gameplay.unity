@@ -1180,7 +1180,7 @@ PrefabInstance:
     - target: {fileID: 9176048949082641098, guid: 89e94212b8880a940aab66c3c5f4ab3e,
         type: 3}
       propertyPath: m_Duration
-      value: 5.3333335
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9176048949082641098, guid: 89e94212b8880a940aab66c3c5f4ab3e,
         type: 3}
@@ -1195,7 +1195,7 @@ PrefabInstance:
     - target: {fileID: 9176048949082641098, guid: 89e94212b8880a940aab66c3c5f4ab3e,
         type: 3}
       propertyPath: m_ObjectForwardAxis
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
