@@ -36,7 +36,7 @@ public class DartMovement : MonoBehaviour
         //set target location
         xPos += center.x;
         zPos += center.z;
-        Debug.Log(zPos);
+        //Debug.Log(zPos);
         Vector3 targetPos = new Vector3(xPos, center.y, zPos);
         Vector3 startPos = transform.position;
         //Debug.Log("start Pos: " + startPos);
@@ -70,6 +70,6 @@ public class DartMovement : MonoBehaviour
     {
         yield return null;
         center = transform.position;
-        Debug.Log(center);
+        //Debug.Log(center);
     }
 }

@@ -21,31 +21,49 @@ public class InputManager : MonoBehaviour
 
     public void PauseInput(InputAction.CallbackContext context)
     {
-        gameManager.PauseInput(context);
+        if (gameManager != null)
+        {
+            gameManager.PauseInput(context);
+        } 
     }
 
     public void MoveInput(InputAction.CallbackContext input)
     {
-        playerMovement.GetMovement(input);
+        if (playerMovement != null)
+        {
+            playerMovement.GetMovement(input);
+        }   
     }
 
     public void Fire1Input(InputAction.CallbackContext input)
     {
-        playerCombat.GetBlaster(input);
+        if (playerCombat != null)
+        {
+            playerCombat.GetBlaster(input);
+        }
     }
 
     public void Fire2Input(InputAction.CallbackContext input)
     {
-        playerCombat.GetSideShot(input);
+        if (playerCombat != null)
+        {
+            playerCombat.GetSideShot(input);
+        } 
     }
 
     public void Fire3Input(InputAction.CallbackContext input)
     {
-        playerCombat.GetLaser(input);
+        if (playerCombat != null)
+        {
+            playerCombat.GetLaser(input);
+        } 
     }
 
     public void DodgeInput(InputAction.CallbackContext input)
     {
-        playerMovement.DodgeButton(input);
+        if (playerMovement != null)
+        {
+            playerMovement.DodgeButton(input);
+        }  
     }
 }

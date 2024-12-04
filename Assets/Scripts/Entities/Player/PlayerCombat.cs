@@ -18,6 +18,12 @@ public class PlayerCombat : MonoBehaviour
     private bool firingSideShots;
     private bool chargingLaser;
 
+    private void Awake()
+    {
+        //add self to input manager
+        FindObjectOfType<InputManager>().SetPlayerCombat(this);
+    }
+
     void Update()
     {
         if (firingBlaster)
