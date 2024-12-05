@@ -14,6 +14,11 @@ public class ScrapManager : MonoBehaviour
         totalScrap = 0;
     }
 
+    public void SetScrap(int scrap)
+    {
+        totalScrap = scrap;
+    }
+
     public void AddScrap(int scrap)
     {
         totalScrap += scrap;
