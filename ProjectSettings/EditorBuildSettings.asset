@@ -38,4 +38,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TileScenes/Generic5.unity
     guid: 11e15f60922413748b0b4ab2c92afa34
+  - enabled: 1
+    path: Assets/Scenes/TileScenes/BossTile.unity
+    guid: 07667dcd831d76d42a9c6205ece6dafc
+  - enabled: 1
+    path: Assets/Scenes/TileScenes/Break1.unity
+    guid: d7af5e959155c8c4d98c3f8e7a381715
+  - enabled: 1
+    path: Assets/Scenes/TileScenes/Break2.unity
+    guid: ebb03684bf506cb4cbae52f24d752470
+  - enabled: 1
+    path: Assets/Scenes/TileScenes/Generic1.unity
+    guid: bf781f7ca9ec9354782ab22cf8dbd08a
+  - enabled: 1
+    path: Assets/Scenes/TileScenes/TankIntro.unity
+    guid: 8e1d843b6b109a441849e62cd96b7528
   m_configObjects: {}

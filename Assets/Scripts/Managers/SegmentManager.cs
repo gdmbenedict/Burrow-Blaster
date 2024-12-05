@@ -42,7 +42,7 @@ public class SegmentManager : MonoBehaviour
             if (distancefromPlayer <= distance && !segments[i].loaded)
             {
                 //Debug.Log("Calling load segment");
-                StartCoroutine(LoadSegment(segments[i]));
+                LoadSegment(segments[i]);
                 segments[i].loaded = true;
             }
             //unloadd scene if too far
@@ -55,26 +55,9 @@ public class SegmentManager : MonoBehaviour
     }
 
     //Function to load segments if player is close to segment position;
-    private IEnumerator LoadSegment(Segment segment)
+    private void LoadSegment(Segment segment)
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(segment.scene, LoadSceneMode.Additive);
-
-        //wait for operation to complete and for loaded scene to reference back
-        while (!asyncOperation.isDone)
-        {
-            yield return null;
-        }
-
-        //find the root object of the most recently loaded scene
-        GameObject[] roots;
-        roots = SceneManager.GetSceneByName(segment.scene).GetRootGameObjects();
-
-        //iterate through roots and place them at correct location
-        for (int i=0; i < roots.Length; i++)
-        {
-            roots[i].transform.position = segment.position;
-        }
-
     }
 
     //Function to un-load segments if player is far from segment position;
