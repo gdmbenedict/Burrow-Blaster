@@ -23,7 +23,6 @@ public class SplineBehaviour : MonoBehaviour
             //check if spline has been gone through
             if (elapsedTimeRemainder < lastElapsedTimeRemainder)
             {
-                Debug.Log("TRying to change direction");
                 if (movingForward)
                 {
                     splineAnimate.ObjectForwardAxis = SplineComponent.AlignAxis.NegativeZAxis;
