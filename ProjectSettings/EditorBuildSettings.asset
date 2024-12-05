@@ -15,27 +15,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameplay.unity
     guid: deefec4b761c17544af77eae266f9cc3
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile1.unity
+    path: Assets/Scenes/TileScenes/DartIntro.unity
     guid: d66298482159eae48b98bb06c9d96eac
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile2.unity
+    path: Assets/Scenes/TileScenes/TurretIntro.unity
     guid: e73d2b9c21ccd3a48ae7594c6c80ce07
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile3.unity
+    path: Assets/Scenes/TileScenes/WormIntro.unity
     guid: 29f6065a4cc184844b80e5bb110c9990
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile4.unity
+    path: Assets/Scenes/TileScenes/Generic2.unity
     guid: d9948650d0c416841b0aa7f9c13da14a
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile5.unity
+    path: Assets/Scenes/TileScenes/Generic3.unity
     guid: 3762069e885a3ef4184e206a97c5e616
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile6.unity
+    path: Assets/Scenes/TileScenes/Generic4.unity
     guid: 4ed4abe3cfd552b4c84e1f24785fb8ff
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile7.unity
+    path: Assets/Scenes/TileScenes/DozerIntro.unity
     guid: d8d5bc80640b2aa4a9fcf66574b9f1f4
   - enabled: 1
-    path: Assets/Scenes/TileScenes/Tile8.unity
+    path: Assets/Scenes/TileScenes/Generic5.unity
     guid: 11e15f60922413748b0b4ab2c92afa34
   m_configObjects: {}
