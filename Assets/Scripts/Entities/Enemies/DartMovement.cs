@@ -10,12 +10,10 @@ public class DartMovement : MonoBehaviour
     private Vector3 center;
     private bool canCallDart = true;
 
-    private bool onScreen;
-
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GetPositionDelayed());
+        center = transform.position;
     }
 
     // Update is called once per frame
@@ -36,7 +34,6 @@ public class DartMovement : MonoBehaviour
         //set target location
         xPos += center.x;
         zPos += center.z;
-        //Debug.Log(zPos);
         Vector3 targetPos = new Vector3(xPos, center.y, zPos);
         Vector3 startPos = transform.position;
         //Debug.Log("start Pos: " + startPos);
@@ -64,12 +61,5 @@ public class DartMovement : MonoBehaviour
         //wait then allow call to behaviour
         yield return new WaitForSeconds(coolDownTime);
         canCallDart = true;
-    }
-
-    private IEnumerator GetPositionDelayed()
-    {
-        yield return null;
-        center = transform.position;
-        //Debug.Log(center);
     }
 }

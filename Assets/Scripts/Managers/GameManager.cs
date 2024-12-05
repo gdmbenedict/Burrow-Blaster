@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] private ShopManager shopManager;
     [SerializeField] private MusicManager musicManager;
+    [SerializeField] private UpgradeManager upgradeManager;
+    [SerializeField] private ScrapManager scrapManager;
 
     [Header("Scenes")]
     [SerializeField] private string GameSceneName;
@@ -32,29 +37,16 @@ public class GameManager : MonoBehaviour
     private bool paused;
     private GameState gameState;
     private bool win;
-    private bool firstPlay;
     private Collector scrapCollector;
 
     // Start is called before the first frame update
     void Start()
     {
-        firstPlay = true;
         win = false;
         paused = false;
         gameState = GameState.TitleMenu;
 
         musicManager.PlayMusic(Song.SongType.MenuMusic);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void ChangeState(GameState newState)
-    {
-
     }
 
     public GameState GetGameState()
@@ -115,7 +107,7 @@ public class GameManager : MonoBehaviour
     }
 
     //function that loads into the gameplay scene
-    public void GoToGame()
+    public void GoToGame(bool firstPlay)
     {
         musicManager.PlayMusic(Song.SongType.GameplayMusic);
 
@@ -123,8 +115,6 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             paused = true;
-
-            firstPlay = false;
 
             score = 0;
             levelManager.LoadScene(GameSceneName);
@@ -134,6 +124,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Save();
             //return game to normal timescale if paused
             if (Time.timeScale <= 0)
             {
@@ -165,13 +156,22 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         Time.timeScale = 0;
-
+        scrapCollector.DepositScrap();
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
         musicManager.PlayMusic(Song.SongType.MenuMusic);
     }
 
-    public void GoToUpgrade()
+    public void GoToUpgrade(bool loadingGame)
     {
+        if (loadingGame)
+        {
+            LoadSave();
+        }
+        else
+        {
+            Save();
+        }
+
         //return game to normal timescale if paused
         if (Time.timeScale <= 0)
         {
@@ -224,4 +224,62 @@ public class GameManager : MonoBehaviour
     {
         this.scrapCollector = scrapCollector;
     }
+
+    //Function that saves game data to a file
+    private void Save()
+    {
+        //creating save tools and file
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
+
+        //writting save data with serializable class
+        SaveData data = new SaveData();
+        data.scrap = scrapManager.GetScrap();
+        data.upgradeLevels = upgradeManager.GetAllUpgradeLevels();
+
+        //Serializing Data and saving to file
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    //function that loads saved data
+    private void LoadSave()
+    {
+        //check for file existance
+        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        {
+            //opening save file
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+
+            //loading data
+            SaveData data = (SaveData)bf.Deserialize(file);
+            file.Close();
+
+            //rading data
+            scrapManager.SetScrap(data.scrap);
+            upgradeManager.SetAllUpgradeLevels(data.upgradeLevels);
+        }
+    }
+
+    //function that checks if there is save data on system
+    public bool ValidateSave()
+    {
+        //check for file existance
+        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+[Serializable]
+public class SaveData
+{
+    public int scrap;
+    public int[] upgradeLevels;
 }

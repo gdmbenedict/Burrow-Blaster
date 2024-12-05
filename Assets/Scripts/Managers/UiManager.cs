@@ -54,6 +54,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject CreditsScreen;
     [SerializeField] private GameObject UpgradeMenuScreen;
 
+    [Header("UI Elements")]
+    [SerializeField] private Button ContinueButton;
+
     [Header("First Selected Objects")]
     [SerializeField] private GameObject mainMenuFirst;
     [SerializeField] private GameObject upgradeMenuFirst;
@@ -150,6 +153,10 @@ public class UIManager : MonoBehaviour
             case UIState.TitleScreen:
                 uiState = UIState.TitleScreen;
                 TitleScreen.SetActive(true);
+
+                //check continue button
+                ContinueButton.interactable = gameManager.ValidateSave();
+
                 EventSystem.current.SetSelectedGameObject(null);
                 break;
 
