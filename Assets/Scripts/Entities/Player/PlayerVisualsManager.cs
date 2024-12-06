@@ -74,6 +74,9 @@ public class PlayerVisualsManager : MonoBehaviour
     [SerializeField] private GameObject[] healthVisuals4;
     private List<GameObject[]> allHealthVisuals;
 
+    [Header("Upgrade Effects")]
+    [SerializeField] private ParticleSystem upgradeParticles;
+
     private UpgradeManager upgradeManager;
     private ShopManager shopManager;
 
@@ -329,7 +332,7 @@ public class PlayerVisualsManager : MonoBehaviour
 
     public void PlayTransitionEffects()
     {
-        //TODO: implement transition effects
+        upgradeParticles.Play();
     }
 
     //function that populates the all lists
