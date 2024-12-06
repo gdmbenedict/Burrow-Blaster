@@ -34,19 +34,19 @@ public class AudioManager : MonoBehaviour
         //setting master sliders to 1
         for (int i =0; i<masterSliders.Length; i++)
         {
-            masterSliders[i].value = 1;
+            masterSliders[i].value = 0.5f;
         }
 
         //setting music sliders to 1
         for (int i = 0; i < musicSliders.Length; i++)
         {
-            musicSliders[i].value = 1;
+            musicSliders[i].value = 0.5f;
         }
 
         //setting sfx sliders to 1
         for (int i = 0; i < sfxSliders.Length; i++)
         {
-            sfxSliders[i].value = 1;
+            sfxSliders[i].value = 0.5f;
         }
     }
 
