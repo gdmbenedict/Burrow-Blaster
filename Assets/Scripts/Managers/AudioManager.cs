@@ -22,32 +22,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider[] musicSliders;
     [SerializeField] private Slider[] sfxSliders;
 
+    [Header("Volume Settings")]
+    [SerializeField] private float initialVolume = 0.5f;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //setting initial volumes
-        masterMixer.SetFloat("MasterVolume", ConvertToDB(1));
-        masterMixer.SetFloat("MusicVolume", ConvertToDB(1));
-        masterMixer.SetFloat("SFXVolume", ConvertToDB(1));
-
-        //setting master sliders to 1
-        for (int i =0; i<masterSliders.Length; i++)
-        {
-            masterSliders[i].value = 0.5f;
-        }
-
-        //setting music sliders to 1
-        for (int i = 0; i < musicSliders.Length; i++)
-        {
-            musicSliders[i].value = 0.5f;
-        }
-
-        //setting sfx sliders to 1
-        for (int i = 0; i < sfxSliders.Length; i++)
-        {
-            sfxSliders[i].value = 0.5f;
-        }
+        InitializeMixer(MixerGroup.Master);
+        InitializeMixer(MixerGroup.Music);
+        InitializeMixer(MixerGroup.SFX);
     }
 
     //function that sets volume of mixers
@@ -88,6 +72,42 @@ public class AudioManager : MonoBehaviour
     private float ConvertToDB(float value)
     {
         return Mathf.Log10(value) * 20f;
+    }
+
+    private void InitializeMixer(MixerGroup mixerGroup)
+    {
+        switch (mixerGroup)
+        {
+            case MixerGroup.Master:
+                masterMixer.SetFloat("MasterVolume", ConvertToDB(initialVolume));
+
+                //setting master sliders to initial volume
+                for (int i = 0; i < masterSliders.Length; i++)
+                {
+                    masterSliders[i].value = initialVolume;
+                }
+                break;
+
+            case MixerGroup.Music:
+                masterMixer.SetFloat("MusicVolume", ConvertToDB(initialVolume));
+
+                //setting music sliders to initial volume
+                for (int i = 0; i < musicSliders.Length; i++)
+                {
+                    musicSliders[i].value = initialVolume;
+                }
+                break;
+
+            case MixerGroup.SFX:
+                masterMixer.SetFloat("SFXVolume", ConvertToDB(initialVolume));
+
+                //setting sfx sliders to initial volume
+                for (int i = 0; i < sfxSliders.Length; i++)
+                {
+                    sfxSliders[i].value = initialVolume;
+                }
+                break;
+        }
     }
 
 }
