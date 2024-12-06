@@ -28,6 +28,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float laserScaleFactor = 0.25f;
     [SerializeField] private float laserLifetime;
 
+    [Header("Laser Visuals")]
+    [SerializeField] private ParticleSystem chargeParticle;
+    [SerializeField] private ParticleSystem maxedParticle;
+
     private bool canFire = true;
     private float fireRateMult =1;
     private float damageMult =1;
@@ -110,6 +114,10 @@ public class Weapon : MonoBehaviour
                     //play laser SFX
                     
                     weaponCharge = 0;
+
+                    //stopping paricle effects
+                    chargeParticle.Stop();
+                    maxedParticle.Stop();
                 }
                 else
                 {
@@ -118,6 +126,10 @@ public class Weapon : MonoBehaviour
                     //play laser misfire effect
 
                     weaponCharge = 0;
+
+                    //stopping paricle effects
+                    chargeParticle.Stop();
+
                     return;
                 }
                 
@@ -145,17 +157,23 @@ public class Weapon : MonoBehaviour
             if (!chargeVisual.activeSelf)
             {
                 chargeVisual.SetActive(true);
+                chargeParticle.Play();
             }
 
             if (weaponCharge < 1f)
             {
                 weaponCharge += firerate * fireRateMult * Time.deltaTime;
-
-                //play charging SFX
             }
             else
             {
-                //play maxxed SFX
+                if (chargeParticle.isPlaying)
+                {
+                    chargeParticle.Stop();
+                }
+                if (!maxedParticle.isPlaying)
+                {
+                    maxedParticle.Play();
+                }
             }
         }
     }
