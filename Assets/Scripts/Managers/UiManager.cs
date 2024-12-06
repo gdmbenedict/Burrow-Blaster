@@ -147,6 +147,8 @@ public class UIManager : MonoBehaviour
     public void ChangeUIScreen(UIState targetScreen)
     {
         DisableAllScreens();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
 
         switch (targetScreen)
         {
@@ -183,6 +185,8 @@ public class UIManager : MonoBehaviour
             case UIState.GameplayScreen:
                 uiState = UIState.GameplayScreen;
                 GameplayUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 break;
 
             case UIState.PauseScreen:
