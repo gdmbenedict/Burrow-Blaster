@@ -309,7 +309,7 @@ public class UIManager : MonoBehaviour
             healthBlockers[i].SetActive(false);
         }
 
-        Debug.Log(player.playerHealth.GetMaxHealth());
+        //Debug.Log(player.playerHealth.GetMaxHealth());
 
         //get number of health blockers
         int numHealthBlockers = playerHealthStates.Length - 1 - player.playerHealth.GetMaxHealth();

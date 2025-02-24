@@ -9,11 +9,6 @@ public class SFXManager : MonoBehaviour
     [Header("SFX Output")]
     [SerializeField] private List<AudioSFXPlayer> sfx_Players;
 
-    private void Start()
-    {
-
-    }
-
     //Function that finds the target SFX player and makes it play specified audio-clip
     public void PlaySFX(SFX_Type targetSFX, AudioClip audioClip, bool oneShot)
     {

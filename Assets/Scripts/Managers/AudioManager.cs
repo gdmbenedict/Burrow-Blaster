@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
         switch (target)
         {
             case MixerGroup.Master:
-                masterMixer.SetFloat("MasterVolume", ConvertToDB(volume));
+                masterMixer.SetFloat("MasterVolume", ConvertToDB(volume)); //replace string with 
                 break;
 
             case MixerGroup.Music:

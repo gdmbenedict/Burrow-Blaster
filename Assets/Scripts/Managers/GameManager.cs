@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         paused = false;
         gameState = GameState.TitleMenu;
 
-        musicManager.PlayMusic(Song.SongType.MenuMusic);
+        musicManager.PlayMusic(SongType.MainMenuMusic);
     }
 
     public GameState GetGameState()
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     //function that loads into the gameplay scene
     public void GoToGame(bool firstPlay)
     {
-        musicManager.PlayMusic(Song.SongType.GameplayMusic);
+        musicManager.PlayMusic(SongType.GameplayMusic);
 
         if (firstPlay)
         {
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         scrapCollector.DepositScrap();
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
-        musicManager.PlayMusic(Song.SongType.MenuMusic);
+        musicManager.PlayMusic(SongType.MainMenuMusic);
     }
 
     public void LoseGame()
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         scrapCollector.DepositScrap();
         uiManager.ChangeUIScreen(UIManager.UIState.ResultScreen);
-        musicManager.PlayMusic(Song.SongType.MenuMusic);
+        musicManager.PlayMusic(SongType.MainMenuMusic);
     }
 
     public void GoToUpgrade(bool loadingGame)

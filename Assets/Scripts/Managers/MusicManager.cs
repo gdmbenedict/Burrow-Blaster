@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 [System.Serializable]
+public enum SongType
+{
+    MainMenuMusic,
+    ManagementMusic,
+    PracticeMusic,
+    GameplayMusic
+}
+
+[System.Serializable]
 public struct Song
 {
-    public enum SongType
-    {
-        MenuMusic,
-        GameplayMusic,
-        BossMusic,
-        UpgradeMusic,
-        PauseMusic
-    }
+    
 
     public SongType type;
     public AudioClip song;
@@ -27,7 +29,7 @@ public class MusicManager : MonoBehaviour
     [Header("Songs")]
     [SerializeField] private List<Song> songs;
 
-    public void PlayMusic(Song.SongType songType)
+    public void PlayMusic(SongType songType)
     {
         for (int i=0; i<songs.Count; i++)
         {
